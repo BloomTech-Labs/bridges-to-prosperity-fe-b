@@ -1,46 +1,34 @@
 /*eslint no-unused-vars: 0 */
-import React, { useState, useEffect } from 'react';
-import Plot from 'react-plotly.js';
-import { getDSData } from '../../../api';
+import React, { useRef, useState, useEffect } from 'react';
+import mapboxgl from 'mapbox-gl';
+import './map.css';
+
+mapboxgl.accessToken = process.env.REACT_APP_MAPBOX_TOKEN;
 
 const initialState = {
-  data: [],
-  layout: {},
-  frames: [],
-  config: {
-    displaylogo: false,
-    displayModeBar: false,
-  },
+  lng: -1.9437057,
+  lat: 29.8805778,
+  zoom: 4,
 };
 
 function DataViz(props) {
   const [data, setData] = useState(initialState);
-  const [figure, setFigure] = useState(null);
+  const mapContainerRef = useRef(null);
 
   useEffect(() => {
-    function fetchDSData() {
-      getDSData(props.url, props.authState)
-        .then(res => {
-          setData(res);
-        })
-        .catch(err => {
-          setData({ data: null, err });
-        });
-    }
-    fetchDSData();
-  }, [props.url, props.authState]);
+    const map = new mapboxgl.Map({
+      container: mapContainerRef.current,
+      style: 'mapbox://styles/mapbox/streets-v11',
+      center: [data.lng, data.lat],
+      zoom: data.zoom,
+    });
 
-  return (
-    <Plot
-      className="DataViz"
-      data={data.data}
-      layout={data.layout}
-      frames={data.frames}
-      config={data.config}
-      onInitialized={figure => setFigure(figure)}
-      onUpdate={figure => setFigure(figure)}
-    />
-  );
+    map.addControl(new mapboxgl.NavigationControl(), 'bottom-right');
+
+    return () => map.remove();
+  }, []);
+
+  return <div className="map-container" ref={mapContainerRef} />;
 }
 
 export default DataViz;
