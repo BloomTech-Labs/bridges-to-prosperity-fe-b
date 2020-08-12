@@ -11,19 +11,10 @@ const initialState = {
   zoom: 6.5,
 };
 
-// .map-container {
-//   width: 1000px;
-//   height: 1000px;
-// }
-
 function DataViz(props) {
   const [data, setData] = useState(initialState);
   const mapContainerRef = useRef(null);
   const [filter, setFilter] = useState('Approved');
-
-  // fetch('/bridgesData')
-  //   .then(response => response.json())
-  //   .then(json => console.log(json));
 
   useEffect(() => {
     const map = new mapboxgl.Map({
@@ -33,7 +24,6 @@ function DataViz(props) {
       zoom: data.zoom,
     });
 
-    // Data.communitiesServed.map(served => {});
     map.addControl(new mapboxgl.NavigationControl(), 'top-right');
 
     var i;
