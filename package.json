@@ -9,16 +9,17 @@
     "antd": "^4.4.3",
     "axios": "^0.19.2",
     "craco-less": "^1.17.0",
+    "mapbox-gl": "^1.11.1",
     "plotly.js": "^1.54.6",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
     "react-plotly.js": "^2.4.0",
     "react-router-dom": "^5.2.0",
-    "react-scripts": "3.4.1"
+    "react-scripts": "^3.4.2"
   },
   "scripts": {
-    "start": "craco start",
-    "build": "craco build",
+    "start": "craco --max_old_space_size=4096 start",
+    "build": "craco --max_old_space_size=4096 build",
     "test": "craco test --env=jest-environment-jsdom-sixteen",
     "eject": "react-scripts eject",
     "prettier": "prettier --write \"**/*.+(js|jsx|json|css|md)\"",
