@@ -6,8 +6,8 @@ import './map.css';
 mapboxgl.accessToken = process.env.REACT_APP_MAPBOX_TOKEN;
 
 const initialState = {
-  lng: -1.9437057,
-  lat: 29.8805778,
+  lng: 29.8805778,
+  lat: -1.9437057,
   zoom: 4,
 };
 
