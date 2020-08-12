@@ -2,3 +2,7 @@
   width: 500px;
   height: 500px;
 }
+
+.mapboxgl-popup {
+  max-width: 200px;
+}

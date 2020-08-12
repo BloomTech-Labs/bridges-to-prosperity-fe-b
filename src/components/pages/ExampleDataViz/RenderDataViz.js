@@ -2,13 +2,14 @@
 import React, { useRef, useState, useEffect } from 'react';
 import mapboxgl from 'mapbox-gl';
 import './map.css';
+import Data from './bridgesData.json';
 
 mapboxgl.accessToken = process.env.REACT_APP_MAPBOX_TOKEN;
 
 const initialState = {
-  lng: -1.9437057,
-  lat: 29.8805778,
-  zoom: 4,
+  lng: 30.0616,
+  lat: -1.9444,
+  zoom: 6.5,
 };
 
 function DataViz(props) {
@@ -24,6 +25,14 @@ function DataViz(props) {
     });
 
     map.addControl(new mapboxgl.NavigationControl(), 'bottom-right');
+
+    var popup = new mapboxgl.Popup({ offset: 25 }).setText(
+      `Name:${Data.name}<br>Type:${Data.type}`
+    );
+    var bridgesDummyData = new mapboxgl.Marker()
+      .setLngLat([Data.longitude, Data.latitude])
+      .setPopup(popup) // sets a popup on this marker
+      .addTo(map); // add the marker to the map
 
     return () => map.remove();
   }, []);

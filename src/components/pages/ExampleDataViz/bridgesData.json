@@ -6,8 +6,9 @@
   "subStage": "Technical",
   "individualsDirectlyServed": 0.0,
   "span": "",
-  "latitude": -2.42056,
   "longitude": 28.9662,
+  "latitude": -2.42056,
+
   "communitiesServed": [
     {
       "id": 22050101,
