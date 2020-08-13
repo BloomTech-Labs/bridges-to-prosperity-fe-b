@@ -10,6 +10,7 @@ import {
 import { Security, LoginCallback, SecureRoute } from '@okta/okta-react';
 
 import 'antd/dist/antd.less';
+import './styles/sass/index.scss';
 
 import { NotFoundPage } from './components/pages/NotFound';
 import { ExampleListPage } from './components/pages/ExampleList';
@@ -35,7 +36,7 @@ function App() {
   // React Router has a nifty useHistory hook we can use at this level to ensure we have security around our routes.
   const history = useHistory();
 
-  const [bridgeData, setBridgeData] = useState([]);
+  const [bridgeData, setBridgeData] = useState();
 
   const authHandler = () => {
     // We pass this to our <Security /> component that wraps our routes.

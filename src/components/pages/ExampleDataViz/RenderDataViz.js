@@ -1,14 +1,13 @@
 /*eslint no-unused-vars: 0 */
 import React, { useRef, useState, useEffect } from 'react';
 import mapboxgl from 'mapbox-gl';
-import './map.css';
 
 mapboxgl.accessToken = process.env.REACT_APP_MAPBOX_TOKEN;
 
 const initialState = {
   lng: 29.8805778,
   lat: -1.9437057,
-  zoom: 4,
+  zoom: 7.8,
 };
 
 function DataViz(props) {
@@ -28,7 +27,11 @@ function DataViz(props) {
     return () => map.remove();
   }, []);
 
-  return <div className="map-container" ref={mapContainerRef} />;
+  return (
+    <div className="map-container">
+      <div className="map" ref={mapContainerRef} />
+    </div>
+  );
 }
 
 export default DataViz;
