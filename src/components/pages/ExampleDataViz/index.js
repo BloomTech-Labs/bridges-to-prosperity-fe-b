@@ -1,3 +1,3 @@
-import DataVizContainer from './ExampleDataVizContainer';
+import DataViz from './RenderDataViz';
 
-export { DataVizContainer as ExampleDataViz };
+export { DataViz };
