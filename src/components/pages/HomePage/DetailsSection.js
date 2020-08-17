@@ -8,7 +8,7 @@ const Details = ({ props }) => {
   return (
     <div className="detailsContainer">
       <Divider />
-      {bridgeData ? (
+      {/* {bridgeData ? (
         <div className="detailsInfo">
           <h3>{bridgeData.name}</h3>
           <p>
@@ -23,7 +23,7 @@ const Details = ({ props }) => {
             ))}
           </ul>
         </div>
-      ) : null}
+      ) : null} */}
     </div>
   );
 };

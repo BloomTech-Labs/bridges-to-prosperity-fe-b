@@ -1,7 +1,7 @@
 /*eslint no-unused-vars: 0 */
-import React, { useRef, useState, useEffect } from 'react';
+import React, { useRef, useState, useEffect, useContext } from 'react';
+import { BridgesContext } from '../../../state/bridgesContext';
 import mapboxgl from 'mapbox-gl';
-import Data from './bridgesData.json';
 
 mapboxgl.accessToken = process.env.REACT_APP_MAPBOX_TOKEN;
 
@@ -14,7 +14,8 @@ const initialState = {
 function DataViz(props) {
   const [data, setData] = useState(initialState);
   const mapContainerRef = useRef(null);
-  const [filter, setFilter] = useState('Approved');
+  const [filter, setFilter] = useState('Completed');
+  const { bridgeData } = useContext(BridgesContext);
 
   useEffect(() => {
     const map = new mapboxgl.Map({
@@ -26,30 +27,31 @@ function DataViz(props) {
 
     map.addControl(new mapboxgl.NavigationControl(), 'top-right');
 
-    var i;
-    for (i = 0; i < Data.length; i++) {
-      console.log(Data[i].project_stage);
-      if (Data[i].project_stage === filter) {
-        var popup = new mapboxgl.Popup({ offset: 35 }).setHTML(
-          '<div style="color:red">' +
-            'Country:' +
-            `${Data[i].country}` +
-            '</div>' +
-            `Province:${Data[i].province}` +
-            '<br/>' +
-            'Communties:' +
-            Data[i].communities_served.map(data => ` ${data.name}`)
-        );
+    if (bridgeData) {
+      console.log(bridgeData);
+      for (let i = 0; i < bridgeData.length; i++) {
+        if (bridgeData[i].project_stage === filter) {
+          var popup = new mapboxgl.Popup({ offset: 35 }).setHTML(
+            '<div style="color:red">' +
+              'Country:' +
+              `${bridgeData[i].country}` +
+              '</div>' +
+              `Province:${bridgeData[i].province}` +
+              '<br/>' +
+              'Communties:' +
+              bridgeData[i].communities_served.map(data => ` ${data.name}`)
+          );
 
-        var bridgesDummyData = new mapboxgl.Marker()
-          .setLngLat([Data[i].long, Data[i].lat])
-          .setPopup(popup) // sets a popup on this marker
-          .addTo(map); // add the marker to the map
+          var bridgesDummyData = new mapboxgl.Marker()
+            .setLngLat([bridgeData[i].long, bridgeData[i].lat])
+            .setPopup(popup) // sets a popup on this marker
+            .addTo(map); // add the marker to the map
+        }
       }
     }
 
     return () => map.remove();
-  }, []);
+  }, [bridgeData]);
 
   return (
     <div className="map-container">

@@ -3,6 +3,7 @@ import { BridgesContext } from '../../../state/bridgesContext';
 import DataViz from '../DataViz/RenderDataViz';
 import DetailsSection from './DetailsSection';
 import Navigation from '../../common/Navigation';
+import { getDSData } from '../../../api/index';
 
 const bridgeSite = {
   id: 1014107,
@@ -38,7 +39,11 @@ const HomePage = () => {
   const { setBridgeData } = useContext(BridgesContext);
 
   useEffect(() => {
-    setBridgeData(bridgeSite);
+    getDSData('https://bridges-to-prosperity-core.herokuapp.com/bridges').then(
+      data => {
+        setBridgeData(data);
+      }
+    );
   }, []);
 
   return (
