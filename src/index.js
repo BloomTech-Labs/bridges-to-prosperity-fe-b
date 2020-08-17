@@ -16,7 +16,7 @@ import { NotFoundPage } from './components/pages/NotFound';
 import { LoginPage } from './components/pages/Login';
 import { config } from './utils/oktaConfig';
 import { LoadingComponent } from './components/common';
-import HomePage from './components/pages/HomePage/index';
+import { HomePage } from './components/pages/HomePage/index';
 
 ReactDOM.render(
   <Router>
