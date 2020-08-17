@@ -1,9 +1,8 @@
-import React, { useContext, useState, useEffect } from 'react';
+import React, { useContext, useEffect } from 'react';
 import { BridgesContext } from '../../../state/bridgesContext';
-import DataViz from '../ExampleDataViz/RenderDataViz';
-import DetailsSection from '../../common/DetailsSection';
+import DataViz from '../DataViz/RenderDataViz';
+import DetailsSection from './DetailsSection';
 import Navigation from '../../common/Navigation';
-import { Link } from 'react-router-dom';
 
 const bridgeSite = {
   id: 1014107,
@@ -35,7 +34,7 @@ const bridgeSite = {
   ],
 };
 
-const Welcome = () => {
+const HomePage = () => {
   const { setBridgeData } = useContext(BridgesContext);
 
   useEffect(() => {
@@ -51,4 +50,4 @@ const Welcome = () => {
   );
 };
 
-export default Welcome;
+export default HomePage;
