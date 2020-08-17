@@ -1,6 +1,6 @@
+/*eslint no-unused-vars: 0 */
 import React, { useRef, useState, useEffect } from 'react';
 import mapboxgl from 'mapbox-gl';
-import './map.css';
 import Data from './bridgesData.json';
 
 mapboxgl.accessToken = process.env.REACT_APP_MAPBOX_TOKEN;
@@ -52,9 +52,9 @@ function DataViz(props) {
   }, []);
 
   return (
-    <>
-      <div className="map-container" ref={mapContainerRef}></div>
-    </>
+    <div className="map-container">
+      <div className="map" ref={mapContainerRef} />
+    </div>
   );
 }
 

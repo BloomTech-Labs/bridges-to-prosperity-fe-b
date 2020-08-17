@@ -10,13 +10,14 @@
     "axios": "^0.19.2",
     "craco-less": "^1.17.0",
     "mapbox-gl": "^1.11.1",
+    "node-sass": "^4.14.1",
     "plotly.js": "^1.54.6",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
     "react-map-gl": "^5.2.7",
     "react-plotly.js": "^2.4.0",
     "react-router-dom": "^5.2.0",
-    "react-scripts": "^3.4.2"
+    "react-scripts": "^3.4.3"
   },
   "scripts": {
     "start": "craco --max_old_space_size=4096 start",
