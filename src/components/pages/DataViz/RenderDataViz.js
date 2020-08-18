@@ -29,24 +29,32 @@ function DataViz(props) {
 
     if (bridgeData) {
       console.log(bridgeData);
+      let markerColor;
       for (let i = 0; i < bridgeData.length; i++) {
-        if (bridgeData[i].project_stage === filter) {
-          var popup = new mapboxgl.Popup({ offset: 35 }).setHTML(
-            '<div style="color:red">' +
-              'Country:' +
-              `${bridgeData[i].country}` +
-              '</div>' +
-              `Province:${bridgeData[i].province}` +
-              '<br/>' +
-              'Communties:' +
-              bridgeData[i].communities_served.map(data => ` ${data.name}`)
-          );
+        var popup = new mapboxgl.Popup({ offset: 35 }).setHTML(
+          '<div style="color:red">' +
+            'Country:' +
+            `${bridgeData[i].country}` +
+            '</div>' +
+            `Province:${bridgeData[i].province}` +
+            '<br/>' +
+            'Communties:' +
+            bridgeData[i].communities_served.map(data => ` ${data.name}`)
+        );
 
-          var bridgesDummyData = new mapboxgl.Marker()
-            .setLngLat([bridgeData[i].long, bridgeData[i].lat])
-            .setPopup(popup) // sets a popup on this marker
-            .addTo(map); // add the marker to the map
+        if (bridgeData[i].project_stage == 'Completed') {
+          markerColor = '#009149';
+        } else {
+          markerColor = 'blue';
         }
+
+        var marker = new mapboxgl.Marker({
+          color: markerColor,
+        })
+          .setLngLat([bridgeData[i].long, bridgeData[i].lat])
+          .setPopup(popup) // sets a popup on this marker
+          .addTo(map); // add the marker to the map
+        console.log(marker);
       }
     }
 
