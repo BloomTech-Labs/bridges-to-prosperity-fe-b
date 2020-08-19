@@ -26,10 +26,11 @@ function DataViz(props) {
     });
 
     map.addControl(new mapboxgl.NavigationControl(), 'top-right');
-
+    map.addControl(new mapboxgl.FullscreenControl());
     if (bridgeData) {
       console.log(bridgeData);
       let markerColor;
+
       for (let i = 0; i < bridgeData.length; i++) {
         var popup = new mapboxgl.Popup({ offset: 35 }).setHTML(
           '<div style="color:red">' +
@@ -54,7 +55,6 @@ function DataViz(props) {
           .setLngLat([bridgeData[i].long, bridgeData[i].lat])
           .setPopup(popup) // sets a popup on this marker
           .addTo(map); // add the marker to the map
-        console.log(marker);
       }
     }
 
@@ -63,7 +63,7 @@ function DataViz(props) {
 
   return (
     <div className="map-container">
-      <div className="map" ref={mapContainerRef} />
+      <div id="map" className="map" ref={mapContainerRef} />
     </div>
   );
 }
