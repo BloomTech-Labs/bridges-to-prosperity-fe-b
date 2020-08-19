@@ -3,3 +3,14 @@
 @import 'nav.scss';
 @import 'mapHome.scss';
 @import 'footer.scss';
+@import 'global.scss';
+
+@font-face {
+  font-family: 'bridge-font';
+  src: url(../fonts/AkkRg_Pro.otf);
+}
+
+@font-face {
+  font-family: 'bridge-font-bd';
+  src: url(../fonts/AkkBd_Pro.otf);
+}

@@ -3,7 +3,7 @@
   justify-content: space-between;
   align-items: center;
   height: 100px;
-  margin: 0 5%;
+  margin: 1% 5%;
   border-bottom: 1px solid #d6d1ca;
 
   img {
@@ -14,8 +14,11 @@
     display: flex;
     align-items: center;
     background-color: #009149;
-    padding: 0 4%;
+    padding: 0 3.5%;
     color: white;
     height: 75%;
+    font-family: 'bridge-font';
+    font-weight: 700;
+    font-size: 1.25vw;
   }
 }
