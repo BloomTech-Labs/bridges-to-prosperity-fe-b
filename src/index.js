@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import ReactDOM from 'react-dom';
-import { BridgesContext } from './state/bridgesContext';
+import { BridgesContext } from './state/contexts/bridgesContext';
 import {
   BrowserRouter as Router,
   Route,
@@ -15,7 +15,6 @@ import './styles/sass/index.scss';
 import { NotFoundPage } from './components/pages/NotFound';
 import { LoginPage } from './components/pages/Login';
 import { config } from './utils/oktaConfig';
-import { LoadingComponent } from './components/common';
 import { HomePage } from './components/pages/HomePage/index';
 
 ReactDOM.render(

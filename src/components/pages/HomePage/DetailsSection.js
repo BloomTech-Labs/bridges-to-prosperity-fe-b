@@ -1,5 +1,5 @@
 import React, { useContext } from 'react';
-import { BridgesContext } from '../../../state/bridgesContext';
+import { BridgesContext } from '../../../state/contexts/bridgesContext';
 
 const Details = ({ props }) => {
   const { bridgeData } = useContext(BridgesContext);

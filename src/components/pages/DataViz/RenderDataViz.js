@@ -1,6 +1,11 @@
 /*eslint no-unused-vars: 0 */
 import React, { useRef, useState, useEffect, useContext } from 'react';
-import { BridgesContext } from '../../../state/bridgesContext';
+import { BridgesContext } from '../../../state/contexts/bridgesContext';
+import {
+  popUpSetUp,
+  mapSetUp,
+  markerSetUp,
+} from '../../../utils/helper-functions/mapbox-helpers';
 import mapboxgl from 'mapbox-gl';
 
 mapboxgl.accessToken = process.env.REACT_APP_MAPBOX_TOKEN;
@@ -11,55 +16,31 @@ const initialState = {
   zoom: 6.5,
 };
 
-function DataViz(props) {
-  const [data, setData] = useState(initialState);
+function DataViz() {
+  const [initalCoordinates] = useState(initialState);
   const mapContainerRef = useRef(null);
-  const [filter, setFilter] = useState('Completed');
   const { bridgeData } = useContext(BridgesContext);
 
   useEffect(() => {
-    const map = new mapboxgl.Map({
-      container: mapContainerRef.current,
-      style: 'mapbox://styles/mapbox/streets-v11',
-      center: [data.lng, data.lat],
-      zoom: data.zoom,
-    });
-
-    map.addControl(new mapboxgl.NavigationControl(), 'top-right');
-    map.addControl(new mapboxgl.FullscreenControl());
+    let map = mapSetUp(initalCoordinates, mapContainerRef);
     if (bridgeData) {
-      console.log(bridgeData);
       let markerColor;
 
       for (let i = 0; i < bridgeData.length; i++) {
-        var popup = new mapboxgl.Popup({ offset: 35 }).setHTML(
-          '<div style="color:red">' +
-            'Country:' +
-            `${bridgeData[i].country}` +
-            '</div>' +
-            `Province:${bridgeData[i].province}` +
-            '<br/>' +
-            'Communties:' +
-            bridgeData[i].communities_served.map(data => ` ${data.name}`)
-        );
+        let newPopUp = popUpSetUp(bridgeData[i]);
 
-        if (bridgeData[i].project_stage == 'Completed') {
+        if (bridgeData[i].project_stage === 'Completed') {
           markerColor = '#009149';
         } else {
-          markerColor = 'blue';
+          markerColor = '#EA7149';
         }
 
-        var marker = new mapboxgl.Marker({
-          color: markerColor,
-        })
-          .setLngLat([bridgeData[i].long, bridgeData[i].lat])
-          .setPopup(popup) // sets a popup on this marker
-          .addTo(map); // add the marker to the map
+        markerSetUp(map, newPopUp, markerColor, bridgeData[i]);
       }
     }
 
     return () => map.remove();
-  }, [bridgeData]);
+  }, [bridgeData, initalCoordinates]);
 
   return (
     <div className="map-container">
