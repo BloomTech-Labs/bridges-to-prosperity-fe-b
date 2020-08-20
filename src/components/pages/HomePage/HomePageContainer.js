@@ -3,6 +3,7 @@ import { BridgesContext } from '../../../state/bridgesContext';
 import DataViz from '../DataViz/RenderDataViz';
 import DetailsSection from './DetailsSection';
 import Navigation from '../../common/Navigation';
+import Footer from '../../common/Footer';
 import { getDSData } from '../../../api/index';
 
 const bridgeSite = {
@@ -49,8 +50,11 @@ const HomePage = () => {
   return (
     <div>
       <Navigation />
-      <DataViz />
-      <DetailsSection />
+      <div className="homeContainer">
+        <DataViz />
+        <DetailsSection />
+      </div>
+      <Footer />
     </div>
   );
 };

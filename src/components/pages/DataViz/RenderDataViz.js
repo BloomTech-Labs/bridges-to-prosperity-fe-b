@@ -63,6 +63,7 @@ function DataViz(props) {
 
   return (
     <div className="map-container">
+      <h2>Bridge Sites in Rwanda</h2>
       <div id="map" className="map" ref={mapContainerRef} />
     </div>
   );
