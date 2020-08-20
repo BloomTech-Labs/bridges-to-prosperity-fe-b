@@ -13,7 +13,7 @@ mapboxgl.accessToken = process.env.REACT_APP_MAPBOX_TOKEN;
 const initialState = {
   lng: 30.0616,
   lat: -1.9444,
-  zoom: 6.5,
+  zoom: 7.8,
 };
 
 function DataViz() {
