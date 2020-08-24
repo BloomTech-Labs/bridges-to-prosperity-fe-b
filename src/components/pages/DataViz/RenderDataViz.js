@@ -1,6 +1,7 @@
 /*eslint no-unused-vars: 0 */
 import React, { useRef, useState, useEffect, useContext } from 'react';
 import { BridgesContext } from '../../../state/contexts/bridgesContext';
+import { DetailsContext } from '../../../state/contexts/detailsContext';
 import {
   popUpSetUp,
   mapSetUp,
@@ -21,6 +22,7 @@ function DataViz() {
   const [search, setSearch] = useState('Yes');
   const mapContainerRef = useRef(null);
   const { bridgeData } = useContext(BridgesContext);
+  const { setDetailsData } = useContext(DetailsContext);
 
   useEffect(() => {
     let map = mapSetUp(initalCoordinates, mapContainerRef);
@@ -37,7 +39,7 @@ function DataViz() {
           markerColor = '#EA7149';
         }
 
-        markerSetUp(map, newPopUp, markerColor, bridgeData[i]);
+        markerSetUp(map, newPopUp, markerColor, bridgeData[i], setDetailsData);
       }
     }
 

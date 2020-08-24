@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import ReactDOM from 'react-dom';
 import { BridgesContext } from './state/contexts/bridgesContext';
+import { DetailsContext } from './state/contexts/detailsContext';
 import {
   BrowserRouter as Router,
   Route,
@@ -32,6 +33,7 @@ function App() {
   const history = useHistory();
 
   const [bridgeData, setBridgeData] = useState();
+  const [detailsData, setDetailsData] = useState();
 
   const authHandler = () => {
     // We pass this to our <Security /> component that wraps our routes.
@@ -40,16 +42,18 @@ function App() {
   };
 
   return (
-    <BridgesContext.Provider value={{ bridgeData, setBridgeData }}>
-      <Security {...config} onAuthRequired={authHandler}>
-        <Switch>
-          <Route path="/login" component={LoginPage} />
-          <Route path="/implicit/callback" component={LoginCallback} />
-          {/* any of the routes you need secured should be registered as SecureRoutes */}
-          <Route exact path="/" component={HomePage} />
-          <Route component={NotFoundPage} />
-        </Switch>
-      </Security>
-    </BridgesContext.Provider>
+    <DetailsContext.Provider value={{ detailsData, setDetailsData }}>
+      <BridgesContext.Provider value={{ bridgeData, setBridgeData }}>
+        <Security {...config} onAuthRequired={authHandler}>
+          <Switch>
+            <Route path="/login" component={LoginPage} />
+            <Route path="/implicit/callback" component={LoginCallback} />
+            {/* any of the routes you need secured should be registered as SecureRoutes */}
+            <Route exact path="/" component={HomePage} />
+            <Route component={NotFoundPage} />
+          </Switch>
+        </Security>
+      </BridgesContext.Provider>
+    </DetailsContext.Provider>
   );
 }
