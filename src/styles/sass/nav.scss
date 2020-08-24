@@ -3,11 +3,29 @@
   justify-content: space-between;
   align-items: center;
   height: 100px;
-  margin: 1% 5%;
+  padding: 0 5%;
+  margin: 1% 0%;
   border-bottom: 1px solid #d6d1ca;
 
-  img {
-    height: 80%;
+  .logo {
+    display: flex;
+    align-items: flex-end;
+    width: 100%;
+    img {
+      height: auto;
+      width: 4vw;
+      margin: 1%;
+      margin-bottom: 2.2%;
+    }
+    h1 {
+      display: flex;
+      align-self: flex-end;
+      // margin-left: 10px;
+      // padding: 4% 0;
+      font-size: 4vw;
+      margin: 0;
+      font-family: 'bridge-font-bd';
+    }
   }
 
   .loginButton {

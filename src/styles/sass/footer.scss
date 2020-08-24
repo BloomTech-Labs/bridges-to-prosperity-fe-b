@@ -1,10 +1,23 @@
 .footer {
   display: flex;
-  justify-content: center;
-  height: 20vh;
+  flex-direction: column;
+  margin: 0 auto;
+  padding: 5% 20%;
+  align-content: center;
   background: #161345;
-  h2 {
+  p {
+    font-size: 1.2rem;
+    margin: 5% 0;
     color: #fff;
     font-family: 'bridge-font';
+  }
+  .social-media {
+    display: flex;
+    justify-content: space-evenly;
+    font-size: 2rem;
+    margin: 0 auto;
+    width: 100%;
+    color: white;
+    cursor: pointer;
   }
 }
