@@ -1,4 +1,5 @@
 import mapboxgl from 'mapbox-gl';
+import MapboxGeocoder from '@mapbox/mapbox-gl-geocoder';
 
 const mapSetUp = (initalCoordinates, mapContainerRef) => {
   const map = new mapboxgl.Map({
@@ -9,6 +10,16 @@ const mapSetUp = (initalCoordinates, mapContainerRef) => {
   });
   map.addControl(new mapboxgl.NavigationControl(), 'top-right');
   map.addControl(new mapboxgl.FullscreenControl());
+  map.addControl(
+    new MapboxGeocoder({
+      accessToken: mapboxgl.accessToken,
+
+      zoom: 14,
+      countries: 'rw',
+      placeholder: 'Enter search e.g. Completed',
+    }),
+    'top-left'
+  );
   return map;
 };
 

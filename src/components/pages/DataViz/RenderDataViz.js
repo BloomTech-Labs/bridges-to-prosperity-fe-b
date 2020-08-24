@@ -18,11 +18,13 @@ const initialState = {
 
 function DataViz() {
   const [initalCoordinates] = useState(initialState);
+  const [search, setSearch] = useState('Yes');
   const mapContainerRef = useRef(null);
   const { bridgeData } = useContext(BridgesContext);
 
   useEffect(() => {
     let map = mapSetUp(initalCoordinates, mapContainerRef);
+
     if (bridgeData) {
       let markerColor;
 
