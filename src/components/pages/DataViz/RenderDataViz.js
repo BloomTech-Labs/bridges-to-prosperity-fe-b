@@ -26,7 +26,6 @@ function DataViz() {
   useEffect(() => {
     let map = mapSetUp(initalCoordinates, mapContainerRef);
     if (bridgeData) {
-      console.log(bridgeData);
       let markerColor;
 
       for (let i = 0; i < bridgeData.length; i++) {
