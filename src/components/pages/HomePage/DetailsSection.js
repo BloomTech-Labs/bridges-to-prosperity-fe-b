@@ -3,7 +3,6 @@ import { DetailsContext } from '../../../state/contexts/detailsContext';
 
 const Details = ({ props }) => {
   const { detailsData } = useContext(DetailsContext);
-  console.log(detailsData);
   return (
     <div className="detailsContainer">
       <h3>Bridge Details</h3>
