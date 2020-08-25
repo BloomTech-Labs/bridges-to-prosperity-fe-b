@@ -6,7 +6,7 @@ import {
   popUpSetUp,
   mapSetUp,
   markerSetUp,
-} from '../../../utils/helper-functions/mapbox-helpers';
+} from '../../../utils/helper-functions/index';
 import mapboxgl from 'mapbox-gl';
 
 mapboxgl.accessToken = process.env.REACT_APP_MAPBOX_TOKEN;
@@ -44,7 +44,7 @@ function DataViz() {
     }
 
     return () => map.remove();
-  }, [bridgeData, initalCoordinates]);
+  }, [bridgeData, initalCoordinates, setDetailsData]);
 
   return (
     <div className="map-container">
