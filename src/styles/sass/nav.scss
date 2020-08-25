@@ -3,11 +3,31 @@
   justify-content: space-between;
   align-items: center;
   height: 100px;
-  margin: 1% 5%;
+  padding: 0 5%;
+  margin: 0% 0%;
   border-bottom: 1px solid #d6d1ca;
 
-  img {
-    height: 80%;
+  .logo {
+    display: flex;
+    align-items: flex-end;
+    width: 100%;
+    img {
+      //logo is kinda big
+      height: auto;
+      width: 2.8vw;
+      margin: 1%;
+      margin-bottom: 2.2%;
+    }
+    h1 {
+      display: flex;
+      align-self: flex-end;
+      color: #161345;
+      // margin-left: 10px;
+      // padding: 4% 0;
+      font-size: 2.5vw;
+      margin: 0.8% 0;
+      font-family: 'bridge-font-bd';
+    }
   }
 
   .loginButton {
@@ -16,9 +36,9 @@
     background-color: #009149;
     padding: 0 3.5%;
     color: white;
-    height: 75%;
+    height: 7vh;
     font-family: 'bridge-font';
     font-weight: 700;
-    font-size: 1.25vw;
+    font-size: 2.25vw;
   }
 }
