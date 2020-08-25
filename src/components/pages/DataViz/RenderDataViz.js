@@ -44,7 +44,7 @@ function DataViz() {
     }
 
     return () => map.remove();
-  }, [bridgeData, initalCoordinates]);
+  }, [bridgeData, initalCoordinates, setDetailsData]);
 
   return (
     <div className="map-container">
