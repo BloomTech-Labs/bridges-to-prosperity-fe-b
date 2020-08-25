@@ -17,6 +17,7 @@ import { LoginPage } from './components/pages/Login';
 import { config } from './utils/oktaConfig';
 import { LoadingComponent } from './components/common';
 import { HomePage } from './components/pages/HomePage/index';
+import { UserTable } from './components/pages/TablePage';
 
 ReactDOM.render(
   <Router>
@@ -44,6 +45,7 @@ function App() {
     <BridgesContext.Provider value={{ bridgeData, setBridgeData }}>
       <Security {...config} onAuthRequired={authHandler}>
         <Switch>
+          <Route path="/table" component={UserTable} />
           <Route path="/login" component={LoginPage} />
           <Route path="/implicit/callback" component={LoginCallback} />
           {/* any of the routes you need secured should be registered as SecureRoutes */}
