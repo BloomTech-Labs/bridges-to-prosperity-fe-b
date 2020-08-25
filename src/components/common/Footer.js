@@ -4,7 +4,7 @@ const Footer = () => {
   return (
     <div className="footer">
       <img
-        style={{ height: '11vh', width: '15vw' }}
+        style={{ height: '100px', width: '200px' }}
         src={require('../../styles/imgs/B2P_PrimaryLockup_Green-White.png')}
         alt="Bridges of Prosperity Logo"
       />
@@ -25,10 +25,21 @@ const Footer = () => {
         <br /> EIN: 54-2031102
       </p>
       <div className="social-media">
-        <i className="fab fa-facebook-f"></i>
-        <i className="fab fa-twitter"></i>
-        <i className="fab fa-instagram"></i>
-        <i className="fab fa-linkedin-in"></i>
+        <a href="https://www.facebook.com/BridgestoProsperity/" target="blank">
+          <i className="fab fa-facebook-f"></i>
+        </a>
+        <a href="https://www.facebook.com/BridgestoProsperity/" target="blank">
+          <i className="fab fa-twitter"></i>
+        </a>
+        <a href="https://www.instagram.com/bridgestoprosperity/" target="blank">
+          <i className="fab fa-instagram"></i>
+        </a>
+        <a
+          href="https://www.linkedin.com/company/bridges-to-prosperity/"
+          target="blank"
+        >
+          <i className="fab fa-linkedin-in"></i>
+        </a>
       </div>
     </div>
   );

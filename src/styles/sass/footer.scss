@@ -7,11 +7,16 @@
   background: #161345;
   p {
     font-size: 1.2rem;
-    margin: 5% 0;
+    margin: 2% 0;
     color: #fff;
     font-family: 'bridge-font';
   }
+  a {
+    color: white;
+    font-size: 2rem;
+  }
   .social-media {
+    color: white;
     display: flex;
     justify-content: space-evenly;
     font-size: 2rem;
