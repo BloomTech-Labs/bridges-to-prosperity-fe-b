@@ -2,9 +2,9 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  height: 100px;
+  height: 13vh;
   padding: 0 5%;
-  margin: 0% 0%;
+  margin: 0%;
   border-bottom: 1px solid #d6d1ca;
 
   .logo {
@@ -14,9 +14,9 @@
     img {
       //logo is kinda big
       height: auto;
-      width: 2.8vw;
-      margin: 1%;
-      margin-bottom: 2.2%;
+      width: 2.5vw;
+      margin-bottom: 1.1%;
+      margin-right: 1%;
     }
     h1 {
       display: flex;
@@ -24,9 +24,10 @@
       color: #161345;
       // margin-left: 10px;
       // padding: 4% 0;
-      font-size: 2.5vw;
-      margin: 0.8% 0;
+      font-size: 2.2vw;
+      margin: 0;
       font-family: 'bridge-font-bd';
+      letter-spacing: -1.5px;
     }
   }
 
@@ -34,11 +35,11 @@
     display: flex;
     align-items: center;
     background-color: #009149;
-    padding: 0 3.5%;
+    padding: 2.3% 3.5%;
     color: white;
     height: 7vh;
     font-family: 'bridge-font';
     font-weight: 700;
-    font-size: 2.25vw;
+    font-size: 1.25vw;
   }
 }

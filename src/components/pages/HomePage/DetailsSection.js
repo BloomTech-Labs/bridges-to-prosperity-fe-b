@@ -5,7 +5,7 @@ const Details = ({ props }) => {
   const { detailsData } = useContext(DetailsContext);
   return (
     <div className="detailsContainer">
-      <h3>Bridge Details</h3>
+      <h3>Bridge Site Details</h3>
       {detailsData ? (
         <div>
           {detailsData.Province ? <p>{detailsData.Province}</p> : null}

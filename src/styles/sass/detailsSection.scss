@@ -3,5 +3,11 @@
   justify-content: center;
   align-items: center;
   flex-direction: column;
-  width: 25%;
+  background-color: #161345;
+  padding: 3%;
+  h3,
+  p,
+  li {
+    color: #fff;
+  }
 }
