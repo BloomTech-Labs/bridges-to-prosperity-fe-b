@@ -1,10 +1,13 @@
 import React, { useRef, useState, useEffect, useContext } from 'react';
+import Navigation from '../../common/Navigation';
 import { BridgesContext } from '../../../state/bridgesContext';
 import { Table } from 'antd';
+import { Link, useHistory } from 'react-router-dom';
 
 function UserTable(props) {
   const [data, setData] = useState();
   const { bridgeData } = useContext(BridgesContext);
+  const history = useHistory();
 
   /*{
         "id": 1,
@@ -109,8 +112,22 @@ function UserTable(props) {
 
   return (
     <div className="table-container">
+      <Navigation />
       <h2>Table: Bridge Sites in Rwanda</h2>
-      <Table dataSource={bridgeData} columns={columns} />;
+      <Table
+        dataSource={bridgeData}
+        columns={columns}
+        onRow={(record, index) => {
+          return {
+            onClick: event => {
+              history.push('/');
+            }, //we'll push to the detailed view component.
+            //will need to set a context as well unless the component does it's own api call
+          };
+        }}
+        pagination={{ defaultPageSize: 1 }}
+      />
+      ;
     </div>
   );
 }
