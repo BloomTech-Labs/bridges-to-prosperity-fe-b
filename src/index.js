@@ -17,7 +17,7 @@ import { NotFoundPage } from './components/pages/NotFound';
 import { LoginPage } from './components/pages/Login';
 import { config } from './utils/oktaConfig';
 import { HomePage } from './components/pages/HomePage/index';
-
+import DataVizReact from './components/pages/DataViz-react/RederDataVizReact';
 ReactDOM.render(
   <Router>
     <React.StrictMode>
@@ -47,6 +47,7 @@ function App() {
         <Security {...config} onAuthRequired={authHandler}>
           <Switch>
             <Route path="/login" component={LoginPage} />
+            <Route path="/mapbox" component={DataVizReact} />
             <Route path="/implicit/callback" component={LoginCallback} />
             {/* any of the routes you need secured should be registered as SecureRoutes */}
             <Route exact path="/" component={HomePage} />
