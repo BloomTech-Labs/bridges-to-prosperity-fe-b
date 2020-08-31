@@ -1,19 +1,19 @@
 import React, { useState } from 'react';
 import ReactMapGL, { Popup } from 'react-map-gl';
 
-const BridgeImage = ({ marker }) => {
-  console.log(marker);
+const BridgeImage = ({ marker, setShowPopup, index, setSelected }) => {
+  // console.log(marker);
   const [changeSize, setChangeSize] = useState(false);
-  const [showPopup, setShowPopup] = useState(true);
+  // const [showPopup, setShowPopup] = useState(true);
   return (
     <>
       {changeSize ? (
         <>
           <img
             alt="bridge-icon"
-            onClick={() => {
+            onMouseLeave={() => {
               setChangeSize(false);
-              console.log('yes/');
+              setShowPopup(false);
             }}
             width={'35px'}
             height={'35px'}
@@ -34,8 +34,10 @@ const BridgeImage = ({ marker }) => {
         <>
           <img
             alt="bridge-icon"
-            onClick={() => {
+            onMouseEnter={() => {
               setChangeSize(true);
+              setShowPopup(true);
+              setSelected({ index });
             }}
             width={'25px'}
             height={'25px'}
