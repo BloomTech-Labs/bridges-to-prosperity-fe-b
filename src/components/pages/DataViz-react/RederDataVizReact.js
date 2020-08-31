@@ -28,7 +28,7 @@ const DataVizReact = () => {
         id="map"
         ref={mapRef}
         {...viewport}
-        width="1000px"
+        width="90%"
         height="800px"
         mapStyle="mapbox://styles/mapbox/streets-v11"
         onViewportChange={handleViewportChange}

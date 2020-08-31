@@ -22,7 +22,13 @@ const Markers = ({ bridgeData }) => {
                   onClose={() => setShowPopup(false)}
                   anchor="bottom-right"
                 >
-                  <div>HIIIII</div>
+                  <div className="popup">
+                    {/* This is the information where stackholder found them most valuable*/}
+                    <p>Province: {marker.province}</p>
+                    <p>District: {marker.district}</p>
+                    <p>Status: {marker.project_stage}</p>
+                    {/* bridge side name is coming soon */}
+                  </div>
                 </Popup>
               </div>
             );
