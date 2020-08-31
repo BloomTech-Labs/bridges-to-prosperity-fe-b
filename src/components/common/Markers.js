@@ -2,8 +2,6 @@ import React, { useState } from 'react';
 import ReactMapGL, { Marker, Popup } from 'react-map-gl';
 import BridgeImage from './BridgeImage';
 const Markers = ({ bridgeData }) => {
-  console.log({ bridgeData });
-
   return (
     <>
       {bridgeData &&
@@ -13,8 +11,9 @@ const Markers = ({ bridgeData }) => {
               key={marker.id}
               latitude={marker.lat}
               longitude={marker.long}
+              onClick={() => {}}
             >
-              <BridgeImage />
+              <BridgeImage marker={marker} />
             </Marker>
           );
         })}
