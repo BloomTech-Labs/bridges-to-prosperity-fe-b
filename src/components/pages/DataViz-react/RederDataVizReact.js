@@ -54,7 +54,7 @@ const DataVizReact = () => {
         <div style={{ position: 'absolute', right: 10, top: 50 }}>
           <NavigationControl />
         </div>
-        <Markers bridgeData={bridgeData} />
+        <Markers style={{ position: 'relative' }} bridgeData={bridgeData} />
       </ReactMapGL>
     </div>
   );

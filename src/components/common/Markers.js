@@ -7,6 +7,28 @@ const Markers = ({ bridgeData }) => {
   console.log({ selected });
   return (
     <>
+      {bridgeData &&
+        bridgeData.map((marker, index) => {
+          console.log(marker.id);
+          return (
+            <div key={marker.project_code + 4}>
+              <Marker
+                key={marker.project_code}
+                latitude={marker.lat}
+                longitude={marker.long}
+                onClick={() => {}}
+              >
+                <BridgeImage
+                  style={{ postion: 'relative', zIndex: 3 }}
+                  setSelected={setSelected}
+                  setShowPopup={setShowPopup}
+                  index={index}
+                  marker={marker}
+                />
+              </Marker>
+            </div>
+          );
+        })}
       {showPopup &&
         bridgeData.map((marker, index) => {
           if (index === selected.index) {
@@ -22,7 +44,10 @@ const Markers = ({ bridgeData }) => {
                   onClose={() => setShowPopup(false)}
                   anchor="bottom-right"
                 >
-                  <div className="popup">
+                  <div
+                    className="popup"
+                    style={{ postion: 'relative', zIndex: 2 }}
+                  >
                     {/* This is the information where stackholder found them most valuable*/}
                     <p>Province: {marker.province}</p>
                     <p>District: {marker.district}</p>
@@ -35,27 +60,6 @@ const Markers = ({ bridgeData }) => {
           }
 
           return <></>;
-        })}
-      {bridgeData &&
-        bridgeData.map((marker, index) => {
-          console.log(marker.id);
-          return (
-            <div key={marker.project_code + 4}>
-              <Marker
-                key={marker.project_code}
-                latitude={marker.lat}
-                longitude={marker.long}
-                onClick={() => {}}
-              >
-                <BridgeImage
-                  setSelected={setSelected}
-                  setShowPopup={setShowPopup}
-                  index={index}
-                  marker={marker}
-                />
-              </Marker>
-            </div>
-          );
         })}
     </>
   );
