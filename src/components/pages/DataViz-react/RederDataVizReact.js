@@ -24,35 +24,37 @@ const DataVizReact = () => {
   );
   return (
     <div className="mapbox-react">
-      <div
-        ref={geocoderContainerRef}
-        // style={{ position: 'absolute', left: 10, top: 10, zIndex: 0 }}
-      />
       <ReactMapGL
+        id="map"
         ref={mapRef}
         {...viewport}
-        width="1000px"
+        width="90%"
         height="800px"
         mapStyle="mapbox://styles/mapbox/streets-v11"
         onViewportChange={handleViewportChange}
         mapboxApiAccessToken={process.env.REACT_APP_MAPBOX_TOKEN}
       >
+        <div
+          ref={geocoderContainerRef}
+          style={{ position: 'absolute', left: 10, top: 10, zIndex: 0 }}
+        >
+          <Geocoder
+            mapRef={mapRef}
+            countries="rw"
+            marker={false}
+            onViewportChange={handleViewportChange}
+            containerRef={geocoderContainerRef}
+            mapboxApiAccessToken={process.env.REACT_APP_MAPBOX_TOKEN}
+            position="top-left"
+          />
+        </div>
         <div style={{ position: 'absolute', right: 10, top: 10 }}>
           <FullscreenControl onClick={() => console.log('yes?')} />
         </div>{' '}
         <div style={{ position: 'absolute', right: 10, top: 50 }}>
           <NavigationControl />
         </div>
-        <Markers onClick={() => console.log('yes')} bridgeData={bridgeData} />
-        <Geocoder
-          mapRef={mapRef}
-          countries="rw"
-          marker={false}
-          containerRef={geocoderContainerRef}
-          onViewportChange={handleViewportChange}
-          mapboxApiAccessToken={process.env.REACT_APP_MAPBOX_TOKEN}
-          position="top-left"
-        />
+        <Markers style={{ position: 'relative' }} bridgeData={bridgeData} />
       </ReactMapGL>
     </div>
   );
