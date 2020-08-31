@@ -13,3 +13,13 @@
     height: 80vh;
   }
 }
+
+.mapbox-react {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  width: 100%;
+  margin: 2% auto;
+  // margin-bottom: 2%;
+  // background-color: red;
+}
