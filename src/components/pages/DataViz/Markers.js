@@ -16,7 +16,6 @@ const Markers = ({ bridgeData, setViewport }) => {
                 <BridgeImage
                   setViewport={setViewport}
                   marker={marker}
-                  style={{ postion: 'relative', zIndex: 3 }}
                   setSelected={setSelected}
                   setShowPopup={setShowPopup}
                   index={index}
@@ -36,10 +35,7 @@ const Markers = ({ bridgeData, setViewport }) => {
                   longitude={marker.long}
                   anchor="bottom-right"
                 >
-                  <div
-                    className="popup"
-                    style={{ postion: 'relative', zIndex: 2 }}
-                  >
+                  <div className="popup">
                     {/* This is the information where stackholder found them most valuable*/}
                     <p>Province: {marker.province}</p>
                     <p>District: {marker.district}</p>

@@ -17,13 +17,12 @@
     top: 50px;
   }
 
-  .descriptionContainer {
+  .detailsContainer {
     position: absolute;
     margin: 4% 4% 0 0;
     right: 0;
     top: 0;
     width: 25vw;
-    height: 40vh;
     background-color: white;
     -webkit-box-shadow: 2px 1px 5px 0px rgba(148, 142, 148, 1);
     -moz-box-shadow: 2px 1px 5px 0px rgba(148, 142, 148, 1);
@@ -32,16 +31,17 @@
     div {
       background-color: white;
       border: none;
-      font-size: 1.5rem;
+      font-size: 1rem;
       margin-left: 3%;
       margin-top: 1%;
       width: auto;
     }
 
-    .descriptionBox {
-      display: flex;
-      justify-content: center;
-      align-items: center;
+    .detailsInfo {
+      line-height: 1vw;
+      font-size: 1.11111vw;
+      padding: 3%;
+      font-weight: 600;
     }
   }
 
@@ -54,5 +54,14 @@
 
   .mapboxgl-ctrl-geocoder {
     width: 1000px;
+  }
+
+  .popup {
+    padding-top: 5%;
+    p {
+      font-size: 0.8vw;
+      line-height: 0.8vw;
+      font-weight: 400;
+    }
   }
 }

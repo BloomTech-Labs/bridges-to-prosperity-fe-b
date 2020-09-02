@@ -5,6 +5,7 @@ import ReactMapGL, { FullscreenControl, NavigationControl } from 'react-map-gl';
 import Geocoder from 'react-map-gl-geocoder';
 import { BridgesContext } from '../../../state/bridgesContext';
 import Markers from './Markers';
+import DetailsInfo from './DetailsInfo';
 
 const RenderMap = () => {
   const [viewport, setViewport] = useState({
@@ -14,15 +15,14 @@ const RenderMap = () => {
     bearing: 0,
     pitch: 0,
   });
-  const { bridgeData, detailsData, setDetailsData } = useContext(
-    BridgesContext
-  );
+  const { bridgeData, detailsData } = useContext(BridgesContext);
   const geocoderContainerRef = useRef();
   const mapRef = useRef();
   const handleViewportChange = useCallback(
     newViewport => setViewport(newViewport),
     []
   );
+  console.log(detailsData);
   return (
     <div className="mapbox-react">
       <ReactMapGL
@@ -58,15 +58,7 @@ const RenderMap = () => {
 
         <Markers setViewport={setViewport} bridgeData={bridgeData} />
 
-        {detailsData && (
-          <div className="descriptionContainer">
-            <div onClick={() => setDetailsData(null)}>
-              <i className="fas fa-times"></i>
-            </div>
-
-            <p className="descriptionBox">{detailsData.district} </p>
-          </div>
-        )}
+        {detailsData && <DetailsInfo />}
       </ReactMapGL>
     </div>
   );
