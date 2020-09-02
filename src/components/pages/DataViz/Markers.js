@@ -1,10 +1,10 @@
 import React, { useState } from 'react';
 import ReactMapGL, { Marker, Popup } from 'react-map-gl';
 import BridgeImage from './BridgeImage';
-const Markers = ({ bridgeData }) => {
+const Markers = ({ bridgeData, setViewport }) => {
   const [showPopup, setShowPopup] = useState(false);
   const [selected, setSelected] = useState(0);
-  // console.log({ selected });
+
   return (
     <>
       {bridgeData &&
@@ -19,6 +19,7 @@ const Markers = ({ bridgeData }) => {
                 onClick={() => {}}
               >
                 <BridgeImage
+                  setViewport={setViewport}
                   marker={marker}
                   style={{ postion: 'relative', zIndex: 3 }}
                   setSelected={setSelected}
