@@ -1,16 +1,20 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
 import ReactMapGL, { Popup } from 'react-map-gl';
+import { DetailsContext } from '../../state/contexts/detailsContext';
 
 const BridgeImage = ({ marker, setShowPopup, index, setSelected }) => {
-  // console.log(marker);
+  const { detailsDate, setDetailsData } = useContext(DetailsContext);
+
   const [changeSize, setChangeSize] = useState(false);
-  // const [showPopup, setShowPopup] = useState(true);
   return (
     <>
       {changeSize ? (
         <>
           <img
             alt="bridge-icon"
+            onClick={() => {
+              setDetailsData(marker);
+            }}
             onMouseLeave={() => {
               setChangeSize(false);
               setShowPopup(false);

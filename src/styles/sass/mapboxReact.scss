@@ -1,0 +1,30 @@
+.descriptionContainer {
+  position: absolute;
+  margin: 4% 4% 0 0;
+  right: 0;
+  top: 0;
+  width: 25vw;
+  height: 40vh;
+  background-color: white;
+  -webkit-box-shadow: 2px 1px 5px 0px rgba(148, 142, 148, 1);
+  -moz-box-shadow: 2px 1px 5px 0px rgba(148, 142, 148, 1);
+  box-shadow: 2px 1px 5px 0px rgba(148, 142, 148, 1);
+
+  div {
+    background-color: white;
+    border: none;
+    font-size: 1.5rem;
+    margin-left: 3%;
+    margin-top: 1%;
+    width: auto;
+  }
+
+  .descriptionBox {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    // margin: 0 auto;
+    // margin: 50% 3% 50% 0;
+  }
+}

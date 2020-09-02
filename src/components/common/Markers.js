@@ -4,12 +4,12 @@ import BridgeImage from './BridgeImage';
 const Markers = ({ bridgeData }) => {
   const [showPopup, setShowPopup] = useState(false);
   const [selected, setSelected] = useState(0);
-  console.log({ selected });
+  // console.log({ selected });
   return (
     <>
       {bridgeData &&
         bridgeData.map((marker, index) => {
-          console.log(marker.id);
+          // console.log(marker.id);
           return (
             <div key={marker.project_code + 4}>
               <Marker
@@ -19,6 +19,7 @@ const Markers = ({ bridgeData }) => {
                 onClick={() => {}}
               >
                 <BridgeImage
+                  marker={marker}
                   style={{ postion: 'relative', zIndex: 3 }}
                   setSelected={setSelected}
                   setShowPopup={setShowPopup}
@@ -32,7 +33,7 @@ const Markers = ({ bridgeData }) => {
       {showPopup &&
         bridgeData.map((marker, index) => {
           if (index === selected.index) {
-            console.log(index, '===', selected);
+            // console.log(index, '===', selected);
             return (
               <div key={marker.project_code}>
                 <Popup
