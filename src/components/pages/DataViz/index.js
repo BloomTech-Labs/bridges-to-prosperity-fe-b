@@ -1,3 +1,3 @@
-import DataViz from './RenderDataViz';
+import RenderMap from './RenderMap';
 
-export { DataViz };
+export { RenderMap };

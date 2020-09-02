@@ -9,9 +9,9 @@ import ReactMapGL, {
 import Geocoder from 'react-map-gl-geocoder';
 import { BridgesContext } from '../../../state/contexts/bridgesContext';
 import { DetailsContext } from '../../../state/contexts/detailsContext';
-import Markers from '../../common/Markers';
+import Markers from './Markers';
 
-const DataVizReact = props => {
+const RenderMap = props => {
   const [viewport, setViewport] = useState({
     latitude: -1.9444,
     longitude: 30.0616,
@@ -48,19 +48,7 @@ const DataVizReact = props => {
         onViewportChange={handleViewportChange}
         mapboxApiAccessToken={process.env.REACT_APP_MAPBOX_TOKEN}
       >
-        {detailsData && (
-          <div className="descriptionContainer">
-            <div onClick={() => setDetailsData(null)}>
-              <i class="fas fa-times"></i>
-            </div>
-
-            <p className="descriptionBox">{detailsData.district} </p>
-          </div>
-        )}
-        <div
-          ref={geocoderContainerRef}
-          style={{ position: 'absolute', left: 10, top: 10, zIndex: 0 }}
-        >
+        <div ref={geocoderContainerRef} className="search-bar">
           <Geocoder
             mapRef={mapRef}
             countries="rw"
@@ -71,16 +59,30 @@ const DataVizReact = props => {
             position="top-left"
           />
         </div>
+        <div style={{ position: 'absolute', right: 10, top: 150 }}></div>{' '}
         <div style={{ position: 'absolute', right: 10, top: 10 }}>
           <FullscreenControl onClick={() => console.log('yes?')} />
         </div>{' '}
         <div style={{ position: 'absolute', right: 10, top: 50 }}>
           <NavigationControl />
         </div>
-        <Markers style={{ position: 'relative' }} bridgeData={bridgeData} />
+        <Markers
+          style={{ position: 'relative' }}
+          setViewport={setViewport}
+          bridgeData={bridgeData}
+        />{' '}
+        {detailsData && (
+          <div className="descriptionContainer">
+            <div onClick={() => setDetailsData(null)}>
+              <i class="fas fa-times"></i>
+            </div>
+
+            <p className="descriptionBox">{detailsData.district} </p>
+          </div>
+        )}
       </ReactMapGL>
     </div>
   );
 };
 
-export default DataVizReact;
+export default RenderMap;

@@ -1,6 +1,6 @@
 import React, { useContext, useEffect } from 'react';
 import { BridgesContext } from '../../../state/contexts/bridgesContext';
-import { DataVizReact } from '../DataViz-react/index';
+import { RenderMap } from '../DataViz/index';
 // import DetailsSection from './DetailsSection';
 import Navigation from '../../common/Navigation';
 import Footer from '../../common/Footer';
@@ -21,7 +21,7 @@ const HomePageReact = () => {
     <div>
       <Navigation />
       <div className="homeContainer">
-        <DataVizReact />
+        <RenderMap />
         {/* <DetailsSection /> */}
       </div>
       <Footer />

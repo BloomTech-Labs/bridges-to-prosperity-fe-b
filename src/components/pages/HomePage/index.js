@@ -1,1 +1,1 @@
-export { default as HomePage } from './HomePageContainer';
+export { default as HomePageReact } from './HomePageContainer';
