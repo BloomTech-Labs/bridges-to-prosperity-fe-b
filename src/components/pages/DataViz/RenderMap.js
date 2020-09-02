@@ -23,16 +23,15 @@ const RenderMap = props => {
     newViewport => setViewport(newViewport),
     []
   );
-  console.log(detailsData);
   return (
     <div className="mapbox-react">
       <ReactMapGL
         id="map"
-        // className="map"
+        className="map"
         ref={mapRef}
         {...viewport}
         width="90%"
-        height="800px"
+        height="90vh"
         mapStyle="mapbox://styles/mapbox/streets-v11"
         onViewportChange={handleViewportChange}
         mapboxApiAccessToken={process.env.REACT_APP_MAPBOX_TOKEN}
@@ -48,18 +47,17 @@ const RenderMap = props => {
             position="top-left"
           />
         </div>
-        <div style={{ position: 'absolute', right: 10, top: 150 }}></div>{' '}
-        <div style={{ position: 'absolute', right: 10, top: 10 }}>
+
+        <div className="fullScreenControl">
           <FullscreenControl onClick={() => console.log('yes?')} />
-        </div>{' '}
-        <div style={{ position: 'absolute', right: 10, top: 50 }}>
+        </div>
+
+        <div className="navigationControl">
           <NavigationControl />
         </div>
-        <Markers
-          style={{ position: 'relative' }}
-          setViewport={setViewport}
-          bridgeData={bridgeData}
-        />{' '}
+
+        <Markers setViewport={setViewport} bridgeData={bridgeData} />
+
         {detailsData && (
           <div className="descriptionContainer">
             <div onClick={() => setDetailsData(null)}>
