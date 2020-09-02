@@ -1,14 +1,9 @@
 import 'mapbox-gl/dist/mapbox-gl.css';
 import 'react-map-gl-geocoder/dist/mapbox-gl-geocoder.css';
 import React, { useState, useRef, useCallback, useContext } from 'react';
-import ReactMapGL, {
-  FullscreenControl,
-  NavigationControl,
-  Layer,
-} from 'react-map-gl';
+import ReactMapGL, { FullscreenControl, NavigationControl } from 'react-map-gl';
 import Geocoder from 'react-map-gl-geocoder';
-import { BridgesContext } from '../../../state/contexts/bridgesContext';
-import { DetailsContext } from '../../../state/contexts/detailsContext';
+import { BridgesContext } from '../../../state/bridgesContext';
 import Markers from './Markers';
 
 const RenderMap = props => {
@@ -19,16 +14,9 @@ const RenderMap = props => {
     bearing: 0,
     pitch: 0,
   });
-  const parkLayer = {
-    id: 'landuse_park',
-    type: 'fill',
-    source: 'mapbox',
-    // 'source-layer': 'landuse',
-    // filter: ['==', 'class', 'park'],
-  };
-  const { parkColor = '#dea' } = props;
-  const { detailsData, setDetailsData } = useContext(DetailsContext);
-  const { bridgeData, setBridgeData } = useContext(BridgesContext);
+  const { bridgeData, detailsData, setDetailsData } = useContext(
+    BridgesContext
+  );
   const geocoderContainerRef = useRef();
   const mapRef = useRef();
   const handleViewportChange = useCallback(
@@ -40,6 +28,7 @@ const RenderMap = props => {
     <div className="mapbox-react">
       <ReactMapGL
         id="map"
+        // className="map"
         ref={mapRef}
         {...viewport}
         width="90%"

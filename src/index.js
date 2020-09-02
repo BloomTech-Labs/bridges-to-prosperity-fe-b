@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import ReactDOM from 'react-dom';
-import { BridgesContext } from './state/contexts/bridgesContext';
-import { DetailsContext } from './state/contexts/detailsContext';
+import { BridgesContext } from './state/bridgesContext';
 import {
   BrowserRouter as Router,
   Route,
@@ -41,19 +40,19 @@ function App() {
   };
 
   return (
-    <DetailsContext.Provider value={{ detailsData, setDetailsData }}>
-      <BridgesContext.Provider value={{ bridgeData, setBridgeData }}>
-        <Security {...config} onAuthRequired={authHandler}>
-          <Switch>
-            <Route path="/login" component={LoginPage} />
-            {/* <Route path="/mapbox" component={DataVizReact} /> */}
-            <Route path="/implicit/callback" component={LoginCallback} />
-            {/* any of the routes you need secured should be registered as SecureRoutes */}
-            <Route exact path="/" component={HomePageReact} />
-            <Route component={NotFoundPage} />
-          </Switch>
-        </Security>
-      </BridgesContext.Provider>
-    </DetailsContext.Provider>
+    <BridgesContext.Provider
+      value={{ bridgeData, setBridgeData, detailsData, setDetailsData }}
+    >
+      <Security {...config} onAuthRequired={authHandler}>
+        <Switch>
+          <Route path="/login" component={LoginPage} />
+          {/* <Route path="/mapbox" component={DataVizReact} /> */}
+          <Route path="/implicit/callback" component={LoginCallback} />
+          {/* any of the routes you need secured should be registered as SecureRoutes */}
+          <Route exact path="/" component={HomePageReact} />
+          <Route component={NotFoundPage} />
+        </Switch>
+      </Security>
+    </BridgesContext.Provider>
   );
 }

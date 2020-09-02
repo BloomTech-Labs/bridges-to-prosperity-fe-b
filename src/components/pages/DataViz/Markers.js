@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import ReactMapGL, { Marker, Popup } from 'react-map-gl';
+import { Marker, Popup } from 'react-map-gl';
 import BridgeImage from './BridgeImage';
 const Markers = ({ bridgeData, setViewport }) => {
   const [showPopup, setShowPopup] = useState(false);
@@ -9,7 +9,6 @@ const Markers = ({ bridgeData, setViewport }) => {
     <>
       {bridgeData &&
         bridgeData.map((marker, index) => {
-          // console.log(marker.id);
           return (
             <div key={marker.project_code + 4}>
               <Marker
@@ -25,7 +24,6 @@ const Markers = ({ bridgeData, setViewport }) => {
                   setSelected={setSelected}
                   setShowPopup={setShowPopup}
                   index={index}
-                  marker={marker}
                 />
               </Marker>
             </div>

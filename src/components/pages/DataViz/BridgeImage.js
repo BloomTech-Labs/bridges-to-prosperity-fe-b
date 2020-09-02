@@ -1,6 +1,6 @@
 import React, { useState, useContext } from 'react';
-import ReactMapGL, { Popup, LinearInterpolator } from 'react-map-gl';
-import { DetailsContext } from '../../../state/contexts/detailsContext';
+import { LinearInterpolator } from 'react-map-gl';
+import { BridgesContext } from '../../../state/bridgesContext';
 
 const BridgeImage = ({
   marker,
@@ -9,7 +9,7 @@ const BridgeImage = ({
   setViewport,
   setSelected,
 }) => {
-  const { detailsDate, setDetailsData } = useContext(DetailsContext);
+  const { setDetailsData } = useContext(BridgesContext);
 
   const [changeSize, setChangeSize] = useState(false);
 

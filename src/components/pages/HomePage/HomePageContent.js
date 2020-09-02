@@ -1,7 +1,6 @@
 import React, { useContext, useEffect } from 'react';
-import { BridgesContext } from '../../../state/contexts/bridgesContext';
+import { BridgesContext } from '../../../state/bridgesContext';
 import { RenderMap } from '../DataViz/index';
-// import DetailsSection from './DetailsSection';
 import Navigation from '../../common/Navigation';
 import Footer from '../../common/Footer';
 import { getDSData } from '../../../api/index';
@@ -18,14 +17,11 @@ const HomePageReact = () => {
   }, [setBridgeData]);
 
   return (
-    <div>
+    <>
       <Navigation />
-      <div className="homeContainer">
-        <RenderMap />
-        {/* <DetailsSection /> */}
-      </div>
+      <RenderMap />
       <Footer />
-    </div>
+    </>
   );
 };
 
