@@ -6,7 +6,7 @@ import Geocoder from 'react-map-gl-geocoder';
 import { BridgesContext } from '../../../state/bridgesContext';
 import Markers from './Markers';
 
-const RenderMap = props => {
+const RenderMap = () => {
   const [viewport, setViewport] = useState({
     latitude: -1.9444,
     longitude: 30.0616,
@@ -61,7 +61,7 @@ const RenderMap = props => {
         {detailsData && (
           <div className="descriptionContainer">
             <div onClick={() => setDetailsData(null)}>
-              <i class="fas fa-times"></i>
+              <i className="fas fa-times"></i>
             </div>
 
             <p className="descriptionBox">{detailsData.district} </p>

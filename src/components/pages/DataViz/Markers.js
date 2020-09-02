@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { Marker, Popup } from 'react-map-gl';
 import BridgeImage from './BridgeImage';
+
 const Markers = ({ bridgeData, setViewport }) => {
   const [showPopup, setShowPopup] = useState(false);
   const [selected, setSelected] = useState(0);
@@ -10,13 +11,8 @@ const Markers = ({ bridgeData, setViewport }) => {
       {bridgeData &&
         bridgeData.map((marker, index) => {
           return (
-            <div key={marker.project_code + 4}>
-              <Marker
-                key={marker.project_code}
-                latitude={marker.lat}
-                longitude={marker.long}
-                onClick={() => {}}
-              >
+            <div key={index}>
+              <Marker latitude={marker.lat} longitude={marker.long}>
                 <BridgeImage
                   setViewport={setViewport}
                   marker={marker}
@@ -32,16 +28,12 @@ const Markers = ({ bridgeData, setViewport }) => {
       {showPopup &&
         bridgeData.map((marker, index) => {
           if (index === selected.index) {
-            // console.log(index, '===', selected);
             return (
-              <div key={marker.project_code}>
+              <div key={index}>
                 <Popup
                   key={index}
                   latitude={marker.lat}
                   longitude={marker.long}
-                  closeButton={true}
-                  closeOnClick={false}
-                  onClose={() => setShowPopup(false)}
                   anchor="bottom-right"
                 >
                   <div
@@ -52,14 +44,13 @@ const Markers = ({ bridgeData, setViewport }) => {
                     <p>Province: {marker.province}</p>
                     <p>District: {marker.district}</p>
                     <p>Status: {marker.project_stage}</p>
-                    {/* bridge side name is coming soon */}
+                    {/* bridge site name is coming soon */}
                   </div>
                 </Popup>
               </div>
             );
           }
-
-          return <></>;
+          return null;
         })}
     </>
   );
