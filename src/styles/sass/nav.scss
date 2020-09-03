@@ -2,21 +2,42 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  height: 100px;
-  margin: 1% 5%;
+  height: 13vh;
+  padding: 0 5%;
+  margin: 0%;
   border-bottom: 1px solid #d6d1ca;
 
-  img {
-    height: 80%;
+  .logo {
+    display: flex;
+    align-items: flex-end;
+    width: 100%;
+    img {
+      //logo is kinda big
+      height: auto;
+      width: 2.5vw;
+      margin-bottom: 1.1%;
+      margin-right: 1%;
+    }
+    h1 {
+      display: flex;
+      align-self: flex-end;
+      color: #161345;
+      // margin-left: 10px;
+      // padding: 4% 0;
+      font-size: 2.2vw;
+      margin: 0;
+      font-family: 'bridge-font-bd';
+      letter-spacing: -1.5px;
+    }
   }
 
   .loginButton {
     display: flex;
     align-items: center;
     background-color: #009149;
-    padding: 0 3.5%;
+    padding: 2.3% 3.5%;
     color: white;
-    height: 75%;
+    height: 7vh;
     font-family: 'bridge-font';
     font-weight: 700;
     font-size: 1.25vw;

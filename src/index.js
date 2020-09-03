@@ -15,9 +15,8 @@ import './styles/sass/index.scss';
 import { NotFoundPage } from './components/pages/NotFound';
 import { LoginPage } from './components/pages/Login';
 import { config } from './utils/oktaConfig';
-import { LoadingComponent } from './components/common';
-import { HomePage } from './components/pages/HomePage/index';
 import { UserTable } from './components/pages/TablePage';
+import HomePageReact from './components/pages/HomePage/HomePageContent';
 
 ReactDOM.render(
   <Router>
@@ -34,6 +33,7 @@ function App() {
   const history = useHistory();
 
   const [bridgeData, setBridgeData] = useState();
+  const [detailsData, setDetailsData] = useState();
 
   const authHandler = () => {
     // We pass this to our <Security /> component that wraps our routes.
@@ -42,14 +42,17 @@ function App() {
   };
 
   return (
-    <BridgesContext.Provider value={{ bridgeData, setBridgeData }}>
+    <BridgesContext.Provider
+      value={{ bridgeData, setBridgeData, detailsData, setDetailsData }}
+    >
       <Security {...config} onAuthRequired={authHandler}>
         <Switch>
           <Route path="/table" component={UserTable} />
           <Route path="/login" component={LoginPage} />
+          {/* <Route path="/mapbox" component={DataVizReact} /> */}
           <Route path="/implicit/callback" component={LoginCallback} />
           {/* any of the routes you need secured should be registered as SecureRoutes */}
-          <Route exact path="/" component={HomePage} />
+          <Route exact path="/" component={HomePageReact} />
           <Route component={NotFoundPage} />
         </Switch>
       </Security>
