@@ -15,7 +15,9 @@ import './styles/sass/index.scss';
 import { NotFoundPage } from './components/pages/NotFound';
 import { LoginPage } from './components/pages/Login';
 import { config } from './utils/oktaConfig';
+import { UserTable } from './components/pages/TablePage';
 import HomePageReact from './components/pages/HomePage/HomePageContent';
+
 ReactDOM.render(
   <Router>
     <React.StrictMode>
@@ -45,6 +47,7 @@ function App() {
     >
       <Security {...config} onAuthRequired={authHandler}>
         <Switch>
+          <Route path="/table" component={UserTable} />
           <Route path="/login" component={LoginPage} />
           {/* <Route path="/mapbox" component={DataVizReact} /> */}
           <Route path="/implicit/callback" component={LoginCallback} />
