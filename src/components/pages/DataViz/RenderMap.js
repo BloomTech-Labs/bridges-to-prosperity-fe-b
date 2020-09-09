@@ -22,7 +22,7 @@ const RenderMap = () => {
     newViewport => setViewport(newViewport),
     []
   );
-  console.log(detailsData);
+
   return (
     <div className="mapbox-react">
       <ReactMapGL
@@ -49,7 +49,7 @@ const RenderMap = () => {
         </div>
 
         <div className="fullScreenControl">
-          <FullscreenControl onClick={() => console.log('yes?')} />
+          <FullscreenControl />
         </div>
 
         <div className="navigationControl">
