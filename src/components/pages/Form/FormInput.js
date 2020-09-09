@@ -18,13 +18,39 @@ const FormInput = ({ siteKeyValuePair, changeHandler = null }) => {
   }
 
   return (
-    <input
-      type={inputType}
-      name={siteKey}
-      placeholder={siteKey}
-      value={siteValue}
-      onChange={changeHandler}
-    />
+    <>
+      {siteKey !== 'communitiesServed' ? (
+        <input
+          type={inputType}
+          name={siteKey}
+          placeholder={siteKey}
+          value={siteValue}
+          onChange={changeHandler}
+        />
+      ) : (
+        <div>
+          <span>Communities Served</span>
+          {siteValue.map(element => (
+            <div>
+              <input
+                type="number"
+                name="id"
+                placeholder="id"
+                value={element.id}
+                onChange={changeHandler}
+              />
+              <input
+                type="text"
+                name="name"
+                placeholder="name"
+                value={element.name}
+                onChange={changeHandler}
+              />
+            </div>
+          ))}
+        </div>
+      )}
+    </>
   );
 };
 
