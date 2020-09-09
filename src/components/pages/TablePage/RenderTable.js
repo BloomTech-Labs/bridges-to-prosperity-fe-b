@@ -1,13 +1,25 @@
 import React, { useRef, useState, useEffect, useContext } from 'react';
 import Navigation from '../../common/Navigation';
 import { BridgesContext } from '../../../state/bridgesContext';
+
 import { Table } from 'antd';
 import { Link, useHistory } from 'react-router-dom';
+import { getDSData } from '../../../api/index';
 
 function UserTable(props) {
   const [data, setData] = useState();
   const { bridgeData } = useContext(BridgesContext);
   const history = useHistory();
+
+  const { setBridgeData } = useContext(BridgesContext);
+
+  useEffect(() => {
+    getDSData('https://bridges-to-prosperity-core.herokuapp.com/bridges').then(
+      data => {
+        setBridgeData(data);
+      }
+    );
+  }, [setBridgeData]);
 
   /*{
         "id": 1,
@@ -120,9 +132,8 @@ function UserTable(props) {
         onRow={(record, index) => {
           return {
             onClick: event => {
-              history.push('/');
-            }, //we'll push to the detailed view component.
-            //will need to set a context as well unless the component does it's own api call
+              history.push(`/details/${record.id}`);
+            },
           };
         }}
         pagination={{ defaultPageSize: 1 }}

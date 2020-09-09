@@ -16,6 +16,7 @@ import { NotFoundPage } from './components/pages/NotFound';
 import { LoginPage } from './components/pages/Login';
 import { config } from './utils/oktaConfig';
 import { UserTable } from './components/pages/TablePage';
+import { DetailsCard } from './components/pages/DetailsPage';
 import HomePageReact from './components/pages/HomePage/HomePageContent';
 
 ReactDOM.render(
@@ -47,6 +48,7 @@ function App() {
     >
       <Security {...config} onAuthRequired={authHandler}>
         <Switch>
+          <Route path="/details/:cardId" component={DetailsCard} />
           <Route path="/table" component={UserTable} />
           <Route path="/login" component={LoginPage} />
           {/* <Route path="/mapbox" component={DataVizReact} /> */}
