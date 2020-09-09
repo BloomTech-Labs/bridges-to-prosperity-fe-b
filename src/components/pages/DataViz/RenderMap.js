@@ -32,7 +32,7 @@ const RenderMap = () => {
         {...viewport}
         width="90%"
         height="90vh"
-        mapStyle="mapbox://styles/mapbox/streets-v11"
+        mapStyle="mapbox://styles/jgertig/ckeughi4a1plr19qqsarcddky"
         onViewportChange={handleViewportChange}
         mapboxApiAccessToken={process.env.REACT_APP_MAPBOX_TOKEN}
       >
