@@ -1,7 +1,7 @@
 import React from 'react';
 
 const FormInput = ({ siteKeyValuePair, changeHandler = null }) => {
-  console.log(siteKeyValuePair);
+  // console.log(siteKeyValuePair);
   const siteKey = siteKeyValuePair[0];
   const siteValue = siteKeyValuePair[1];
   let inputType = null;

@@ -44,7 +44,7 @@ const BridgeForm = () => {
   if (detailsData) {
     detailEntries = Object.entries(detailsData);
   }
-  console.log(detailEntries);
+  // console.log(detailEntries);
 
   const changeHandler = ev => {
     ev.persist();
