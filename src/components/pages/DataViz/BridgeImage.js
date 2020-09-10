@@ -19,8 +19,8 @@ const BridgeImage = ({
         onClick={() => {
           setDetailsData(marker);
           setViewport({
-            latitude: marker.lat,
-            longitude: marker.long,
+            latitude: marker['GPS (Latitude)'],
+            longitude: marker['GPS (Longitude)'],
             transitionDuration: 1500,
             transitionInterpolator: new LinearInterpolator(),
             zoom: 11,

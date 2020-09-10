@@ -7,6 +7,13 @@ import { BridgesContext } from '../../../state/bridgesContext';
 import Markers from './Markers';
 import DetailsInfo from './DetailsInfo';
 
+let maxBounds = {
+  minLatitude: -3.688855,
+  minLongitude: 28.451506,
+  maxLatitude: -0.670151,
+  maxLongitude: 31.220318,
+};
+
 const RenderMap = () => {
   const [viewport, setViewport] = useState({
     latitude: -1.9444,
@@ -18,10 +25,18 @@ const RenderMap = () => {
   const { bridgeData, detailsData } = useContext(BridgesContext);
   const geocoderContainerRef = useRef();
   const mapRef = useRef();
-  const handleViewportChange = useCallback(
-    newViewport => setViewport(newViewport),
-    []
-  );
+  const handleViewportChange = useCallback(newViewport => {
+    if (newViewport.longitude < maxBounds.minLongitude) {
+      newViewport.longitude = maxBounds.minLongitude;
+    } else if (newViewport.longitude > maxBounds.maxLongitude) {
+      newViewport.longitude = maxBounds.maxLongitude;
+    } else if (newViewport.latitude < maxBounds.minLatitude) {
+      newViewport.latitude = maxBounds.minLatitude;
+    } else if (newViewport.latitude > maxBounds.maxLatitude) {
+      newViewport.latitude = maxBounds.maxLatitude;
+    }
+    setViewport(newViewport);
+  }, []);
 
   return (
     <div className="mapbox-react">
@@ -35,6 +50,8 @@ const RenderMap = () => {
         mapStyle="mapbox://styles/mapbox/streets-v11"
         onViewportChange={handleViewportChange}
         mapboxApiAccessToken={process.env.REACT_APP_MAPBOX_TOKEN}
+        maxZoom={12}
+        minZoom={6.5}
       >
         <div ref={geocoderContainerRef} className="search-bar">
           <Geocoder

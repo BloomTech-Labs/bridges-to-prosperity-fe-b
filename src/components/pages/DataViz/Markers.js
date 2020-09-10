@@ -2,17 +2,19 @@ import React, { useState } from 'react';
 import { Marker, Popup } from 'react-map-gl';
 import BridgeImage from './BridgeImage';
 
-const Markers = ({ bridgeData, setViewport }) => {
+const Markers = React.memo(({ bridgeData, setViewport }) => {
   const [showPopup, setShowPopup] = useState(false);
   const [selected, setSelected] = useState(0);
-
   return (
     <>
       {bridgeData &&
         bridgeData.map((marker, index) => {
-          return (
+          return marker['GPS (Latitude)'] & marker['GPS (Longitude)'] ? (
             <div key={index}>
-              <Marker latitude={marker.lat} longitude={marker.long}>
+              <Marker
+                latitude={marker['GPS (Latitude)']}
+                longitude={marker['GPS (Longitude)']}
+              >
                 <BridgeImage
                   setViewport={setViewport}
                   marker={marker}
@@ -22,7 +24,7 @@ const Markers = ({ bridgeData, setViewport }) => {
                 />
               </Marker>
             </div>
-          );
+          ) : null;
         })}
       {showPopup &&
         bridgeData.map((marker, index) => {
@@ -31,15 +33,15 @@ const Markers = ({ bridgeData, setViewport }) => {
               <div key={index}>
                 <Popup
                   key={index}
-                  latitude={marker.lat}
-                  longitude={marker.long}
+                  latitude={marker['GPS (Latitude)']}
+                  longitude={marker['GPS (Longitude)']}
                   anchor="bottom-right"
                 >
                   <div className="popup">
                     {/* This is the information where stackholder found them most valuable*/}
-                    <p>Province: {marker.province}</p>
-                    <p>District: {marker.district}</p>
-                    <p>Status: {marker.project_stage}</p>
+                    <p>Province: {marker['Province']}</p>
+                    <p>District: {marker['District']}</p>
+                    <p>Status: {marker['Project Stage']}</p>
                     {/* bridge site name is coming soon */}
                   </div>
                 </Popup>
@@ -50,6 +52,6 @@ const Markers = ({ bridgeData, setViewport }) => {
         })}
     </>
   );
-};
+});
 
 export default Markers;
