@@ -6,6 +6,7 @@ import Geocoder from 'react-map-gl-geocoder';
 import { BridgesContext } from '../../../state/bridgesContext';
 import Markers from './Markers';
 import DetailsInfo from './DetailsInfo';
+import FilterBridgesCheckboxes from './FilterBridgesCheckboxes';
 
 const RenderMap = () => {
   const [viewport, setViewport] = useState({
@@ -15,6 +16,7 @@ const RenderMap = () => {
     bearing: 0,
     pitch: 0,
   });
+  const [completedChecked, setCompletedChecked] = useState(true);
   const { bridgeData, detailsData } = useContext(BridgesContext);
   const geocoderContainerRef = useRef();
   const mapRef = useRef();
@@ -22,7 +24,7 @@ const RenderMap = () => {
     newViewport => setViewport(newViewport),
     []
   );
-  console.log(detailsData);
+  console.log(completedChecked);
   return (
     <div className="mapbox-react">
       <ReactMapGL
@@ -47,6 +49,12 @@ const RenderMap = () => {
             position="top-left"
           />
         </div>
+        <div className="check-box">
+          <FilterBridgesCheckboxes
+            completedChecked={completedChecked}
+            setCompletedChecked={setCompletedChecked}
+          />
+        </div>
 
         <div className="fullScreenControl">
           <FullscreenControl onClick={() => console.log('yes?')} />
@@ -56,7 +64,11 @@ const RenderMap = () => {
           <NavigationControl />
         </div>
 
-        <Markers setViewport={setViewport} bridgeData={bridgeData} />
+        <Markers
+          completedChecked={completedChecked}
+          setViewport={setViewport}
+          bridgeData={bridgeData}
+        />
 
         {detailsData && <DetailsInfo />}
       </ReactMapGL>

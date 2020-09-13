@@ -2,28 +2,33 @@ import React, { useState } from 'react';
 import { Marker, Popup } from 'react-map-gl';
 import BridgeImage from './BridgeImage';
 
-const Markers = ({ bridgeData, setViewport }) => {
+const Markers = ({ bridgeData, setViewport, completedChecked }) => {
   const [showPopup, setShowPopup] = useState(false);
   const [selected, setSelected] = useState(0);
-
+  console.log({ completedChecked });
   return (
     <>
-      {bridgeData &&
-        bridgeData.map((marker, index) => {
-          return (
-            <div key={index}>
-              <Marker latitude={marker.lat} longitude={marker.long}>
-                <BridgeImage
-                  setViewport={setViewport}
-                  marker={marker}
-                  setSelected={setSelected}
-                  setShowPopup={setShowPopup}
-                  index={index}
-                />
-              </Marker>
-            </div>
-          );
-        })}
+      {completedChecked && (
+        <>
+          {bridgeData &&
+            bridgeData.map((marker, index) => {
+              return (
+                <div key={index}>
+                  <Marker latitude={marker.lat} longitude={marker.long}>
+                    <BridgeImage
+                      setViewport={setViewport}
+                      marker={marker}
+                      setSelected={setSelected}
+                      setShowPopup={setShowPopup}
+                      index={index}
+                    />
+                  </Marker>
+                </div>
+              );
+            })}
+        </>
+      )}
+
       {showPopup &&
         bridgeData.map((marker, index) => {
           if (index === selected.index) {
