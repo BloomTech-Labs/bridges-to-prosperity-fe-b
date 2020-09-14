@@ -24,6 +24,7 @@ const Markers = React.memo(({ bridgeData, setViewport }) => {
             </div>
           ) : null;
         })}
+
       {showPopup &&
         bridgeData.map((marker, index) => {
           if (index === selected.index) {

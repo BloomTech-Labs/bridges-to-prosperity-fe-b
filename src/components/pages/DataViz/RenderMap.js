@@ -11,6 +11,7 @@ import Geocoder from 'react-map-gl-geocoder';
 import { BridgesContext } from '../../../state/bridgesContext';
 import Markers from './Markers';
 import DetailsInfo from './DetailsInfo';
+import FilterBridgesCheckboxes from './FilterBridgesCheckboxes';
 
 let maxBounds = {
   minLatitude: -3.688855,
@@ -27,6 +28,7 @@ const RenderMap = () => {
     bearing: 0,
     pitch: 0,
   });
+  const [completedChecked, setCompletedChecked] = useState(true);
   const { bridgeData, detailsData } = useContext(BridgesContext);
   const geocoderContainerRef = useRef();
   const mapRef = useRef();
@@ -75,7 +77,7 @@ const RenderMap = () => {
         {...viewport}
         width="90%"
         height="90vh"
-        mapStyle="mapbox://styles/mapbox/streets-v11"
+        mapStyle="mapbox://styles/jgertig/ckeughi4a1plr19qqsarcddky"
         onViewportChange={handleViewportChange}
         mapboxApiAccessToken={process.env.REACT_APP_MAPBOX_TOKEN}
         maxZoom={12}
@@ -102,6 +104,12 @@ const RenderMap = () => {
             position="top-left"
           />
         </div>
+        <div className="check-box">
+          <FilterBridgesCheckboxes
+            completedChecked={completedChecked}
+            setCompletedChecked={setCompletedChecked}
+          />
+        </div>
 
         <div className="fullScreenControl">
           <FullscreenControl />
@@ -112,6 +120,7 @@ const RenderMap = () => {
         </div>
 
         {/* <Markers setViewport={setViewport} bridgeData={bridgeData} /> */}
+
 
         {detailsData && <DetailsInfo />}
       </ReactMapGL>
