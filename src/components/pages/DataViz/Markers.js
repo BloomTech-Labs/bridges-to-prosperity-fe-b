@@ -2,15 +2,15 @@ import React, { useState } from 'react';
 import { Marker, Popup } from 'react-map-gl';
 import BridgeImage from './BridgeImage';
 
-const Markers = ({ bridgeData, setViewport }) => {
+const Markers = React.memo(({ bridgeData, setViewport }) => {
   const [showPopup, setShowPopup] = useState(false);
   const [selected, setSelected] = useState(0);
-
+  console.log('render');
   return (
     <>
       {bridgeData &&
         bridgeData.map((marker, index) => {
-          return (
+          return marker.lat & marker.long ? (
             <div key={index}>
               <Marker latitude={marker.lat} longitude={marker.long}>
                 <BridgeImage
@@ -22,8 +22,9 @@ const Markers = ({ bridgeData, setViewport }) => {
                 />
               </Marker>
             </div>
-          );
+          ) : null;
         })}
+
       {showPopup &&
         bridgeData.map((marker, index) => {
           if (index === selected.index) {
@@ -50,6 +51,6 @@ const Markers = ({ bridgeData, setViewport }) => {
         })}
     </>
   );
-};
+});
 
 export default Markers;

@@ -51,6 +51,26 @@
     top: 10;
     z-index: 0;
   }
+  .check-box {
+    position: absolute;
+    margin: 7px 0 0 380px;
+    width: 620px;
+    background-color: white;
+    z-index: 1;
+    -webkit-box-shadow: 2px 1px 5px 0px rgba(148, 142, 148, 1);
+    -moz-box-shadow: 2px 1px 5px 0px rgba(148, 142, 148, 1);
+    box-shadow: 2px 1px 5px 0px rgba(148, 142, 148, 1);
+    border-radius: 5px;
+    .check-box-section {
+      padding: 10px 5px;
+      width: 100%;
+      display: flex;
+
+      .checkbox-list {
+        display: flex;
+      }
+    }
+  }
 
   .mapboxgl-ctrl-geocoder {
     width: 1000px;

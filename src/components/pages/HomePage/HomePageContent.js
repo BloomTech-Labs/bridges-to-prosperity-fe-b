@@ -9,11 +9,9 @@ const HomePageReact = () => {
   const { setBridgeData } = useContext(BridgesContext);
 
   useEffect(() => {
-    getDSData('https://bridges-to-prosperity-core.herokuapp.com/bridges').then(
-      data => {
-        setBridgeData(data);
-      }
-    );
+    getDSData('https://bridges-b-api.herokuapp.com/bridges').then(data => {
+      setBridgeData(data);
+    });
   }, [setBridgeData]);
 
   return (
