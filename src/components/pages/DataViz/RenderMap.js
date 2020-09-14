@@ -56,15 +56,15 @@ const RenderMap = () => {
   console.log(featureCollection);
 
   const handleViewportChange = useCallback(newViewport => {
-    // if (newViewport.longitude < maxBounds.minLongitude) {
-    //   newViewport.longitude = maxBounds.minLongitude;
-    // } else if (newViewport.longitude > maxBounds.maxLongitude) {
-    //   newViewport.longitude = maxBounds.maxLongitude;
-    // } else if (newViewport.latitude < maxBounds.minLatitude) {
-    //   newViewport.latitude = maxBounds.minLatitude;
-    // } else if (newViewport.latitude > maxBounds.maxLatitude) {
-    //   newViewport.latitude = maxBounds.maxLatitude;
-    // }
+    if (newViewport.longitude < maxBounds.minLongitude) {
+      newViewport.longitude = maxBounds.minLongitude;
+    } else if (newViewport.longitude > maxBounds.maxLongitude) {
+      newViewport.longitude = maxBounds.maxLongitude;
+    } else if (newViewport.latitude < maxBounds.minLatitude) {
+      newViewport.latitude = maxBounds.minLatitude;
+    } else if (newViewport.latitude > maxBounds.maxLatitude) {
+      newViewport.latitude = maxBounds.maxLatitude;
+    }
     setViewport(newViewport);
   }, []);
 
@@ -80,8 +80,8 @@ const RenderMap = () => {
         mapStyle="mapbox://styles/mapbox/streets-v11"
         onViewportChange={handleViewportChange}
         mapboxApiAccessToken={process.env.REACT_APP_MAPBOX_TOKEN}
-        // maxZoom={12}
-        // minZoom={6.5}
+        maxZoom={12}
+        minZoom={6.5}
       >
         <Source id="my-data" type="geojson" data={geojson}>
           <Layer
