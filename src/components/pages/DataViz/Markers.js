@@ -5,16 +5,14 @@ import BridgeImage from './BridgeImage';
 const Markers = React.memo(({ bridgeData, setViewport }) => {
   const [showPopup, setShowPopup] = useState(false);
   const [selected, setSelected] = useState(0);
+  console.log('render');
   return (
     <>
       {bridgeData &&
         bridgeData.map((marker, index) => {
-          return marker['GPS (Latitude)'] & marker['GPS (Longitude)'] ? (
+          return marker.lat & marker.long ? (
             <div key={index}>
-              <Marker
-                latitude={marker['GPS (Latitude)']}
-                longitude={marker['GPS (Longitude)']}
-              >
+              <Marker latitude={marker.lat} longitude={marker.long}>
                 <BridgeImage
                   setViewport={setViewport}
                   marker={marker}
@@ -33,15 +31,15 @@ const Markers = React.memo(({ bridgeData, setViewport }) => {
               <div key={index}>
                 <Popup
                   key={index}
-                  latitude={marker['GPS (Latitude)']}
-                  longitude={marker['GPS (Longitude)']}
+                  latitude={marker.lat}
+                  longitude={marker.long}
                   anchor="bottom-right"
                 >
                   <div className="popup">
                     {/* This is the information where stackholder found them most valuable*/}
-                    <p>Province: {marker['Province']}</p>
-                    <p>District: {marker['District']}</p>
-                    <p>Status: {marker['Project Stage']}</p>
+                    <p>Province: {marker.province}</p>
+                    <p>District: {marker.district}</p>
+                    <p>Status: {marker.project_stage}</p>
                     {/* bridge site name is coming soon */}
                   </div>
                 </Popup>

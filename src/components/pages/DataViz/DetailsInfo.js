@@ -10,9 +10,9 @@ const DetailsInfo = () => {
       </div>
 
       <div className="detailsInfo">
-        <p>Province: {detailsData['Province']}</p>
-        <p>District: {detailsData['District']}</p>
-        <p>Status: {detailsData['Project Stage']}</p>
+        <p>Province: {detailsData.province}</p>
+        <p>District: {detailsData.district}</p>
+        <p>Status: {detailsData.project_stage}</p>
       </div>
     </div>
   );
