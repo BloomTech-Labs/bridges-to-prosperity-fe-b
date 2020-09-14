@@ -2,32 +2,28 @@ import React, { useState } from 'react';
 import { Marker, Popup } from 'react-map-gl';
 import BridgeImage from './BridgeImage';
 
-const Markers = ({ bridgeData, setViewport, completedChecked }) => {
+const Markers = React.memo(({ bridgeData, setViewport }) => {
   const [showPopup, setShowPopup] = useState(false);
   const [selected, setSelected] = useState(0);
-  console.log({ completedChecked });
+  console.log('render');
   return (
     <>
-      {completedChecked && (
-        <>
-          {bridgeData &&
-            bridgeData.map((marker, index) => {
-              return (
-                <div key={index}>
-                  <Marker latitude={marker.lat} longitude={marker.long}>
-                    <BridgeImage
-                      setViewport={setViewport}
-                      marker={marker}
-                      setSelected={setSelected}
-                      setShowPopup={setShowPopup}
-                      index={index}
-                    />
-                  </Marker>
-                </div>
-              );
-            })}
-        </>
-      )}
+      {bridgeData &&
+        bridgeData.map((marker, index) => {
+          return marker.lat & marker.long ? (
+            <div key={index}>
+              <Marker latitude={marker.lat} longitude={marker.long}>
+                <BridgeImage
+                  setViewport={setViewport}
+                  marker={marker}
+                  setSelected={setSelected}
+                  setShowPopup={setShowPopup}
+                  index={index}
+                />
+              </Marker>
+            </div>
+          ) : null;
+        })}
 
       {showPopup &&
         bridgeData.map((marker, index) => {
@@ -55,6 +51,6 @@ const Markers = ({ bridgeData, setViewport, completedChecked }) => {
         })}
     </>
   );
-};
+});
 
 export default Markers;
