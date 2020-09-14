@@ -46,80 +46,75 @@ function UserTable(props) {
 
   const columns = [
     {
-      title: 'id',
+      title: 'ID',
       dataIndex: 'id',
       key: 'id',
     },
     {
-      title: 'b2p_bridge_id',
+      title: 'B2P Bridge ID',
       dataIndex: 'b2p_bridge_id',
       key: 'b2p_bridge_id',
     },
     {
-      title: 'country',
+      title: 'Country',
       dataIndex: 'country',
       key: 'country',
     },
     {
-      title: 'province',
+      title: 'Province',
       dataIndex: 'province',
       key: 'province',
     },
     {
-      title: 'district',
+      title: 'District',
       dataIndex: 'district',
       key: 'district',
     },
     {
-      title: 'sector',
+      title: 'Sector',
       dataIndex: 'sector',
       key: 'sector',
     },
     {
-      title: 'cell',
+      title: 'Cell',
       dataIndex: 'cell',
       key: 'cell',
     },
     {
-      title: 'project_code',
+      title: 'Project Code',
       dataIndex: 'project_code',
       key: 'project_code',
     },
     {
-      title: 'project_stage',
+      title: 'Project Stage',
       dataIndex: 'project_stage',
       key: 'project_stage',
     },
     {
-      title: 'sub_stage',
+      title: 'Sub Stage',
       dataIndex: 'sub_stage',
       key: 'sub_stage',
     },
     {
-      title: 'bridge_type',
+      title: 'Bridge Type',
       dataIndex: 'bridge_type',
       key: 'bridge_type',
     },
     {
-      title: 'span',
+      title: 'Span',
       dataIndex: 'span',
       key: 'span',
     },
     {
-      title: 'lat',
+      title: 'Latitude',
       dataIndex: 'lat',
       key: 'lat',
     },
     {
-      title: 'long',
+      title: 'Longitude',
       dataIndex: 'long',
       key: 'long',
     },
-    // {
-    //     title: 'communities_served',
-    //     dataIndex: 'communities_served',
-    //     key: 'communities_served',
-    // },
   ];
 
   return (

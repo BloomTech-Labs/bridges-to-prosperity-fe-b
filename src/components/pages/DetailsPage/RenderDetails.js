@@ -24,7 +24,7 @@ function DetailsCard(props) {
   console.log(data);
   return (
     <div>
-      <Link to="/table" style={{ fontColor: 'black' }}>
+      <Link to="/table" style={{ Color: 'black' }}>
         to table
       </Link>
       <Navigation />
