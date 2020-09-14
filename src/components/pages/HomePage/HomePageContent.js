@@ -24,5 +24,3 @@ const HomePageReact = () => {
 };
 
 export default HomePageReact;
-
-// https://bridges-b-api.herokuapp.com/bridges
