@@ -50,10 +50,8 @@ const RenderMap = () => {
       }
     }
   }
-  geojson.features = featureCollection;
 
-  console.log(geojson);
-  console.log(featureCollection);
+  geojson.features = featureCollection;
 
   const handleViewportChange = useCallback(newViewport => {
     if (newViewport.longitude < maxBounds.minLongitude) {
