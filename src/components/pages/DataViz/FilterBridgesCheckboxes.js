@@ -1,55 +1,44 @@
 import React, { useState } from 'react';
 import { Checkbox, Button } from 'antd';
 
-const FilterBridgesCheckboxes = ({
-  rejectedChecked,
-  setRejectedChecked,
-  identifiedChecked,
-  setIdentifiedChecked,
-  completedChecked,
-  setCompletedChecked,
-  confirmedChecked,
-  setConfirmedChecked,
-  prospectingChecked,
-  setProspectingChecked,
-  constructionChecked,
-  setConstructionChecked,
-}) => {
+const FilterBridgesCheckboxes = props => {
   return (
     <div className="check-box-section">
       <Checkbox
-        checked={rejectedChecked}
-        onChange={() => setRejectedChecked(!rejectedChecked)}
+        checked={props.rejectedChecked}
+        onChange={() => props.setRejectedChecked(!props.rejectedChecked)}
         style={{ margin: '0 5px' }}
       />{' '}
       Rejected
       <Checkbox
-        checked={identifiedChecked}
-        onChange={() => setIdentifiedChecked(!identifiedChecked)}
+        checked={props.identifiedChecked}
+        onChange={() => props.setIdentifiedChecked(!props.identifiedChecked)}
         style={{ margin: '0 5px' }}
       />{' '}
       Identified
       <Checkbox
-        checked={completedChecked}
-        onChange={() => setCompletedChecked(!completedChecked)}
+        checked={props.completedChecked}
+        onChange={() => props.setCompletedChecked(!props.completedChecked)}
         style={{ margin: '0 5px' }}
       />
       Completed
       <Checkbox
-        checked={confirmedChecked}
-        onChange={() => setConfirmedChecked(!confirmedChecked)}
+        checked={props.confirmedChecked}
+        onChange={() => props.setConfirmedChecked(!props.confirmedChecked)}
         style={{ margin: '0 5px' }}
       />{' '}
       Confirmed
       <Checkbox
-        checked={prospectingChecked}
-        onChange={() => setProspectingChecked(!prospectingChecked)}
+        checked={props.prospectingChecked}
+        onChange={() => props.setProspectingChecked(!props.prospectingChecked)}
         style={{ margin: '0 5px' }}
       />{' '}
       Prospecting
       <Checkbox
-        checked={constructionChecked}
-        onChange={() => setConstructionChecked(!constructionChecked)}
+        checked={props.constructionChecked}
+        onChange={() =>
+          props.setConstructionChecked(!props.constructionChecked)
+        }
         style={{ margin: '0 5px' }}
       />{' '}
       Under Construction

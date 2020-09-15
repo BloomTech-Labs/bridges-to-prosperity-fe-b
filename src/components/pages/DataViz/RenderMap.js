@@ -43,6 +43,7 @@ const RenderMap = () => {
     features: [],
   };
   let featureCollection = [];
+  //this will run function after brindges will be filtered
   function certainBridgeShows(bridges) {
     bridges.forEach(bridge =>
       featureCollection.push({
@@ -55,6 +56,7 @@ const RenderMap = () => {
     );
   }
 
+  //bridges are now being filtered by the bidge stages
   if (bridgeData) {
     let rejected = bridgeData.filter(
       bridge => bridge.project_stage === 'Rejected'
