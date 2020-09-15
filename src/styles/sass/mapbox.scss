@@ -24,8 +24,6 @@
     top: 0;
     width: 25vw;
     background-color: white;
-    -webkit-box-shadow: 2px 1px 5px 0px rgba(148, 142, 148, 1);
-    -moz-box-shadow: 2px 1px 5px 0px rgba(148, 142, 148, 1);
     box-shadow: 2px 1px 5px 0px rgba(148, 142, 148, 1);
 
     div {
@@ -53,19 +51,20 @@
   }
   .check-box {
     position: absolute;
-    margin: 7px 0 0 380px;
+    margin: 10px 0 0 380px;
     width: 620px;
     background-color: white;
     z-index: 1;
-    -webkit-box-shadow: 2px 1px 5px 0px rgba(148, 142, 148, 1);
-    -moz-box-shadow: 2px 1px 5px 0px rgba(148, 142, 148, 1);
-    box-shadow: 2px 1px 5px 0px rgba(148, 142, 148, 1);
+    box-shadow: 0 0 10px 2px rgba(0, 0, 0, 0.1);
     border-radius: 5px;
+
     .check-box-section {
+      height: 36px;
       padding: 10px 5px;
       width: 100%;
       display: flex;
-
+      align-items: center;
+      justify-content: center;
       .checkbox-list {
         display: flex;
       }
