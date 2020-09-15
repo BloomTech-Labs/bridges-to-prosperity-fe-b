@@ -1,6 +1,6 @@
 import 'mapbox-gl/dist/mapbox-gl.css';
 import 'react-map-gl-geocoder/dist/mapbox-gl-geocoder.css';
-import React, { useState, useRef, useCallback, useContext } from 'react';
+import React, { useState, useRef, useContext } from 'react';
 import ReactMapGL, {
   FullscreenControl,
   NavigationControl,
@@ -9,7 +9,6 @@ import ReactMapGL, {
 } from 'react-map-gl';
 import Geocoder from 'react-map-gl-geocoder';
 import { BridgesContext } from '../../../state/bridgesContext';
-import Markers from './Markers';
 import DetailsInfo from './DetailsInfo';
 import FilterBridgesCheckboxes from './FilterBridgesCheckboxes';
 
@@ -31,10 +30,12 @@ const RenderMap = () => {
   const [rejectedChecked, setRejectedChecked] = useState(false);
   const [identifiedChecked, setIdentifiedChecked] = useState(false);
   const [completedChecked, setCompletedChecked] = useState(true);
+  const { bridgeData, detailsData, setDetailsData } = useContext(
+    BridgesContext
+  );
   const [confirmedChecked, setConfirmedChecked] = useState(false);
   const [prospectingChecked, setProspectingChecked] = useState(false);
   const [constructionChecked, setConstructionChecked] = useState(false);
-  const { bridgeData, detailsData } = useContext(BridgesContext);
   const geocoderContainerRef = useRef();
   const mapRef = useRef();
 
@@ -98,18 +99,48 @@ const RenderMap = () => {
 
   geojson.features = featureCollection;
 
-  const handleViewportChange = useCallback(newViewport => {
-    if (newViewport.longitude < maxBounds.minLongitude) {
-      newViewport.longitude = maxBounds.minLongitude;
-    } else if (newViewport.longitude > maxBounds.maxLongitude) {
-      newViewport.longitude = maxBounds.maxLongitude;
-    } else if (newViewport.latitude < maxBounds.minLatitude) {
-      newViewport.latitude = maxBounds.minLatitude;
-    } else if (newViewport.latitude > maxBounds.maxLatitude) {
-      newViewport.latitude = maxBounds.maxLatitude;
+  const handleViewportChange = viewport => {
+    if (viewport.longitude < maxBounds.minLongitude) {
+      viewport.longitude = maxBounds.minLongitude;
+    } else if (viewport.longitude > maxBounds.maxLongitude) {
+      viewport.longitude = maxBounds.maxLongitude;
+    } else if (viewport.latitude < maxBounds.minLatitude) {
+      viewport.latitude = maxBounds.minLatitude;
+    } else if (viewport.latitude > maxBounds.maxLatitude) {
+      viewport.latitude = maxBounds.maxLatitude;
     }
-    setViewport(newViewport);
-  }, []);
+    setViewport(viewport);
+  };
+
+  const handleClick = event => {
+    const { features } = event;
+
+    const clickedFeature =
+      features && features.find(f => f.layer.id === 'data');
+
+    if (features.length > 0) {
+      var coordinates = features[0].geometry.coordinates.slice();
+      coordinates[0] = parseFloat(coordinates[0].toFixed(2));
+      coordinates[1] = parseFloat(coordinates[1].toFixed(2));
+    }
+
+    let bridge;
+
+    if (clickedFeature) {
+      bridge = bridgeData.find(f => {
+        if (f.lat & f.long) {
+          if (
+            (parseFloat(f.long.toFixed(2)) === coordinates[0]) &
+            (parseFloat(f.lat.toFixed(2)) === coordinates[1])
+          ) {
+            return f;
+          }
+        }
+      });
+    }
+
+    setDetailsData(bridge);
+  };
 
   return (
     <div className="mapbox-react">
@@ -123,12 +154,14 @@ const RenderMap = () => {
         mapStyle="mapbox://styles/jgertig/ckeughi4a1plr19qqsarcddky"
         onViewportChange={handleViewportChange}
         mapboxApiAccessToken={process.env.REACT_APP_MAPBOX_TOKEN}
+        interactiveLayerIds={['data']}
+        onClick={handleClick}
         maxZoom={12}
         minZoom={6.5}
       >
         <Source id="my-data" type="geojson" data={geojson}>
           <Layer
-            id="point"
+            id="data"
             type="circle"
             paint={{
               'circle-radius': 10,
@@ -172,8 +205,6 @@ const RenderMap = () => {
         <div className="navigationControl">
           <NavigationControl />
         </div>
-
-        {/* <Markers setViewport={setViewport} bridgeData={bridgeData} /> */}
 
         {detailsData && <DetailsInfo />}
       </ReactMapGL>
