@@ -94,7 +94,6 @@ const RenderMap = () => {
     if (constructionChecked) {
       certainBridgeShows(Under_Construction);
     }
-    for (let i = 0; i < bridgeData.length; i++) {}
   }
 
   geojson.features = featureCollection;
@@ -157,8 +156,6 @@ const RenderMap = () => {
             setRejectedChecked={setRejectedChecked}
             identifiedChecked={identifiedChecked}
             setIdentifiedChecked={setIdentifiedChecked}
-            completedChecked={completedChecked}
-            setCompletedChecked={setCompletedChecked}
             confirmedChecked={confirmedChecked}
             setConfirmedChecked={setConfirmedChecked}
             prospectingChecked={prospectingChecked}
