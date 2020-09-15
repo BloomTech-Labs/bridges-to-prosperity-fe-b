@@ -4,20 +4,24 @@ import { BridgesContext } from '../../../state/bridgesContext';
 import Navigation from '../../common/Navigation';
 import Footer from '../../common/Footer';
 import { Link } from 'react-router-dom';
+import { getDSData } from '../../../api/index';
 
 function DetailsCard(props) {
   const communities_served = [];
   const [data, setData] = useState({ communities_served: communities_served });
-  const { bridgeData } = useContext(BridgesContext);
+  const { bridgeData, setBridgeData } = useContext(BridgesContext);
 
   useEffect(() => {
-    bridgeData.map(item => {
-      console.log(props.match.params.cardId);
-      let myID = parseInt(props.match.params.cardId);
+    getDSData('https://bridges-b-api.herokuapp.com/bridges').then(data => {
+      setBridgeData(data);
+      data.map(item => {
+        console.log(props.match.params.cardId);
+        let myID = parseInt(props.match.params.cardId);
 
-      if (item.id === myID) {
-        setData(item);
-      }
+        if (item.id === myID) {
+          setData(item);
+        }
+      });
     });
   }, []);
 
@@ -42,7 +46,7 @@ function DetailsCard(props) {
       <div>{data.span}</div>
       <div>communities_served</div>
       <div>
-        {data.communities_served.map(item => {
+        {/* {data.communities_served.map(item => {
           console.log(item);
           return (
             <div>
@@ -51,7 +55,7 @@ function DetailsCard(props) {
               </div>
             </div>
           );
-        })}
+        })} */}
       </div>
       <Footer />
     </div>
