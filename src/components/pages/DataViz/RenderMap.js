@@ -28,7 +28,12 @@ const RenderMap = () => {
     bearing: 0,
     pitch: 0,
   });
+  const [rejectedChecked, setRejectedChecked] = useState(false);
+  const [identifiedChecked, setIdentifiedChecked] = useState(false);
   const [completedChecked, setCompletedChecked] = useState(true);
+  const [confirmedChecked, setConfirmedChecked] = useState(false);
+  const [prospectingChecked, setProspectingChecked] = useState(false);
+  const [constructionChecked, setConstructionChecked] = useState(false);
   const { bridgeData, detailsData } = useContext(BridgesContext);
   const geocoderContainerRef = useRef();
   const mapRef = useRef();
@@ -37,20 +42,57 @@ const RenderMap = () => {
     type: 'FeatureCollection',
     features: [],
   };
-
   let featureCollection = [];
+  function certainBridgeShows(bridges) {
+    bridges.forEach(bridge =>
+      featureCollection.push({
+        type: 'Feature',
+        geometry: {
+          type: 'Point',
+          coordinates: [bridge.long, bridge.lat],
+        },
+      })
+    );
+  }
+
   if (bridgeData) {
-    for (let i = 0; i < bridgeData.length; i++) {
-      if (bridgeData[i].long & bridgeData[i].lat) {
-        featureCollection.push({
-          type: 'Feature',
-          geometry: {
-            type: 'Point',
-            coordinates: [bridgeData[i].long, bridgeData[i].lat],
-          },
-        });
-      }
+    let rejected = bridgeData.filter(
+      bridge => bridge.project_stage === 'Rejected'
+    );
+    if (rejectedChecked) {
+      certainBridgeShows(rejected);
     }
+    let Identified = bridgeData.filter(
+      bridge => bridge.project_stage === 'Identified'
+    );
+    if (identifiedChecked) {
+      certainBridgeShows(Identified);
+    }
+    let Complete = bridgeData.filter(
+      bridge => bridge.project_stage === 'Complete'
+    );
+    if (completedChecked) {
+      certainBridgeShows(Complete);
+    }
+    let Confirmed = bridgeData.filter(
+      bridge => bridge.project_stage === 'Confirmed'
+    );
+    if (confirmedChecked) {
+      certainBridgeShows(Confirmed);
+    }
+    let Prospecting = bridgeData.filter(
+      bridge => bridge.project_stage === 'Prospecting'
+    );
+    if (prospectingChecked) {
+      certainBridgeShows(Prospecting);
+    }
+    let Under_Construction = bridgeData.filter(
+      bridge => bridge.project_stage === 'Under Construction'
+    );
+    if (constructionChecked) {
+      certainBridgeShows(Under_Construction);
+    }
+    for (let i = 0; i < bridgeData.length; i++) {}
   }
 
   geojson.features = featureCollection;
@@ -106,8 +148,21 @@ const RenderMap = () => {
         </div>
         <div className="check-box">
           <FilterBridgesCheckboxes
+            certainBridgeShows={certainBridgeShows}
             completedChecked={completedChecked}
             setCompletedChecked={setCompletedChecked}
+            rejectedChecked={rejectedChecked}
+            setRejectedChecked={setRejectedChecked}
+            identifiedChecked={identifiedChecked}
+            setIdentifiedChecked={setIdentifiedChecked}
+            completedChecked={completedChecked}
+            setCompletedChecked={setCompletedChecked}
+            confirmedChecked={confirmedChecked}
+            setConfirmedChecked={setConfirmedChecked}
+            prospectingChecked={prospectingChecked}
+            setProspectingChecked={setProspectingChecked}
+            constructionChecked={constructionChecked}
+            setConstructionChecked={setConstructionChecked}
           />
         </div>
 
@@ -120,7 +175,6 @@ const RenderMap = () => {
         </div>
 
         {/* <Markers setViewport={setViewport} bridgeData={bridgeData} /> */}
-
 
         {detailsData && <DetailsInfo />}
       </ReactMapGL>

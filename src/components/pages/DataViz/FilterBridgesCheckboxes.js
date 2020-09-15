@@ -1,20 +1,58 @@
 import React, { useState } from 'react';
 import { Checkbox, Button } from 'antd';
 
-const FilterBridgesCheckboxes = ({ completedChecked, setCompletedChecked }) => {
+const FilterBridgesCheckboxes = ({
+  rejectedChecked,
+  setRejectedChecked,
+  identifiedChecked,
+  setIdentifiedChecked,
+  completedChecked,
+  setCompletedChecked,
+  confirmedChecked,
+  setConfirmedChecked,
+  prospectingChecked,
+  setProspectingChecked,
+  constructionChecked,
+  setConstructionChecked,
+}) => {
   return (
     <div className="check-box-section">
-      <Checkbox style={{ margin: '0 5px' }} /> Rejected
-      <Checkbox style={{ margin: '0 5px' }} /> Identified
+      <Checkbox
+        checked={rejectedChecked}
+        onChange={() => setRejectedChecked(!rejectedChecked)}
+        style={{ margin: '0 5px' }}
+      />{' '}
+      Rejected
+      <Checkbox
+        checked={identifiedChecked}
+        onChange={() => setIdentifiedChecked(!identifiedChecked)}
+        style={{ margin: '0 5px' }}
+      />{' '}
+      Identified
       <Checkbox
         checked={completedChecked}
         onChange={() => setCompletedChecked(!completedChecked)}
         style={{ margin: '0 5px' }}
       />
       Completed
-      <Checkbox style={{ margin: '0 5px' }} /> Confirmed
-      <Checkbox style={{ margin: '0 5px' }} /> Prospecting
-      <Checkbox style={{ margin: '0 5px' }} /> Under Construction
+      <Checkbox
+        checked={confirmedChecked}
+        onChange={() => setConfirmedChecked(!confirmedChecked)}
+        style={{ margin: '0 5px' }}
+      />{' '}
+      Confirmed
+      <Checkbox
+        checked={prospectingChecked}
+        onChange={() => setProspectingChecked(!prospectingChecked)}
+        style={{ margin: '0 5px' }}
+      />{' '}
+      Prospecting
+      <Checkbox
+        checked={constructionChecked}
+        onChange={() => setConstructionChecked(!constructionChecked)}
+        style={{ margin: '0 5px' }}
+      />{' '}
+      Under Construction
     </div>
   );
 };
