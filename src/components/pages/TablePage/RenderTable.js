@@ -13,13 +13,13 @@ function UserTable(props) {
 
   const { setBridgeData } = useContext(BridgesContext);
 
-  useEffect(() => {
-    getDSData('https://bridges-to-prosperity-core.herokuapp.com/bridges').then(
-      data => {
-        setBridgeData(data);
-      }
-    );
-  }, [setBridgeData]);
+  // useEffect(() => {
+  //   getDSData('https://bridges-to-prosperity-core.herokuapp.com/bridges').then(
+  //     data => {
+  //       setBridgeData(data);
+  //     }
+  //   );
+  // }, [setBridgeData]);
 
   /*{
         "id": 1,
