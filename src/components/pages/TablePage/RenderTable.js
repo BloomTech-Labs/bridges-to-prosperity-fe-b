@@ -131,7 +131,7 @@ function UserTable(props) {
             },
           };
         }}
-        pagination={{ defaultPageSize: 1 }}
+        pagination={{ defaultPageSize: 10 }}
       />
       ;
     </div>
