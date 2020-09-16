@@ -17,8 +17,12 @@ const LoginContainer = () => {
       },
       features: { registration: false },
       // turning this feature on allows your widget to use Okta for user registration
+      colors: {
+        brand: '#48914a',
+      },
+      // Set the overall primary color (buttons etc.)
       logo:
-        'https://s3.amazonaws.com/bridgestoprosperity-teamb/B2P_Symbol_Green.png',
+        'https://s3.amazonaws.com/bridgestoprosperity-teamb/B2P_PrimaryLockup_Green-Navy.png',
       // add your custom logo to your signing/register widget here.
       i18n: {
         en: {
