@@ -31,15 +31,33 @@
     }
   }
 
-  .loginButton {
+  .links {
     display: flex;
+    justify-content: space-evenly;
     align-items: center;
-    background-color: #009149;
-    padding: 2.3% 3.5%;
-    color: white;
-    height: 7vh;
-    font-family: 'bridge-font';
-    font-weight: 700;
-    font-size: 1.25vw;
+    width: 40%;
+
+    .navLinks {
+      color: #161345;
+      font-size: 1.25vw;
+      font-family: 'bridge-font';
+      font-weight: 700;
+      border-bottom: 1px solid rgba(var(--b3f, 250, 250, 250), 1);
+      &:hover {
+        border-bottom: 1px solid #161345;
+      }
+    }
+
+    .loginButton {
+      display: flex;
+      align-items: center;
+      background-color: #009149;
+      padding: 8.3% 10.5%;
+      color: white;
+      height: 7vh;
+      font-family: 'bridge-font';
+      font-weight: 700;
+      font-size: 1.25vw;
+    }
   }
 }
