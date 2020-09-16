@@ -11,10 +11,17 @@ const Navigation = props => {
         />
         <h1>Bridges to Prosperity</h1>
       </div>
-
-      <Link to="/login" className="loginButton">
-        Login
-      </Link>
+      <div className="links">
+        <Link to="/" className="navLinks">
+          Home
+        </Link>
+        <Link to="/table" className="navLinks">
+          table
+        </Link>
+        <Link to="/login" className="loginButton">
+          Login
+        </Link>
+      </div>
     </div>
   );
 };

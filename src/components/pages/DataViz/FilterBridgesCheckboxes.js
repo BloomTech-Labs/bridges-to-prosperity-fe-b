@@ -1,5 +1,5 @@
-import React, { useState } from 'react';
-import { Checkbox, Button } from 'antd';
+import React from 'react';
+import { Checkbox } from 'antd';
 
 const FilterBridgesCheckboxes = props => {
   return (
