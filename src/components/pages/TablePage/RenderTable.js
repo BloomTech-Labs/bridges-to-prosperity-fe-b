@@ -7,7 +7,8 @@ import { Link, useHistory } from 'react-router-dom';
 import { getDSData } from '../../../api/index';
 
 function UserTable(props) {
-  const [data, setData] = useState();
+  const [currentData, setCurrentData] = useState([]);
+  const [search, setSearch] = useState('');
   const { bridgeData } = useContext(BridgesContext);
   const history = useHistory();
 
@@ -16,8 +17,19 @@ function UserTable(props) {
   useEffect(() => {
     getDSData('https://bridges-b-api.herokuapp.com/bridges').then(data => {
       setBridgeData(data);
+      setCurrentData(data);
     });
-  }, [setBridgeData]);
+  }, []);
+
+  useEffect(() => {
+    const newData = currentData.filter(item => {
+      if (item.project_code === search) {
+        return item;
+      }
+    });
+    setCurrentData(newData);
+    console.log(currentData);
+  }, [search]);
 
   /*{
         "id": 1,
@@ -115,12 +127,36 @@ function UserTable(props) {
     },
   ];
 
+  const formSubmit = e => {
+    e.preventDefault();
+    // console.log(e.target.Project_Code.value)
+    setSearch(e.target.Project_Code.value);
+    // console.log(setSearch.Project_Code)
+  };
+  const inputChange = e => {
+    e.persist();
+    // console.log(e.target.Project_Code.value)
+    // setSearch(e.target.Project_Code.value)
+    console.log(search);
+    // console.log(e)
+  };
+
   return (
     <div className="table-container">
       <Navigation />
-      <h2>Table: Bridge Sites in Rwanda</h2>
+      <div>
+        <form onSubmit={formSubmit}>
+          <input
+            type="text"
+            id="Project_Code"
+            name="Project_Code"
+            value={search.Project_Code}
+            onChange={inputChange}
+          />
+        </form>
+      </div>
       <Table
-        dataSource={bridgeData}
+        dataSource={currentData}
         columns={columns}
         onRow={(record, index) => {
           return {
