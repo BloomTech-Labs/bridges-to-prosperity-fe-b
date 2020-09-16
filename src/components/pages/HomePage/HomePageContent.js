@@ -16,12 +16,12 @@ const HomePageReact = () => {
   }, [setBridgeData]);
 
   return (
-    <>
+    <div className="container">
       <Link to="/table">table</Link>
       <Navigation />
       <RenderMap />
       <Footer />
-    </>
+    </div>
   );
 };
 

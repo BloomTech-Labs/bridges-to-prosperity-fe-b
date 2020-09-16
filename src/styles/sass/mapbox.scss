@@ -1,25 +1,28 @@
 .mapbox-react {
   display: flex;
-  align-items: center;
-  flex-direction: column;
-  width: 100%;
+  // align-items: center;
+  justify-content: center;
+  // flex-direction: column;
+  width: 90%;
   margin: 2% auto;
 
   .fullScreenControl {
     position: absolute;
     right: 10px;
     top: 10px;
+    z-index: 0;
   }
 
   .navigationControl {
     position: absolute;
     right: 10px;
     top: 50px;
+    z-index: 0;
   }
 
   .detailsContainer {
     position: absolute;
-    margin: 4% 4% 0 0;
+    margin: 8% 6% 0 0;
     right: 0;
     top: 0;
     width: 25vw;
@@ -36,45 +39,116 @@
     }
 
     .detailsInfo {
-      line-height: 1vw;
-      font-size: 1.11111vw;
-      padding: 3%;
+      padding: 10px;
       font-weight: 600;
+    }
+    .detailsInfo p {
+      font-size: 1.2rem;
+    }
+  }
+  .desktop {
+    .search-bar {
+      position: absolute;
+      left: 10;
+      top: 10;
+      margin: 9px 0 0 10px;
+      z-index: 0;
+    }
+    .check-box {
+      position: absolute;
+      margin: 10px 0 0 380px;
+      width: 620px;
+      background-color: white;
+      z-index: 1;
+      box-shadow: 0 0 10px 2px rgba(0, 0, 0, 0.1);
+      border-radius: 5px;
+
+      .check-box-section {
+        height: 36px;
+        padding: 10px 5px;
+        width: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        .checkbox-list {
+          display: flex;
+        }
+      }
+    }
+
+    .mapboxgl-ctrl-geocoder {
+      width: 1000px;
     }
   }
 
-  .search-bar {
-    position: absolute;
-    left: 10;
-    top: 10;
-    z-index: 0;
+  .toggle {
+    display: none;
   }
-  .check-box {
-    position: absolute;
-    margin: 10px 0 0 380px;
-    width: 620px;
-    background-color: white;
-    z-index: 1;
-    box-shadow: 0 0 10px 2px rgba(0, 0, 0, 0.1);
-    border-radius: 5px;
+  @media only screen and (max-width: 900px) {
+    width: 100%;
+    // height: 1vh;
 
-    .check-box-section {
-      height: 36px;
-      padding: 10px 5px;
-      width: 100%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      .checkbox-list {
+    .toggle {
+      display: block;
+      position: absolute;
+      left: 0;
+      top: 0;
+      padding: 5px;
+      background-color: white;
+      box-shadow: 0 0 10px 2px rgba(0, 0, 0, 0.1);
+      border-radius: 5px;
+      margin: 5px 0 0 5px;
+    }
+    .hidden {
+      display: none;
+    }
+    .desktop {
+      .search-bar {
+        position: absolute;
+        left: 10;
+        top: 10;
+        z-index: 0;
+        margin: 45px 0 0 0;
+      }
+      .check-box {
+        margin: 100px 0 0 0;
+        width: 390px;
+        height: 120px;
+
+        .check-box-section {
+          width: 100%;
+          display: flex;
+          justify-content: flex-start;
+          flex-wrap: wrap;
+
+          .restricted {
+            margin: 5px 0;
+            width: 40%;
+          }
+        }
+      }
+    }
+
+    .detailsContainer {
+      margin: 250px 4% 0 0;
+      width: auto;
+      div {
+        background-color: white;
+        border: none;
+        // margin-left: 3%;
+        margin-top: 1%;
         display: flex;
+        flex-wrap: wrap;
+      }
+
+      .detailsInfo p {
+        width: 100%;
+        // height: 0;
+        font-size: 20px;
+        // padding: 3%;
       }
     }
   }
-
-  .mapboxgl-ctrl-geocoder {
-    width: 1000px;
-  }
-
   .popup {
     padding-top: 5%;
     p {
