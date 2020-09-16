@@ -1,7 +1,7 @@
 
 # Bridges To Prosperity
 
-You can find the deployed project at [🚫URL NAME GOES HERE]
+You can find the deployed project at https://b.bridgestoprosperity.dev/
 
 ## 4️⃣ Contributors
 
@@ -20,7 +20,7 @@ You can find the deployed project at [🚫URL NAME GOES HERE]
 
 ![MIT](https://img.shields.io/packagist/l/doctrine/orm.svg)
 ![React](https://img.shields.io/badge/react-v16.7.0--alpha.2-blue.svg)
-![Typescript](https://img.shields.io/npm/types/typescript.svg?style=flat)
+
 [![Netlify Status](https://api.netlify.com/api/v1/badges/b5c4db1c-b10d-42c3-b157-3746edd9e81d/deploy-status)](netlify link goes in these parenthesis)
 [![code style: prettier](https://img.shields.io/badge/code_style-prettier-ff69b4.svg?style=flat-square)](https://github.com/prettier/prettier)
 
