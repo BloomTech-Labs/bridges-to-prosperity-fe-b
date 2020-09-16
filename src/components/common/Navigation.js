@@ -16,7 +16,7 @@ const Navigation = props => {
           Home
         </Link>
         <Link to="/table" className="navLinks">
-          table
+          Table
         </Link>
         <Link to="/login" className="loginButton">
           Login
