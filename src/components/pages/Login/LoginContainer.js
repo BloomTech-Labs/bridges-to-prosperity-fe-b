@@ -17,11 +17,16 @@ const LoginContainer = () => {
       },
       features: { registration: false },
       // turning this feature on allows your widget to use Okta for user registration
-      logo: 'path-to-your-logo',
+      colors: {
+        brand: '#48914a',
+      },
+      // Set the overall primary color (buttons etc.)
+      logo:
+        'https://s3.amazonaws.com/bridgestoprosperity-teamb/B2P_PrimaryLockup_Green-Navy.png',
       // add your custom logo to your signing/register widget here.
       i18n: {
         en: {
-          'primaryauth.title': 'Welcome to Labs Basic SPA Please sign in',
+          'primaryauth.title': 'Sign In',
           // change title for your app
         },
       },

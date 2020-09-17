@@ -1,25 +1,23 @@
-import React, { useRef, useState, useEffect, useContext } from 'react';
+import React, { useContext } from 'react';
 import Navigation from '../../common/Navigation';
 import { BridgesContext } from '../../../state/bridgesContext';
-
 import { Table } from 'antd';
-import { Link, useHistory } from 'react-router-dom';
+import { useHistory } from 'react-router-dom';
 import { getDSData } from '../../../api/index';
 
-function UserTable(props) {
-  const [currentData, setCurrentData] = useState([]);
+
+function UserTable() {
   const [search, setSearch] = useState('');
-  const { bridgeData } = useContext(BridgesContext);
   const history = useHistory();
+  const { bridgeData, setBridgeData, setDetailsData } = useContext(
+    BridgesContext
+  );
 
-  const { setBridgeData } = useContext(BridgesContext);
-
-  useEffect(() => {
+  if (!bridgeData) {
     getDSData('https://bridges-b-api.herokuapp.com/bridges').then(data => {
       setBridgeData(data);
       setCurrentData(data);
     });
-  }, []);
 
   useEffect(() => {
     const newData = currentData.filter(item => {
@@ -30,29 +28,6 @@ function UserTable(props) {
     setCurrentData(newData);
     console.log(currentData);
   }, [search]);
-
-  /*{
-        "id": 1,
-        "b2p_bridge_id": null,
-        "country": "Rwanda",
-        "province": "Western Province",
-        "district": "Rusizi",
-        "sector": "Giheke",
-        "cell": "Gakomeye",
-        "project_code": 1014107,
-        "project_stage": "Completed",
-        "sub_stage": "Technical",
-        "bridge_type": "Suspended",
-        "span": "8 Meters",
-        "lat": -2.42056,
-        "long": 28.9662,
-        "communities_served": [
-          {
-            "id": 1,
-            "name": "Buzi"
-          }
-        ]
-      }*/
 
   const columns = [
     {
@@ -158,16 +133,16 @@ function UserTable(props) {
       <Table
         dataSource={currentData}
         columns={columns}
-        onRow={(record, index) => {
+        onRow={record => {
           return {
-            onClick: event => {
+            onClick: () => {
+              setDetailsData(record);
               history.push(`/details/${record.id}`);
             },
           };
         }}
         pagination={{ defaultPageSize: 10 }}
       />
-      ;
     </div>
   );
 }
