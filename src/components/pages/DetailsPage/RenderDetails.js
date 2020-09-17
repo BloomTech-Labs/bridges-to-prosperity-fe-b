@@ -24,10 +24,14 @@ function DetailsCard() {
               <p>Project Code: {detailsData.project_code}</p>
             </div>
             <div className="title">
-              <p>Project Stage: {detailsData.project_stage}</p>
-              <p>Project Sub Stage: {detailsData.project_sub_stage}</p>
-              <p>Bridge Site Name: {detailsData.bridge_site_name}</p>
-              <p>Bridge Type: {detailsData.bridge_type}</p>
+              <div>
+                <p>Bridge Site Name: {detailsData.bridge_site_name}</p>
+                <p>Bridge Type: {detailsData.bridge_type}</p>
+              </div>
+              <div>
+                <p>Project Stage: {detailsData.project_stage}</p>
+                <p>Project Sub Stage: {detailsData.project_sub_stage}</p>
+              </div>
             </div>
             <div className="info">
               <p>Country: {detailsData.country}</p>
