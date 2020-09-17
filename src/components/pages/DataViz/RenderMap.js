@@ -1,7 +1,8 @@
 import 'mapbox-gl/dist/mapbox-gl.css';
 import 'react-map-gl-geocoder/dist/mapbox-gl-geocoder.css';
 import { MenuOutlined } from '@ant-design/icons';
-import React, { useState, useRef, useContext } from 'react';
+import bridgeIconGreen from '../../../styles/imgs/bridgeIconGreen.png';
+import React, { useState, useEffect, useRef, useContext } from 'react';
 import ReactMapGL, {
   FullscreenControl,
   NavigationControl,
@@ -46,6 +47,7 @@ const RenderMap = () => {
     features: [],
   };
   let featureCollection = [];
+
   //this will run function after brindges will be filtered
   function certainBridgeShows(bridges) {
     bridges.forEach(bridge =>
@@ -101,6 +103,7 @@ const RenderMap = () => {
 
   geojson.features = featureCollection;
 
+  console.log({ geojson });
   const handleViewportChange = viewport => {
     if (viewport.longitude < maxBounds.minLongitude) {
       viewport.longitude = maxBounds.minLongitude;
@@ -161,6 +164,7 @@ const RenderMap = () => {
     }
   }
 
+  console.log({ mapRef });
   return (
     <div className="mapbox-react">
       <ReactMapGL
@@ -177,15 +181,20 @@ const RenderMap = () => {
         onClick={handleClick}
         maxZoom={12}
         minZoom={6.5}
+        onLoad={() => {
+          if (!mapRef) return;
+          const map = mapRef.current.getMap();
+          map.loadImage(bridgeIconGreen, (error, image) => {
+            if (error) return;
+            map.addImage('myPin', image);
+          });
+        }}
       >
         <Source id="my-data" type="geojson" data={geojson}>
           <Layer
             id="data"
-            type="circle"
-            paint={{
-              'circle-radius': 10,
-              'circle-color': '#007cbf',
-            }}
+            type="symbol"
+            layout={{ 'icon-image': 'myPin', 'icon-size': 0.35 }}
           />
         </Source>
         <div className="toggle">
