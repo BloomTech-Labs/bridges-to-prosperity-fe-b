@@ -15,11 +15,11 @@ const HomePageReact = () => {
   }, [setBridgeData]);
 
   return (
-    <div className="container">
+    <>
       <Navigation />
       <RenderMap />
       <Footer />
-    </div>
+    </>
   );
 };
 
