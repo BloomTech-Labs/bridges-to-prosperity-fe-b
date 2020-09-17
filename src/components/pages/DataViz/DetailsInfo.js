@@ -5,7 +5,7 @@ const DetailsInfo = () => {
   const { detailsData, setDetailsData } = useContext(BridgesContext);
   return (
     <div className="detailsContainer">
-      <div onClick={() => setDetailsData(null)}>
+      <div className="closeButton" onClick={() => setDetailsData(null)}>
         <i className="fas fa-times"></i>
       </div>
 
