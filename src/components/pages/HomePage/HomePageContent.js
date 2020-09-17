@@ -16,7 +16,6 @@ const HomePageReact = () => {
 
   return (
     <div className="container">
-      <Link to="/table">table</Link>
       <Navigation />
       <RenderMap />
       <Footer />
