@@ -2,7 +2,7 @@ import 'mapbox-gl/dist/mapbox-gl.css';
 import 'react-map-gl-geocoder/dist/mapbox-gl-geocoder.css';
 import { MenuOutlined } from '@ant-design/icons';
 import bridgeIconGreen from '../../../styles/imgs/bridgeIconGreen.png';
-import React, { useState, useEffect, useRef, useContext } from 'react';
+import React, { useState, useRef, useContext } from 'react';
 import ReactMapGL, {
   FullscreenControl,
   NavigationControl,
@@ -22,13 +22,10 @@ let maxBounds = {
 };
 
 const RenderMap = () => {
-
-  const [show, setShow] = useState('hidden');
-  
-  const { bridgeData, detailsData } = useContext(
+  const { bridgeData, detailsData, setDetailsData } = useContext(
     BridgesContext
   );
-  
+
   const [viewport, setViewport] = useState({
     latitude: -1.9444,
     longitude: 30.0616,
