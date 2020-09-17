@@ -38,6 +38,10 @@
       width: auto;
     }
 
+    .closeButton:hover {
+      cursor: pointer;
+    }
+
     .detailsInfo {
       padding: 10px;
       font-weight: 600;
