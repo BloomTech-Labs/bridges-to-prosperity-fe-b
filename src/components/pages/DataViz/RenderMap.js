@@ -1,5 +1,6 @@
 import 'mapbox-gl/dist/mapbox-gl.css';
 import 'react-map-gl-geocoder/dist/mapbox-gl-geocoder.css';
+import { MenuOutlined } from '@ant-design/icons';
 import React, { useState, useRef, useContext } from 'react';
 import ReactMapGL, {
   FullscreenControl,
@@ -20,9 +21,13 @@ let maxBounds = {
 };
 
 const RenderMap = () => {
-  const { bridgeData, detailsData, setDetailsData } = useContext(
+
+  const [show, setShow] = useState('hidden');
+  
+  const { bridgeData, detailsData } = useContext(
     BridgesContext
   );
+  
   const [viewport, setViewport] = useState({
     latitude: -1.9444,
     longitude: 30.0616,
@@ -141,6 +146,23 @@ const RenderMap = () => {
 
     setDetailsData(bridge);
   };
+  let screenHeight = '90vh';
+  let screenWidth = '90%';
+  let disappear = '';
+  if (window.innerWidth < 600) {
+    screenHeight = '70vh';
+    screenWidth = '100%';
+    disappear = 'hidden';
+  }
+
+  function myFunction() {
+    var x = document.getElementById('show');
+    if (x.style.display === 'block') {
+      x.style.display = 'none';
+    } else {
+      x.style.display = 'block';
+    }
+  }
 
   return (
     <div className="mapbox-react">
@@ -149,8 +171,8 @@ const RenderMap = () => {
         className="map"
         ref={mapRef}
         {...viewport}
-        width="90%"
-        height="90vh"
+        width={screenWidth}
+        height={screenHeight}
         mapStyle="mapbox://styles/jgertig/ckeughi4a1plr19qqsarcddky"
         onViewportChange={handleViewportChange}
         mapboxApiAccessToken={process.env.REACT_APP_MAPBOX_TOKEN}
@@ -169,41 +191,52 @@ const RenderMap = () => {
             }}
           />
         </Source>
-        <div ref={geocoderContainerRef} className="search-bar">
-          <Geocoder
-            mapRef={mapRef}
-            countries="rw"
-            marker={false}
-            onViewportChange={handleViewportChange}
-            containerRef={geocoderContainerRef}
-            mapboxApiAccessToken={process.env.REACT_APP_MAPBOX_TOKEN}
-            position="top-left"
+        <div className="toggle">
+          <MenuOutlined
+            onClick={() => {
+              myFunction();
+            }}
+            style={{ fontSize: '20px' }}
           />
         </div>
-        <div className="check-box">
-          <FilterBridgesCheckboxes
-            certainBridgeShows={certainBridgeShows}
-            completedChecked={completedChecked}
-            setCompletedChecked={setCompletedChecked}
-            rejectedChecked={rejectedChecked}
-            setRejectedChecked={setRejectedChecked}
-            identifiedChecked={identifiedChecked}
-            setIdentifiedChecked={setIdentifiedChecked}
-            confirmedChecked={confirmedChecked}
-            setConfirmedChecked={setConfirmedChecked}
-            prospectingChecked={prospectingChecked}
-            setProspectingChecked={setProspectingChecked}
-            constructionChecked={constructionChecked}
-            setConstructionChecked={setConstructionChecked}
-          />
-        </div>
-
         <div className="fullScreenControl">
           <FullscreenControl />
         </div>
 
         <div className="navigationControl">
           <NavigationControl />
+        </div>
+        <div className={`desktop ${disappear}`} id="show">
+          <div ref={geocoderContainerRef} className="search-bar">
+            <Geocoder
+              mapRef={mapRef}
+              countries="rw"
+              marker={false}
+              onViewportChange={handleViewportChange}
+              width="100%"
+              containerRef={geocoderContainerRef}
+              mapboxApiAccessToken={process.env.REACT_APP_MAPBOX_TOKEN}
+              position="top-left"
+            />
+          </div>
+
+          <div className="check-box">
+            <FilterBridgesCheckboxes
+              certainBridgeShows={certainBridgeShows}
+              completedChecked={completedChecked}
+              setCompletedChecked={setCompletedChecked}
+              rejectedChecked={rejectedChecked}
+              setRejectedChecked={setRejectedChecked}
+              identifiedChecked={identifiedChecked}
+              setIdentifiedChecked={setIdentifiedChecked}
+              confirmedChecked={confirmedChecked}
+              setConfirmedChecked={setConfirmedChecked}
+              prospectingChecked={prospectingChecked}
+              setProspectingChecked={setProspectingChecked}
+              constructionChecked={constructionChecked}
+              setConstructionChecked={setConstructionChecked}
+            />
+          </div>
         </div>
 
         {detailsData && <DetailsInfo />}
