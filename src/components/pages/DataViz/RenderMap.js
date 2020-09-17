@@ -22,9 +22,13 @@ let maxBounds = {
 };
 
 const RenderMap = () => {
-  const { bridgeData, detailsData, setDetailsData } = useContext(
+
+  const [show, setShow] = useState('hidden');
+  
+  const { bridgeData, detailsData } = useContext(
     BridgesContext
   );
+  
   const [viewport, setViewport] = useState({
     latitude: -1.9444,
     longitude: 30.0616,
