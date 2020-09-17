@@ -40,11 +40,10 @@ const BridgeForm = () => {
 
   useEffect(() => {
     setDetailsData(testState);
-  }, []);
+  }, [setDetailsData]);
   if (detailsData) {
     detailEntries = Object.entries(detailsData);
   }
-  // console.log(detailEntries);
 
   const changeHandler = ev => {
     ev.persist();
