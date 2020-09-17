@@ -1,11 +1,11 @@
 module.exports = {
   '@primary-color': '#66C3E3',
-  '@link-color': ' #fff',
+  '@link-color': '#161345',
   '@success-color': '#009149',
   '@warning-color': '#EA7149',
   '@error-color': '#EA7149',
   '@font-size-base': '14px',
-  '@heading-color': 'rgba(0, 0, 0, 0.85)',
+  '@heading-color': '#161345',
   '@text-color': 'rgba(0, 0, 0, 0.65)',
   '@text-color-secondary': 'rgba(0, 0, 0, 0.45)',
   '@disabled-color': 'rgba(0, 0, 0, 0.25)',

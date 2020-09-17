@@ -22,7 +22,9 @@ let maxBounds = {
 };
 
 const RenderMap = () => {
-  const [show, setShow] = useState('hidden');
+  const { bridgeData, detailsData, setDetailsData } = useContext(
+    BridgesContext
+  );
   const [viewport, setViewport] = useState({
     latitude: -1.9444,
     longitude: 30.0616,
@@ -30,17 +32,14 @@ const RenderMap = () => {
     bearing: 0,
     pitch: 0,
   });
+  const geocoderContainerRef = useRef();
+  const mapRef = useRef();
   const [rejectedChecked, setRejectedChecked] = useState(false);
   const [identifiedChecked, setIdentifiedChecked] = useState(false);
   const [completedChecked, setCompletedChecked] = useState(true);
-  const { bridgeData, detailsData, setDetailsData } = useContext(
-    BridgesContext
-  );
   const [confirmedChecked, setConfirmedChecked] = useState(false);
   const [prospectingChecked, setProspectingChecked] = useState(false);
   const [constructionChecked, setConstructionChecked] = useState(false);
-  const geocoderContainerRef = useRef();
-  const mapRef = useRef();
 
   let geojson = {
     type: 'FeatureCollection',
