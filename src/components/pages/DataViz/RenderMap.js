@@ -103,7 +103,6 @@ const RenderMap = () => {
 
   geojson.features = featureCollection;
 
-  console.log({ geojson });
   const handleViewportChange = viewport => {
     if (viewport.longitude < maxBounds.minLongitude) {
       viewport.longitude = maxBounds.minLongitude;
@@ -164,7 +163,6 @@ const RenderMap = () => {
     }
   }
 
-  console.log({ mapRef });
   return (
     <div className="mapbox-react">
       <ReactMapGL
