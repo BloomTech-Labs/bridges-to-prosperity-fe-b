@@ -177,7 +177,7 @@ const RenderMap = () => {
         mapboxApiAccessToken={process.env.REACT_APP_MAPBOX_TOKEN}
         interactiveLayerIds={['data']}
         onClick={handleClick}
-        maxZoom={12}
+        maxZoom={16}
         minZoom={6.5}
         onLoad={() => {
           if (!mapRef) return;
