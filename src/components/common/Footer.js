@@ -4,13 +4,31 @@ const Footer = () => {
   return (
     <div className="footer">
       <div className="links">
-        <a href="https://bridgestoprosperity.org/join-us/">Join Us</a>
-        <a href="https://bridgestoprosperity.org/faqs/">FAQS</a>
-        <a href="https://bridgestoprosperity.org/contact/">Contact Us</a>
-        <a href="https://bridgestoprosperity.org/financials/">Financials</a>
-        <a href="https://bridgestoprosperity.org/donor-privacy-policy/">
-          Donor Privacy Policy
-        </a>
+        <div className="link-list">
+          <a href="https://bridgestoprosperity.org/" target="_">
+            Bridges To Prosperity
+          </a>
+          <a href="https://bridgestoprosperity.org/join-us/" target="_">
+            Join Us
+          </a>
+          <a href="https://bridgestoprosperity.org/faqs/" target="_">
+            FAQS
+          </a>
+        </div>
+        <div className="link-list">
+          <a href="https://bridgestoprosperity.org/contact/" target="_">
+            Contact Us
+          </a>
+          <a href="https://bridgestoprosperity.org/financials/" target="_">
+            Financials
+          </a>
+          <a
+            href="https://bridgestoprosperity.org/donor-privacy-policy/"
+            target="_"
+          >
+            Donor Privacy Policy
+          </a>
+        </div>
         <img
           src={require('../../styles/imgs/charity_logo.png')}
           alt="Four Star Charity Logo"

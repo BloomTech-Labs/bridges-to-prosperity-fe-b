@@ -7,7 +7,7 @@ import {
   useHistory,
   Switch,
 } from 'react-router-dom';
-import { Security, PrivateRoute, LoginCallback } from '@okta/okta-react';
+import { Security, SecureRoute, LoginCallback } from '@okta/okta-react';
 
 import 'antd/dist/antd.less';
 import './styles/sass/index.scss';
@@ -54,10 +54,10 @@ function App() {
           <Route path="/implicit/callback" component={LoginCallback} />
           {/* any of the routes you need secured should be registered as SecureRoutes */}
           <Route exact path="/" component={HomePageReact} />
+          <SecureRoute path="/table" component={UserTable} />
+          <SecureRoute path="/details/:cardId" component={DetailsCard} />
+          <SecureRoute path="/form" component={BridgeForm} />
           <Route component={NotFoundPage} />
-          <PrivateRoute path="/table" component={UserTable} />
-          <PrivateRoute path="/details/:cardId" component={DetailsCard} />
-          <PrivateRoute path="/form" component={BridgeForm} />
         </Switch>
       </Security>
     </BridgesContext.Provider>
