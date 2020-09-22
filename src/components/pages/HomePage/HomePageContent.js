@@ -4,7 +4,6 @@ import { RenderMap } from '../DataViz/index';
 import Navigation from '../../common/Navigation';
 import Footer from '../../common/Footer';
 import { getDSData } from '../../../api/index';
-import { Link } from 'react-router-dom';
 
 const HomePageReact = () => {
   const { setBridgeData } = useContext(BridgesContext);
@@ -16,12 +15,11 @@ const HomePageReact = () => {
   }, [setBridgeData]);
 
   return (
-    <>
-      <Link to="/table">table</Link>
+    <div className="container">
       <Navigation />
       <RenderMap />
       <Footer />
-    </>
+    </div>
   );
 };
 

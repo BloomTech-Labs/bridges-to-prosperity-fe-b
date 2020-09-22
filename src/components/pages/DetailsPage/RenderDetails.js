@@ -1,83 +1,64 @@
-import React, { useRef, useState, useEffect, useContext } from 'react';
+import React, { useContext } from 'react';
 import { BridgesContext } from '../../../state/bridgesContext';
-
+import { useHistory, Link } from 'react-router-dom';
 import Navigation from '../../common/Navigation';
 import Footer from '../../common/Footer';
-import { Link } from 'react-router-dom';
-import { getDSData } from '../../../api/index';
 
-function DetailsCard(props) {
-  const communities_served = [];
-  const [data, setData] = useState({ communities_served: communities_served });
-  const { bridgeData, setBridgeData } = useContext(BridgesContext);
+function DetailsCard() {
+  const history = useHistory();
+  const { detailsData } = useContext(BridgesContext);
 
-  useEffect(() => {
-    getDSData('https://bridges-b-api.herokuapp.com/bridges').then(data => {
-      setBridgeData(data);
-      data.map(item => {
-        console.log(props.match.params.cardId);
-        let myID = parseInt(props.match.params.cardId);
+  if (!detailsData) {
+    history.push(`/table/`);
+  }
 
-        if (item.id === myID) {
-          setData(item);
-        }
-      });
-    });
-  }, []);
-
-  console.log(data);
   return (
-    <div>
-      <Link to="/table" style={{ Color: 'black' }}>
-        to table
-      </Link>
+    <>
       <Navigation />
-      <div>{data.b2p_bridge_id}</div>
-      <div>{data.id}</div>
-      <div>{data.project_code}</div>
-      <div>{data.country}</div>
-      <div>{data.district}</div>
-      <div>{data.province}</div>
-      <div>{data.sector}</div>
-      <div>{data.lat}</div>
-      <div>{data.long}</div>
-      <div>{data.project_stage}</div>
-      <div>{data.bridge_type}</div>
-      <div>{data.span}</div>
-      <div>communities_served</div>
-      <div>
-        {/* {data.communities_served.map(item => {
-          console.log(item);
-          return (
-            <div>
+      <div className="mainContainer">
+        {detailsData && (
+          <div className="cardContainer">
+            <div className="top">
+              <p>Id: {detailsData.id}</p>
+              <p>Bridge Opportunity Id: {detailsData.bridge_opportunity_id}</p>
+              <p>Project Code: {detailsData.project_code}</p>
+            </div>
+            <div className="title">
               <div>
-                id:{item.id} name:{item.name}
+                <p>Bridge Site Name: {detailsData.bridge_site_name}</p>
+                <p>Bridge Type: {detailsData.bridge_type}</p>
+              </div>
+              <div>
+                <p>Project Stage: {detailsData.project_stage}</p>
+                <p>Project Sub Stage: {detailsData.project_sub_stage}</p>
               </div>
             </div>
-          );
-        })} */}
+            <div className="info">
+              <p>Country: {detailsData.country}</p>
+              <p>District: {detailsData.district}</p>
+              <p>Province: {detailsData.province}</p>
+              <p>Sector: {detailsData.sector}</p>
+              <p>Latitude: {detailsData.lat}</p>
+              <p>Longitude: {detailsData.long}</p>
+              <p>Span: {detailsData.span}</p>
+              <p>
+                Inpiduals Directly Served:{' '}
+                {detailsData.inpiduals_directly_served}
+              </p>
+            </div>
+            <div className="communitiesServed">
+              <p>Communities Served: </p>
+            </div>
+            <div className="links">
+              <Link to="/form">Edit</Link>
+              <Link to="/table">Back</Link>
+            </div>
+          </div>
+        )}
       </div>
       <Footer />
-    </div>
+    </>
   );
 }
-export default DetailsCard;
 
-// b2p_bridge_id: null
-// bridge_type: "Suspended"
-// cell: "Gakomeye"
-// communities_served: Array(1)
-// 0: {id: 1, name: "Buzi"}
-// length: 1
-// __proto__: Array(0)
-// country: "Rwanda"
-// district: "Rusizi"
-// id: 1
-// lat: -2.42056
-// long: 28.9662
-// project_code: 1014107
-// project_stage: "Completed"
-// province: "Western Province"
-// sector: "Giheke"
-// span: "8 Meters"
-// sub_stage: null
+export default DetailsCard;

@@ -1,34 +1,33 @@
-import React, { useRef, useState, useEffect, useContext } from 'react';
+import React, { useContext, useState, useEffect, useRef } from 'react';
 import Navigation from '../../common/Navigation';
 import { BridgesContext } from '../../../state/bridgesContext';
 
 import { Table, Menu, Dropdown } from 'antd';
 import { DownOutlined } from '@ant-design/icons';
-import { Link, useHistory } from 'react-router-dom';
+import { useHistory } from 'react-router-dom';
 import { getDSData } from '../../../api/index';
 
-function UserTable(props) {
+function UserTable() {
   const [currentData, setCurrentData] = useState([]);
   const [searchParam, setSearchParam] = useState('project_code');
   const [search, setSearch] = useState('');
-  const { bridgeData } = useContext(BridgesContext);
   const history = useHistory();
+  const { bridgeData, setBridgeData, setDetailsData } = useContext(
+    BridgesContext
+  );
 
-  const { setBridgeData } = useContext(BridgesContext);
-
-  useEffect(() => {
+  if (!bridgeData) {
     getDSData('https://bridges-b-api.herokuapp.com/bridges').then(data => {
       setBridgeData(data);
       setCurrentData(data);
     });
-  }, []);
-
+  }
   useEffect(() => {
     if (search === '') {
       setCurrentData(bridgeData);
     } else {
       const newData = currentData.filter(item => {
-        if (item[searchParam].slice(0, search.length) === search) {
+        if (item[searchParam].toString().slice(0, search.length) === search) {
           return item;
         }
       });
@@ -38,14 +37,9 @@ function UserTable(props) {
 
   const columns = [
     {
-      title: 'ID',
-      dataIndex: 'id',
-      key: 'id',
-    },
-    {
-      title: 'B2P Bridge ID',
-      dataIndex: 'b2p_bridge_id',
-      key: 'b2p_bridge_id',
+      title: 'Project Code',
+      dataIndex: 'project_code',
+      key: 'project_code',
     },
     {
       title: 'Country',
@@ -71,11 +65,6 @@ function UserTable(props) {
       title: 'Cell',
       dataIndex: 'cell',
       key: 'cell',
-    },
-    {
-      title: 'Project Code',
-      dataIndex: 'project_code',
-      key: 'project_code',
     },
     {
       title: 'Project Stage',
@@ -112,135 +101,117 @@ function UserTable(props) {
   const searchMenu = (
     <Menu>
       <Menu.Item>
-        <a
-          onClick={() => {
-            setSearchParam('id');
-          }}
-        >
-          id
-        </a>
-      </Menu.Item>
-      <Menu.Item>
-        <a
-          onClick={() => {
-            setSearchParam('b2p_bridge_id');
-          }}
-        >
-          b2p_bridge_id
-        </a>
-      </Menu.Item>
-      <Menu.Item>
-        <a
-          onClick={() => {
-            setSearchParam('country');
-          }}
-        >
-          country
-        </a>
-      </Menu.Item>
-      <Menu.Item>
-        <a
-          onClick={() => {
-            setSearchParam('province');
-          }}
-        >
-          province
-        </a>
-      </Menu.Item>
-      <Menu.Item>
-        <a
-          onClick={() => {
-            setSearchParam('district');
-          }}
-        >
-          district
-        </a>
-      </Menu.Item>
-      <Menu.Item>
-        <a
-          onClick={() => {
-            setSearchParam('sector');
-          }}
-        >
-          sector
-        </a>
-      </Menu.Item>
-      <Menu.Item>
-        <a
-          onClick={() => {
-            setSearchParam('cell');
-          }}
-        >
-          cell
-        </a>
-      </Menu.Item>
-      <Menu.Item>
-        <a
+        <span
           onClick={() => {
             setSearchParam('project_code');
           }}
         >
           project_code
-        </a>
+        </span>
       </Menu.Item>
       <Menu.Item>
-        <a
+        <span
+          onClick={() => {
+            setSearchParam('country');
+          }}
+        >
+          country
+        </span>
+      </Menu.Item>
+      <Menu.Item>
+        <span
+          onClick={() => {
+            setSearchParam('province');
+          }}
+        >
+          province
+        </span>
+      </Menu.Item>
+      <Menu.Item>
+        <span
+          onClick={() => {
+            setSearchParam('district');
+          }}
+        >
+          district
+        </span>
+      </Menu.Item>
+      <Menu.Item>
+        <span
+          onClick={() => {
+            setSearchParam('sector');
+          }}
+        >
+          sector
+        </span>
+      </Menu.Item>
+      <Menu.Item>
+        <span
+          onClick={() => {
+            setSearchParam('cell');
+          }}
+        >
+          cell
+        </span>
+      </Menu.Item>
+      <Menu.Item>
+        <span
           onClick={() => {
             setSearchParam('project_stage');
           }}
         >
           project_stage
-        </a>
+        </span>
       </Menu.Item>
       <Menu.Item>
-        <a
+        <span
           onClick={() => {
             setSearchParam('sub_stage');
           }}
         >
           sub_stage
-        </a>
+        </span>
       </Menu.Item>
       <Menu.Item>
-        <a
+        <span
           onClick={() => {
             setSearchParam('bridge_type');
           }}
         >
           bridge_type
-        </a>
+        </span>
       </Menu.Item>
       <Menu.Item>
-        <a
+        <span
           onClick={() => {
             setSearchParam('span');
           }}
         >
           span
-        </a>
+        </span>
       </Menu.Item>
       <Menu.Item>
-        <a
+        <span
           onClick={() => {
             setSearchParam('lat');
           }}
         >
           lat
-        </a>
+        </span>
       </Menu.Item>
       <Menu.Item>
-        <a
+        <span
           onClick={() => {
             setSearchParam('long');
           }}
         >
           long
-        </a>
+        </span>
       </Menu.Item>
     </Menu>
   );
 
-  const formSubmit = e => {
+  const searchSubmit = e => {
     e.preventDefault();
     setCurrentData(bridgeData);
     setSearch(e.target.Project_Code.value);
@@ -253,7 +224,7 @@ function UserTable(props) {
     <div className="table-container">
       <Navigation />
       <div>
-        <form onSubmit={formSubmit}>
+        <form onSubmit={searchSubmit}>
           <input
             type="text"
             id="Project_Code"
@@ -264,23 +235,23 @@ function UserTable(props) {
         </form>
         <Dropdown overlay={searchMenu}>
           <a className="detailsInfo" onClick={e => e.preventDefault()}>
-            Hover me <DownOutlined />
+            Search by: {searchParam} <DownOutlined />
           </a>
         </Dropdown>
       </div>
       <Table
         dataSource={currentData}
         columns={columns}
-        onRow={(record, index) => {
+        onRow={record => {
           return {
-            onClick: event => {
+            onClick: () => {
+              setDetailsData(record);
               history.push(`/details/${record.id}`);
             },
           };
         }}
         pagination={{ defaultPageSize: 10 }}
       />
-      ;
     </div>
   );
 }
