@@ -1,0 +1,21 @@
+.formContainer {
+  display: flex;
+  justify-content: center;
+
+  form {
+    width: 50%;
+    padding: 2% 0;
+
+    span {
+      font-family: 'bridge-font';
+    }
+
+    input {
+      margin-bottom: 2%;
+    }
+
+    .submitButton {
+      margin-top: 2%;
+    }
+  }
+}
