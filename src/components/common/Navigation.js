@@ -1,7 +1,10 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import { useOktaAuth } from '@okta/okta-react';
 
 const Navigation = props => {
+  const { authService } = useOktaAuth();
+  console.log(localStorage);
   return (
     <div className="nav">
       <div className="logo">
@@ -18,9 +21,23 @@ const Navigation = props => {
         <Link to="/table" className="navLinks">
           Table
         </Link>
-        <Link to="/login" className="loginButton">
-          Login
-        </Link>
+        {!localStorage.getItem('okta-pkce-storage') ? (
+          <Link to="/login" className="loginButton">
+            Login
+          </Link>
+        ) : (
+          <Link
+            to="/"
+            onClick={() => {
+              authService.logout();
+              localStorage.removeItem('okta-cache-storage');
+              localStorage.removeItem('okta-pkce-storage');
+            }}
+            className="loginButton"
+          >
+            Logout
+          </Link>
+        )}
       </div>
     </div>
   );
