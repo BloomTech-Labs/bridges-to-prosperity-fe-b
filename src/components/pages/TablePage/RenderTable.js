@@ -2,12 +2,14 @@ import React, { useRef, useState, useEffect, useContext } from 'react';
 import Navigation from '../../common/Navigation';
 import { BridgesContext } from '../../../state/bridgesContext';
 
-import { Table } from 'antd';
+import { Table, Menu, Dropdown } from 'antd';
+import { DownOutlined } from '@ant-design/icons';
 import { Link, useHistory } from 'react-router-dom';
 import { getDSData } from '../../../api/index';
 
 function UserTable(props) {
   const [currentData, setCurrentData] = useState([]);
+  const [searchParam, setSearchParam] = useState('project_code');
   const [search, setSearch] = useState('');
   const { bridgeData } = useContext(BridgesContext);
   const history = useHistory();
@@ -22,37 +24,17 @@ function UserTable(props) {
   }, []);
 
   useEffect(() => {
-    const newData = currentData.filter(item => {
-      if (item.project_code === search) {
-        return item;
-      }
-    });
-    setCurrentData(newData);
-    console.log(currentData);
+    if (search === '') {
+      setCurrentData(bridgeData);
+    } else {
+      const newData = currentData.filter(item => {
+        if (item[searchParam].slice(0, search.length) === search) {
+          return item;
+        }
+      });
+      setCurrentData(newData);
+    }
   }, [search]);
-
-  /*{
-        "id": 1,
-        "b2p_bridge_id": null,
-        "country": "Rwanda",
-        "province": "Western Province",
-        "district": "Rusizi",
-        "sector": "Giheke",
-        "cell": "Gakomeye",
-        "project_code": 1014107,
-        "project_stage": "Completed",
-        "sub_stage": "Technical",
-        "bridge_type": "Suspended",
-        "span": "8 Meters",
-        "lat": -2.42056,
-        "long": 28.9662,
-        "communities_served": [
-          {
-            "id": 1,
-            "name": "Buzi"
-          }
-        ]
-      }*/
 
   const columns = [
     {
@@ -127,18 +109,144 @@ function UserTable(props) {
     },
   ];
 
+  const searchMenu = (
+    <Menu>
+      <Menu.Item>
+        <a
+          onClick={() => {
+            setSearchParam('id');
+          }}
+        >
+          id
+        </a>
+      </Menu.Item>
+      <Menu.Item>
+        <a
+          onClick={() => {
+            setSearchParam('b2p_bridge_id');
+          }}
+        >
+          b2p_bridge_id
+        </a>
+      </Menu.Item>
+      <Menu.Item>
+        <a
+          onClick={() => {
+            setSearchParam('country');
+          }}
+        >
+          country
+        </a>
+      </Menu.Item>
+      <Menu.Item>
+        <a
+          onClick={() => {
+            setSearchParam('province');
+          }}
+        >
+          province
+        </a>
+      </Menu.Item>
+      <Menu.Item>
+        <a
+          onClick={() => {
+            setSearchParam('district');
+          }}
+        >
+          district
+        </a>
+      </Menu.Item>
+      <Menu.Item>
+        <a
+          onClick={() => {
+            setSearchParam('sector');
+          }}
+        >
+          sector
+        </a>
+      </Menu.Item>
+      <Menu.Item>
+        <a
+          onClick={() => {
+            setSearchParam('cell');
+          }}
+        >
+          cell
+        </a>
+      </Menu.Item>
+      <Menu.Item>
+        <a
+          onClick={() => {
+            setSearchParam('project_code');
+          }}
+        >
+          project_code
+        </a>
+      </Menu.Item>
+      <Menu.Item>
+        <a
+          onClick={() => {
+            setSearchParam('project_stage');
+          }}
+        >
+          project_stage
+        </a>
+      </Menu.Item>
+      <Menu.Item>
+        <a
+          onClick={() => {
+            setSearchParam('sub_stage');
+          }}
+        >
+          sub_stage
+        </a>
+      </Menu.Item>
+      <Menu.Item>
+        <a
+          onClick={() => {
+            setSearchParam('bridge_type');
+          }}
+        >
+          bridge_type
+        </a>
+      </Menu.Item>
+      <Menu.Item>
+        <a
+          onClick={() => {
+            setSearchParam('span');
+          }}
+        >
+          span
+        </a>
+      </Menu.Item>
+      <Menu.Item>
+        <a
+          onClick={() => {
+            setSearchParam('lat');
+          }}
+        >
+          lat
+        </a>
+      </Menu.Item>
+      <Menu.Item>
+        <a
+          onClick={() => {
+            setSearchParam('long');
+          }}
+        >
+          long
+        </a>
+      </Menu.Item>
+    </Menu>
+  );
+
   const formSubmit = e => {
     e.preventDefault();
-    // console.log(e.target.Project_Code.value)
+    setCurrentData(bridgeData);
     setSearch(e.target.Project_Code.value);
-    // console.log(setSearch.Project_Code)
   };
   const inputChange = e => {
     e.persist();
-    // console.log(e.target.Project_Code.value)
-    // setSearch(e.target.Project_Code.value)
-    console.log(search);
-    // console.log(e)
   };
 
   return (
@@ -154,6 +262,11 @@ function UserTable(props) {
             onChange={inputChange}
           />
         </form>
+        <Dropdown overlay={searchMenu}>
+          <a className="detailsInfo" onClick={e => e.preventDefault()}>
+            Hover me <DownOutlined />
+          </a>
+        </Dropdown>
       </div>
       <Table
         dataSource={currentData}
