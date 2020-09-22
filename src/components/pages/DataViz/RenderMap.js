@@ -61,7 +61,7 @@ const RenderMap = () => {
     );
   }
 
-  //bridges are now being filtered by the bidge stages
+  // bridges are now being filtered by the bidge stages
   if (bridgeData) {
     let rejected = bridgeData.filter(
       bridge => bridge.project_stage === 'Rejected'
