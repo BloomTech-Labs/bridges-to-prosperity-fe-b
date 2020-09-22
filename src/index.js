@@ -18,7 +18,7 @@ import { config } from './utils/oktaConfig';
 import { UserTable } from './components/pages/TablePage';
 import { DetailsCard } from './components/pages/DetailsPage';
 import HomePageReact from './components/pages/HomePage/HomePageContent';
-import { BridgeForm } from './components/pages/Form';
+import { FormikForm } from './components/pages/Form';
 
 ReactDOM.render(
   <Router>
@@ -51,7 +51,7 @@ function App() {
         <Switch>
           <Route path="/details/:cardId" component={DetailsCard} />
           <Route path="/table" component={UserTable} />
-          <Route path="/form" component={BridgeForm} />
+          <Route path="/form" component={FormikForm} />
           <Route path="/login" component={LoginPage} />
           {/* <Route path="/mapbox" component={DataVizReact} /> */}
           <Route path="/implicit/callback" component={LoginCallback} />

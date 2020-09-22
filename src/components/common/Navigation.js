@@ -1,7 +1,30 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import { useOktaAuth } from '@okta/okta-react';
 
 const Navigation = props => {
+  const { authState, authService } = useOktaAuth();
+
+  const loggingButton = authState.isAuthenticated ? (
+    <button
+      className="loginButton"
+      onClick={() => {
+        authService.logout();
+      }}
+    >
+      Logout
+    </button>
+  ) : (
+    <button
+      className="loginButton"
+      onClick={() => {
+        authService.login();
+      }}
+    >
+      Login
+    </button>
+  );
+
   return (
     <div className="nav">
       <div className="logo">
@@ -18,9 +41,7 @@ const Navigation = props => {
         <Link to="/table" className="navLinks">
           Table
         </Link>
-        <Link to="/login" className="loginButton">
-          Login
-        </Link>
+        {loggingButton}
       </div>
     </div>
   );

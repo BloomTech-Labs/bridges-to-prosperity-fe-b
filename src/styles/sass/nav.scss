@@ -12,7 +12,6 @@
     align-items: flex-end;
     width: 100%;
     img {
-      //logo is kinda big
       height: auto;
       width: 2.5vw;
       margin-bottom: 1.1%;
@@ -22,8 +21,6 @@
       display: flex;
       align-self: flex-end;
       color: #161345;
-      // margin-left: 10px;
-      // padding: 4% 0;
       font-size: 2.2vw;
       margin: 0;
       font-family: 'bridge-font-bd';
@@ -58,6 +55,19 @@
       font-family: 'bridge-font';
       font-weight: 700;
       font-size: 1.25vw;
+      border: none;
+      -webkit-transition: background-color 2s ease-out;
+      -moz-transition: background-color 2s ease-out;
+      -o-transition: background-color 2s ease-out;
+      transition: background-color 2s ease-out;
+      &:hover {
+        cursor: pointer;
+        background-color: #1fb168;
+        -webkit-transition: background-color 2s ease-out;
+        -moz-transition: background-color 2s ease-out;
+        -o-transition: background-color 2s ease-out;
+        transition: background-color 2s ease-out;
+      }
     }
   }
 }
