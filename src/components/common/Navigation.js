@@ -18,25 +18,28 @@ const Navigation = props => {
         <Link to="/" className="navLinks">
           Home
         </Link>
-        <Link to="/table" className="navLinks">
-          Table
-        </Link>
+
         {!localStorage.getItem('okta-pkce-storage') ? (
           <Link to="/login" className="loginButton">
             Login
           </Link>
         ) : (
-          <Link
-            to="/"
-            onClick={() => {
-              authService.logout();
-              localStorage.removeItem('okta-cache-storage');
-              localStorage.removeItem('okta-pkce-storage');
-            }}
-            className="loginButton"
-          >
-            Logout
-          </Link>
+          <>
+            <Link to="/table" className="navLinks">
+              Table
+            </Link>
+            <Link
+              to="/"
+              onClick={() => {
+                authService.logout();
+                localStorage.removeItem('okta-cache-storage');
+                localStorage.removeItem('okta-pkce-storage');
+              }}
+              className="loginButton"
+            >
+              Logout
+            </Link>
+          </>
         )}
       </div>
     </div>
