@@ -20,9 +20,11 @@
 
   .detailsContainer {
     position: absolute;
+
     margin: 8% 6% 0 0;
     right: 0;
     top: 0;
+    cursor: move;
     width: 25vw;
     background-color: white;
     box-shadow: 2px 1px 5px 0px rgba(148, 142, 148, 1);
@@ -41,8 +43,20 @@
     }
 
     .detailsInfo {
-      padding: 10px;
       font-weight: 600;
+      display: flex;
+      align-items: center;
+      flex-direction: column;
+      .bridge-image {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+
+        p {
+          font-size: 0.5rem;
+        }
+      }
     }
     .detailsInfo p {
       font-size: 1.2rem;
@@ -120,6 +134,7 @@
           display: flex;
           justify-content: flex-start;
           flex-wrap: wrap;
+          font-size: 0.8rem;
 
           .restricted {
             margin: 5px 0;
@@ -131,18 +146,18 @@
 
     .detailsContainer {
       margin: 250px 4% 0 0;
-      width: auto;
+
+      width: 50%;
+      cursor: move;
       div {
         background-color: white;
         border: none;
         margin-top: 1%;
-        display: flex;
-        flex-wrap: wrap;
       }
 
       .detailsInfo p {
         width: 100%;
-        font-size: 20px;
+        font-size: 12px;
       }
     }
   }
