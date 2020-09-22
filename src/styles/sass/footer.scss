@@ -94,16 +94,20 @@
 
     .links {
       display: flex;
-      flex-direction: row;
+      flex-direction: column;
 
       width: 100%;
-      justify-content: space-between;
+      justify-content: center;
+      align-items: center;
 
       .link-list {
         display: flex;
         width: 50%;
         justify-content: center;
         flex-direction: column;
+        a {
+          margin: 5px 0;
+        }
         a:hover {
           background-color: white;
           color: #161345;
@@ -111,8 +115,8 @@
       }
       img {
         display: flex;
-        align-items: center;
-        margin: auto 0;
+
+        margin: 10px 0;
       }
     }
   }
