@@ -8,12 +8,17 @@
   .links {
     display: flex;
     flex-direction: column;
-    width: 15%;
+    width: 30%;
+    .link-list {
+      display: flex;
+      justify-content: center;
+      flex-direction: column;
+    }
     a {
       color: #fff;
       font-family: 'bridge-font';
       font-size: 1rem;
-      margin: 5% 0;
+      margin: 1% 0;
     }
     img {
       width: 120px;
@@ -62,7 +67,6 @@
   .info {
     width: 30%;
     margin-left: 15%;
-    // padding: 2% 0;
 
     img {
       width: 12.5vw;
@@ -80,6 +84,40 @@
     }
     .reserved {
       margin-top: 20%;
+    }
+  }
+  @media only screen and (max-width: 800px) {
+    .form,
+    .info {
+      display: none;
+    }
+
+    .links {
+      display: flex;
+      flex-direction: column;
+
+      width: 100%;
+      justify-content: center;
+      align-items: center;
+
+      .link-list {
+        display: flex;
+        width: 50%;
+        justify-content: center;
+        flex-direction: column;
+        a {
+          margin: 5px 0;
+        }
+        a:hover {
+          background-color: white;
+          color: #161345;
+        }
+      }
+      img {
+        display: flex;
+
+        margin: 10px 0;
+      }
     }
   }
 }

@@ -1,13 +1,19 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useHistory } from 'react-router-dom';
 import { useOktaAuth } from '@okta/okta-react';
 
 const Navigation = props => {
   const { authService } = useOktaAuth();
-  console.log(localStorage);
+  const { push } = useHistory();
+
   return (
     <div className="nav">
-      <div className="logo">
+      <div
+        onClick={() => {
+          push('/');
+        }}
+        className="logo"
+      >
         <img
           src={require('../../styles/imgs/B2P_Symbol_Green.png')}
           alt="Bridges of Prosperity Logo"

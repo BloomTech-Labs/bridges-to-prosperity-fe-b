@@ -3,7 +3,7 @@ import { BridgesContext } from '../../../state/bridgesContext';
 import { useHistory, Link } from 'react-router-dom';
 import Navigation from '../../common/Navigation';
 import Footer from '../../common/Footer';
-import bridgeIconGreen from '../../../styles/imgs/bridgeIconGreen.png';
+
 function DetailsCard() {
   const history = useHistory();
   const { detailsData } = useContext(BridgesContext);
@@ -11,32 +11,9 @@ function DetailsCard() {
   if (!detailsData) {
     history.push(`/table/`);
   }
-  console.log(detailsData);
+
   return (
     <>
-      {/* 
-
-
-
-
-
-
-
-district_id: 41
-form_name: "Project Assessment - 2018.8.11"
-id: 3
-individuals_directly_served: "0"
-lat: -1.72053
-long: 30.08124
-project_code: "1007651"
-project_stage: "Rejected"
-province: "Northern Province"
-sector: "Buyoga"
-sector_id: "4104"
-span: 8
-sub_stage: "Technical"
-village: "Gipfundo"
-village_id: "41040304" */}
       <Navigation />
       <div className="mainContainer">
         {detailsData && (
@@ -54,7 +31,7 @@ village_id: "41040304" */}
                 <div className="bridge-image">
                   <img
                     alt="bridge_image_needed"
-                    src={require('../../../styles/imgs/bridgeIconGreen.png')}
+                    src={require('../../../styles/imgs/bridgeIconGreenBig.png')}
                   />
                   Bridge image is unavailiable
                 </div>

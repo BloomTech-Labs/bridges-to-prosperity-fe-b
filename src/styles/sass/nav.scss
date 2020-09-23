@@ -11,8 +11,9 @@
     display: flex;
     align-items: flex-end;
     width: 100%;
+    cursor: pointer;
+
     img {
-      //logo is kinda big
       height: auto;
       width: 2.5vw;
       margin-bottom: 1.1%;
@@ -22,12 +23,13 @@
       display: flex;
       align-self: flex-end;
       color: #161345;
-      // margin-left: 10px;
-      // padding: 4% 0;
       font-size: 2.2vw;
       margin: 0;
       font-family: 'bridge-font-bd';
       letter-spacing: -1.5px;
+      &:hover {
+        color: #48914a;
+      }
     }
   }
 
@@ -39,12 +41,13 @@
 
     .navLinks {
       color: #161345;
-      font-size: 1.25vw;
+      font-size: 1.5vw;
       font-family: 'bridge-font';
       font-weight: 700;
       border-bottom: 1px solid rgba(var(--b3f, 250, 250, 250), 1);
+
       &:hover {
-        border-bottom: 1px solid #161345;
+        color: #48914a;
       }
     }
 
@@ -58,6 +61,50 @@
       font-family: 'bridge-font';
       font-weight: 700;
       font-size: 1.25vw;
+      border: 1px solid #48914a;
+
+      &:hover {
+        color: #48914a;
+        background-color: white;
+      }
+    }
+  }
+  @media only screen and (max-width: 1000px) {
+    .logo {
+      align-items: center;
+      img,
+      h1 {
+        font-size: 1.5rem;
+      }
+      img {
+        width: 1.5rem;
+      }
+    }
+    .links {
+      .navLinks,
+      .loginButton {
+        font-size: 1.5rem;
+        margin: 0 5px;
+      }
+    }
+  }
+  @media only screen and (max-width: 500px) {
+    .logo {
+      align-items: center;
+      img,
+      h1 {
+        font-size: 1rem;
+      }
+      img {
+        width: 1rem;
+      }
+    }
+    .links {
+      .navLinks,
+      .loginButton {
+        margin: 0 2px;
+        font-size: 0.8rem;
+      }
     }
   }
 }
