@@ -53,7 +53,9 @@
         justify-content: center;
         align-items: center;
         flex-direction: column;
-
+        img {
+          width: 300px;
+        }
         p {
           font-size: 0.5rem;
         }
@@ -160,6 +162,9 @@
       .detailsInfo p {
         width: 100%;
         font-size: 12px;
+      }
+      .detailsInfo .bridge-image img {
+        width: 125px;
       }
     }
   }
