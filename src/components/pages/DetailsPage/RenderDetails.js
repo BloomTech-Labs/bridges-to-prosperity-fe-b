@@ -28,7 +28,6 @@ function DetailsCard() {
                     alt="bridge_image_needed"
                     src={`${detailsData.bridge_image}`}
                   />
-                  Bridge image is unavailiable
                 </div>
               ) : (
                 <div className="bridge-image">
