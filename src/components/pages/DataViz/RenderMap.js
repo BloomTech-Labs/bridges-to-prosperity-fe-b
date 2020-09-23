@@ -61,7 +61,7 @@ const RenderMap = () => {
     );
   }
 
-  //bridges are now being filtered by the bidge stages
+  // bridges are now being filtered by the bidge stages
   if (bridgeData) {
     let rejected = bridgeData.filter(
       bridge => bridge.project_stage === 'Rejected'
@@ -177,7 +177,7 @@ const RenderMap = () => {
         mapboxApiAccessToken={process.env.REACT_APP_MAPBOX_TOKEN}
         interactiveLayerIds={['data']}
         onClick={handleClick}
-        maxZoom={12}
+        maxZoom={16}
         minZoom={6.5}
         onLoad={() => {
           if (!mapRef) return;

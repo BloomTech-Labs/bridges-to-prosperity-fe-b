@@ -24,7 +24,6 @@ const Navigation = props => {
         <Link to="/" className="navLinks">
           Home
         </Link>
-
         {!localStorage.getItem('okta-pkce-storage') ? (
           <Link to="/login" className="loginButton">
             Login
