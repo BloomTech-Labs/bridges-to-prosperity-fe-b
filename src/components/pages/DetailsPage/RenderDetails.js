@@ -22,9 +22,12 @@ function DetailsCard() {
               <p>Project Code: {detailsData.project_code}</p>
             </div>
             <div className="title">
-              {detailsData.image ? (
+              {detailsData.bridge_image ? (
                 <div className="bridge-image">
-                  <img alt="bridge_image_needed" src={`${detailsData.image}`} />
+                  <img
+                    alt="bridge_image_needed"
+                    src={`${detailsData.bridge_image}`}
+                  />
                   Bridge image is unavailiable
                 </div>
               ) : (
