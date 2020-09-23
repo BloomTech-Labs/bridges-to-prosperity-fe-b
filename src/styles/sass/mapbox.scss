@@ -20,6 +20,7 @@
 
   .detailsContainer {
     position: absolute;
+    z-index: 10;
 
     margin: 8% 6% 0 0;
     right: 0;
@@ -149,6 +150,7 @@
 
       width: 50%;
       cursor: move;
+
       div {
         background-color: white;
         border: none;
