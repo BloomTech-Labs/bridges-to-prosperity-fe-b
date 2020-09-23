@@ -15,7 +15,6 @@ function UserTable() {
   const { bridgeData, setBridgeData, setDetailsData } = useContext(
     BridgesContext
   );
-
   if (!bridgeData) {
     getDSData('https://bridges-b-api.herokuapp.com/bridges').then(data => {
       setBridgeData(data);
@@ -96,6 +95,16 @@ function UserTable() {
       dataIndex: 'long',
       key: 'long',
     },
+    {
+      title: 'Village Id',
+      dataIndex: 'village_id',
+      key: 'village_id',
+    },
+    {
+      title: 'Village',
+      dataIndex: 'village',
+      key: 'village',
+    },
   ];
 
   const searchMenu = (
@@ -106,7 +115,7 @@ function UserTable() {
             setSearchParam('project_code');
           }}
         >
-          project_code
+          Project Code
         </span>
       </Menu.Item>
       <Menu.Item>
@@ -115,7 +124,7 @@ function UserTable() {
             setSearchParam('country');
           }}
         >
-          country
+          Country
         </span>
       </Menu.Item>
       <Menu.Item>
@@ -124,7 +133,7 @@ function UserTable() {
             setSearchParam('province');
           }}
         >
-          province
+          Province
         </span>
       </Menu.Item>
       <Menu.Item>
@@ -133,7 +142,7 @@ function UserTable() {
             setSearchParam('district');
           }}
         >
-          district
+          District
         </span>
       </Menu.Item>
       <Menu.Item>
@@ -142,7 +151,7 @@ function UserTable() {
             setSearchParam('sector');
           }}
         >
-          sector
+          Sector
         </span>
       </Menu.Item>
       <Menu.Item>
@@ -151,7 +160,7 @@ function UserTable() {
             setSearchParam('cell');
           }}
         >
-          cell
+          Cell
         </span>
       </Menu.Item>
       <Menu.Item>
@@ -160,7 +169,7 @@ function UserTable() {
             setSearchParam('project_stage');
           }}
         >
-          project_stage
+          Project Stage
         </span>
       </Menu.Item>
       <Menu.Item>
@@ -169,7 +178,7 @@ function UserTable() {
             setSearchParam('sub_stage');
           }}
         >
-          sub_stage
+          Sub Stage
         </span>
       </Menu.Item>
       <Menu.Item>
@@ -178,7 +187,7 @@ function UserTable() {
             setSearchParam('bridge_type');
           }}
         >
-          bridge_type
+          Bridge Type
         </span>
       </Menu.Item>
       <Menu.Item>
@@ -187,7 +196,7 @@ function UserTable() {
             setSearchParam('span');
           }}
         >
-          span
+          Span
         </span>
       </Menu.Item>
       <Menu.Item>
@@ -196,7 +205,7 @@ function UserTable() {
             setSearchParam('lat');
           }}
         >
-          lat
+          Latitude
         </span>
       </Menu.Item>
       <Menu.Item>
@@ -205,7 +214,25 @@ function UserTable() {
             setSearchParam('long');
           }}
         >
-          long
+          Longitude
+        </span>
+      </Menu.Item>
+      <Menu.Item>
+        <span
+          onClick={() => {
+            setSearchParam('village_id');
+          }}
+        >
+          Village Id
+        </span>
+      </Menu.Item>
+      <Menu.Item>
+        <span
+          onClick={() => {
+            setSearchParam('village');
+          }}
+        >
+          Village
         </span>
       </Menu.Item>
     </Menu>
