@@ -217,7 +217,7 @@ const RenderMap = () => {
               countries="rw"
               marker={false}
               onViewportChange={handleViewportChange}
-              width="100%"
+              // width="10%"
               containerRef={geocoderContainerRef}
               mapboxApiAccessToken={process.env.REACT_APP_MAPBOX_TOKEN}
               position="top-left"
@@ -242,9 +242,8 @@ const RenderMap = () => {
             />
           </div>
         </div>
-
-        {detailsData && <DetailsInfo />}
       </ReactMapGL>
+      {detailsData && <DetailsInfo />}
     </div>
   );
 };

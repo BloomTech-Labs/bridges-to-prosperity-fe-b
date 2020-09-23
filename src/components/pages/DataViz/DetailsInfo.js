@@ -1,20 +1,36 @@
 import React, { useContext } from 'react';
 import { BridgesContext } from '../../../state/bridgesContext';
+import Draggable from 'react-draggable';
 
 const DetailsInfo = () => {
   const { detailsData, setDetailsData } = useContext(BridgesContext);
   return (
-    <div className="detailsContainer">
-      <div className="closeButton" onClick={() => setDetailsData(null)}>
-        <i className="fas fa-times"></i>
-      </div>
+    <Draggable>
+      <div className="detailsContainer">
+        <div className="closeButton" onClick={() => setDetailsData(null)}>
+          <i className="fas fa-times"></i>
+        </div>
 
-      <div className="detailsInfo">
-        <p>Province: {detailsData.province}</p>
-        <p>District: {detailsData.district}</p>
-        <p>Status: {detailsData.project_stage}</p>
+        <div className="detailsInfo">
+          <strong>{detailsData.bridge_site_name}</strong>
+          <div className="bridge-image">
+            <img
+              alt="bridge_image_needed"
+              src={require('../../../styles/imgs/bridgeIconGreenBig.png')}
+            />
+          </div>
+
+          {/* <p>Bridge Site Name: {detailsData.bridge_site_name}</p> */}
+          <div>
+            <p>Bridge Type: {detailsData.bridge_type}</p>
+            <p>Project Stage: {detailsData.project_stage}</p>
+            <p>Project Sub Stage: {detailsData.sub_stage}</p>
+            <p>Province: {detailsData.province}</p>
+            <p>District: {detailsData.district}</p>
+          </div>
+        </div>
       </div>
-    </div>
+    </Draggable>
   );
 };
 
