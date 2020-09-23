@@ -7,7 +7,13 @@ const DetailsInfo = () => {
   return (
     <Draggable>
       <div className="detailsContainer">
-        <div className="closeButton" onClick={() => setDetailsData(null)}>
+        <div
+          className="closeButton"
+          onKeyDown={e => {
+            console.log(e);
+          }}
+          onClick={() => setDetailsData(null)}
+        >
           <i className="fas fa-times"></i>
         </div>
 
