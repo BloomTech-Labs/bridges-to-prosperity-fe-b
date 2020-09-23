@@ -3,37 +3,13 @@ import { Formik, Field, Form, FieldArray } from 'formik';
 import { Input, Button } from 'antd';
 import { BridgesContext } from '../../../state/bridgesContext';
 import Navigation from '../../common/Navigation';
-import * as yup from 'yup';
-
-const validationSchema = yup.object({
-  id: yup.number().required(),
-  country: yup.string().required(),
-  district_id: yup.number().required(),
-  province: yup.string().required(),
-  district: yup.string().required(),
-  sector: yup.string().required(),
-  sector_id: yup.string().required(),
-  cell: yup.string().required(),
-  cell_id: yup.string().required(),
-  village: yup.string().required(),
-  village_id: yup.string().required(),
-  bridge_site_name: yup.string().required(),
-  project_stage: yup.string().required(),
-  sub_stage: yup.string().required(),
-  project_code: yup.string().required(),
-  bridge_type: yup.string().required(),
-  span: yup.number().required(),
-  lat: yup.number().required(),
-  long: yup.number().required(),
-  individuals_directly_served: yup.number().required(),
-  form_name: yup.string().required(),
-  casesafeid_form: yup.string().required(),
-  bridge_opportunity_id: yup.string().required(),
-  bridge_image: yup.string().required(),
-});
+import axios from 'axios';
+import { validationSchema } from './YupValidationSchema';
 
 const FormikForm = () => {
-  const { detailsData } = useContext(BridgesContext);
+  const { detailsData, setDetailsData, setBridgeData, bridgeData } = useContext(
+    BridgesContext
+  );
 
   return (
     <>
@@ -44,17 +20,22 @@ const FormikForm = () => {
           validationSchema={validationSchema}
           onSubmit={(data, { setSubmitting }) => {
             setSubmitting(true);
-            // put axios async call here
-            console.log(data);
+            axios
+              .put(
+                `https://bridges-b-api.herokuapp.com/bridges/update/${data.id}`,
+                data
+              )
+              .then(res => {
+                setDetailsData(data);
+                bridgeData[data.id - 1] = data;
+                setBridgeData(bridgeData);
+              })
+              .catch(err => console.log(err));
             setSubmitting(false);
           }}
         >
           {({ values, errors, isSubmitting, handleSubmit, touched }) => (
             <Form>
-              <span>ID</span>
-              <Field name="id" type="number" as={Input} />
-              {errors.id && touched.id ? <div>{errors.id}</div> : null}
-
               <span>Country</span>
               <Field name="country" type="input" as={Input} />
               {errors.country && touched.country ? (
@@ -170,21 +151,22 @@ const FormikForm = () => {
                 {arrayHelpers => (
                   <div>
                     <span>Communities Served: </span>
-                    {values.communities_served.map((community, index) => {
-                      return (
-                        <>
-                          <Field
-                            key={index}
-                            type="input"
-                            name={`communities_served.${index}`}
-                            as={Input}
-                          />
-                          <Button onClick={() => arrayHelpers.remove(index)}>
-                            Remove Community
-                          </Button>
-                        </>
-                      );
-                    })}
+                    {values.communities_served &&
+                      values.communities_served.map((community, index) => {
+                        return (
+                          <>
+                            <Field
+                              key={index}
+                              type="input"
+                              name={`communities_served.${index}`}
+                              as={Input}
+                            />
+                            <Button onClick={() => arrayHelpers.remove(index)}>
+                              Remove Community
+                            </Button>
+                          </>
+                        );
+                      })}
                     <Button onClick={() => arrayHelpers.push('')}>
                       Add Community
                     </Button>
@@ -224,9 +206,6 @@ const FormikForm = () => {
               >
                 Submit
               </Button>
-
-              <pre>{JSON.stringify(values, null, 2)}</pre>
-              <pre>{JSON.stringify(errors, null, 2)}</pre>
             </Form>
           )}
         </Formik>
