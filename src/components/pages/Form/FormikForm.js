@@ -1,6 +1,7 @@
 import React, { useContext } from 'react';
 import { Formik, Field, Form, FieldArray } from 'formik';
 import { Input, Button } from 'antd';
+import { useHistory } from 'react-router-dom';
 import { BridgesContext } from '../../../state/bridgesContext';
 import Navigation from '../../common/Navigation';
 import axios from 'axios';
@@ -10,7 +11,7 @@ const FormikForm = () => {
   const { detailsData, setDetailsData, setBridgeData, bridgeData } = useContext(
     BridgesContext
   );
-
+  const { push } = useHistory();
   return (
     <>
       <Navigation />
@@ -29,6 +30,8 @@ const FormikForm = () => {
                 setDetailsData(data);
                 bridgeData[data.id - 1] = data;
                 setBridgeData(bridgeData);
+                push(`../details/${data.id}`);
+                window.scrollTo(0, 0);
               })
               .catch(err => console.log(err));
             setSubmitting(false);
