@@ -4,7 +4,9 @@ You can find the deployed project at https://b.bridgestoprosperity.dev/
 
 You can find the demo video for this project at https://youtu.be/UkJIj0PbvIk
 
+
 ## 4️⃣ Contributors
+
 
 |                                           [Devin Moore](https://github.com/devjaymoe)                                           |                                       [Joo Woon Kang](https://github.com/joowoonk)                                        |                                                     [Robert Misch](https://github.com/RobertMisch)                                                     |                                          [Jessica Cooper](https://github.com/JessicaGCooper)                                           |
 | :-----------------------------------------------------------------------------------------------------------------------------: | :-----------------------------------------------------------------------------------------------------------------------: | :----------------------------------------------------------------------------------------------------------------------------------------------------: | :------------------------------------------------------------------------------------------------------------------------------------: |
@@ -46,6 +48,7 @@ Our website receives and displays from data from our backend API. Displays data 
 - Formik & Yup
 - Node-Sass
 
+
 #### _Front end framework goes here_
 
 - React
@@ -75,11 +78,14 @@ https://github.com/Lambda-School-Labs/Labs25-Bridges_to_Prosperity-TeamB-be
 
 ## 2️⃣ Authentication API here
 
+
 Okta API for Authentication:
+
 
 The Okta Identity Cloud gives you one trusted platform to secure every identity in your organization and connect with all your customers.
 
 ## 3️⃣ Environment Variables
+
 
 ```md
 REACT_APP_CLIENT_ID=0oalwt....
@@ -96,6 +102,7 @@ REACT_APP_MAPBOX_TOKEN='pk.eyJ1Ij......'
 | ----------------- | ---------------- | ------------------------------------------------ |
 | green bridge icon | Icons8           | [Icons8](https://icons8.com/license)             |
 | rings.svg         | Sam Herbert      | [MIT](https://github.com/SamHerbert/SVG-Loaders) |
+
 
 All the other images provided from Bridges to Prosperity
 

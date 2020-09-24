@@ -2,6 +2,8 @@ import React, { useContext, useEffect } from 'react';
 import FormInput from './FormInput';
 import { BridgesContext } from '../../../state/bridgesContext';
 
+// url bridges/update/{bridge id}
+
 const testState = {
   id: 1014107,
   province: 'Northern Province',

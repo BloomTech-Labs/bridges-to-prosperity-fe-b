@@ -7,7 +7,7 @@ import {
   useHistory,
   Switch,
 } from 'react-router-dom';
-import { Security, LoginCallback } from '@okta/okta-react';
+import { Security, SecureRoute, LoginCallback } from '@okta/okta-react';
 
 import 'antd/dist/antd.less';
 import './styles/sass/index.scss';
@@ -18,7 +18,7 @@ import { config } from './utils/oktaConfig';
 import { UserTable } from './components/pages/TablePage';
 import { DetailsCard } from './components/pages/DetailsPage';
 import HomePageReact from './components/pages/HomePage/HomePageContent';
-import { BridgeForm } from './components/pages/Form';
+import { FormikForm } from './components/pages/Form';
 
 ReactDOM.render(
   <Router>
@@ -49,14 +49,13 @@ function App() {
     >
       <Security {...config} onAuthRequired={authHandler}>
         <Switch>
-          <Route path="/details/:cardId" component={DetailsCard} />
-          <Route path="/table" component={UserTable} />
-          <Route path="/form" component={BridgeForm} />
           <Route path="/login" component={LoginPage} />
-          {/* <Route path="/mapbox" component={DataVizReact} /> */}
           <Route path="/implicit/callback" component={LoginCallback} />
           {/* any of the routes you need secured should be registered as SecureRoutes */}
           <Route exact path="/" component={HomePageReact} />
+          <SecureRoute path="/table" component={UserTable} />
+          <SecureRoute path="/details/:cardId" component={DetailsCard} />
+          <SecureRoute path="/form" component={FormikForm} />
           <Route component={NotFoundPage} />
         </Switch>
       </Security>

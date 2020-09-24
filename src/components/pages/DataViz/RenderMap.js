@@ -1,6 +1,7 @@
 import 'mapbox-gl/dist/mapbox-gl.css';
 import 'react-map-gl-geocoder/dist/mapbox-gl-geocoder.css';
 import { MenuOutlined } from '@ant-design/icons';
+import useKeypress from '../../common/UseKeypress';
 import bridgeIconGreen from '../../../styles/imgs/bridgeIconGreen.png';
 import React, { useState, useRef, useContext } from 'react';
 import ReactMapGL, {
@@ -25,6 +26,7 @@ const RenderMap = () => {
   const { bridgeData, detailsData, setDetailsData } = useContext(
     BridgesContext
   );
+  const [fullscreen, setFullscreen] = useState(false);
 
   const [viewport, setViewport] = useState({
     latitude: -1.9444,
@@ -41,6 +43,11 @@ const RenderMap = () => {
   const [confirmedChecked, setConfirmedChecked] = useState(false);
   const [prospectingChecked, setProspectingChecked] = useState(false);
   const [constructionChecked, setConstructionChecked] = useState(false);
+
+  useKeypress('Escape', () => {
+    setFullscreen(false);
+    setDetailsData(null);
+  });
 
   let geojson = {
     type: 'FeatureCollection',
@@ -61,7 +68,7 @@ const RenderMap = () => {
     );
   }
 
-  //bridges are now being filtered by the bidge stages
+  // bridges are now being filtered by the bidge stages
   if (bridgeData) {
     let rejected = bridgeData.filter(
       bridge => bridge.project_stage === 'Rejected'
@@ -162,6 +169,12 @@ const RenderMap = () => {
       x.style.display = 'block';
     }
   }
+  function handleClose(e) {
+    console.log(e);
+    if (e.key === 'Escape') {
+      setFullscreen(false);
+    }
+  }
 
   return (
     <div className="mapbox-react">
@@ -177,7 +190,7 @@ const RenderMap = () => {
         mapboxApiAccessToken={process.env.REACT_APP_MAPBOX_TOKEN}
         interactiveLayerIds={['data']}
         onClick={handleClick}
-        maxZoom={12}
+        maxZoom={16}
         minZoom={6.5}
         onLoad={() => {
           if (!mapRef) return;
@@ -203,7 +216,10 @@ const RenderMap = () => {
             style={{ fontSize: '20px' }}
           />
         </div>
-        <div className="fullScreenControl">
+        <div
+          className="fullScreenControl"
+          onClick={() => setFullscreen(!fullscreen)}
+        >
           <FullscreenControl />
         </div>
 
@@ -217,7 +233,7 @@ const RenderMap = () => {
               countries="rw"
               marker={false}
               onViewportChange={handleViewportChange}
-              width="100%"
+              // width="10%"
               containerRef={geocoderContainerRef}
               mapboxApiAccessToken={process.env.REACT_APP_MAPBOX_TOKEN}
               position="top-left"
@@ -242,9 +258,9 @@ const RenderMap = () => {
             />
           </div>
         </div>
-
-        {detailsData && <DetailsInfo />}
+        {fullscreen && detailsData && <DetailsInfo />}
       </ReactMapGL>
+      {!fullscreen && detailsData && <DetailsInfo />}
     </div>
   );
 };
