@@ -250,7 +250,7 @@ function UserTable() {
   return (
     <div className="table-container">
       <Navigation />
-      <div>
+      <div className="filter-search">
         <form onSubmit={searchSubmit}>
           <input
             type="text"
