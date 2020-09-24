@@ -18,7 +18,9 @@ const DetailsInfo = () => {
         </div>
 
         <div className="detailsInfo">
-          <strong>{detailsData.bridge_site_name}</strong>
+          <h2>
+            <strong>{detailsData.bridge_site_name}</strong>
+          </h2>
           <div className="bridge-image">
             {detailsData.bridge_image ? (
               <div className="bridge-image">
@@ -37,11 +39,11 @@ const DetailsInfo = () => {
 
           {/* <p>Bridge Site Name: {detailsData.bridge_site_name}</p> */}
           <div>
-            <p>Bridge Type: {detailsData.bridge_type}</p>
             <p>Project Stage: {detailsData.project_stage}</p>
-            <p>Project Sub Stage: {detailsData.sub_stage}</p>
             <p>Province: {detailsData.province}</p>
             <p>District: {detailsData.district}</p>
+            <p>Bridge Type: {detailsData.bridge_type}</p>
+            <p>Project Sub Stage: {detailsData.sub_stage}</p>
           </div>
         </div>
       </div>
