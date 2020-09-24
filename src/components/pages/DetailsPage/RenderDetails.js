@@ -24,11 +24,7 @@ function DetailsCard() {
             <div className="title">
               {detailsData.bridge_image ? (
                 <div className="bridge-image">
-                  <img
-                    alt="bridge_image_needed"
-                    src={`${detailsData.bridge_image}`}
-                  />
-                  Bridge image is unavailiable
+                  <img alt="bridge_image" src={`${detailsData.bridge_image}`} />
                 </div>
               ) : (
                 <div className="bridge-image">

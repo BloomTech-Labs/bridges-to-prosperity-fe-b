@@ -20,10 +20,19 @@ const DetailsInfo = () => {
         <div className="detailsInfo">
           <strong>{detailsData.bridge_site_name}</strong>
           <div className="bridge-image">
-            <img
-              alt="bridge_image_needed"
-              src={require('../../../styles/imgs/bridgeIconGreenBig.png')}
-            />
+            {detailsData.bridge_image ? (
+              <div className="bridge-image">
+                <img alt="bridge_image" src={`${detailsData.bridge_image}`} />
+              </div>
+            ) : (
+              <div className="bridge-image">
+                <img
+                  alt="bridge_image_needed"
+                  src={require('../../../styles/imgs/bridgeIconGreenBig.png')}
+                />
+                Bridge image is unavailiable
+              </div>
+            )}
           </div>
 
           {/* <p>Bridge Site Name: {detailsData.bridge_site_name}</p> */}
