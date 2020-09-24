@@ -2,7 +2,11 @@
 
 You can find the deployed project at https://b.bridgestoprosperity.dev/
 
+You can find the demo video for this project at https://youtu.be/UkJIj0PbvIk
+
+
 ## 4️⃣ Contributors
+
 
 |                                           [Devin Moore](https://github.com/devjaymoe)                                           |                                       [Joo Woon Kang](https://github.com/joowoonk)                                        |                                                     [Robert Misch](https://github.com/RobertMisch)                                                     |                                          [Jessica Cooper](https://github.com/JessicaGCooper)                                           |
 | :-----------------------------------------------------------------------------------------------------------------------------: | :-----------------------------------------------------------------------------------------------------------------------: | :----------------------------------------------------------------------------------------------------------------------------------------------------: | :------------------------------------------------------------------------------------------------------------------------------------: |
@@ -24,7 +28,7 @@ You can find the deployed project at https://b.bridgestoprosperity.dev/
 
 Our website receives and displays from data from our backend API. Displays data on mapbox interface, using React Map Gl, and also on ant design table. Users are unable to interact with the data on the mapbox interface and the table to view additional information and edit data points.
 
-### 4️⃣ Key Features
+## 4️⃣ Key Features
 
 - Mapbox Interface (React Map Gl)
 - Ant Design Table
@@ -43,6 +47,7 @@ Our website receives and displays from data from our backend API. Displays data 
 - React-router-dom
 - Formik & Yup
 - Node-Sass
+
 
 #### _Front end framework goes here_
 
@@ -73,11 +78,14 @@ https://github.com/Lambda-School-Labs/Labs25-Bridges_to_Prosperity-TeamB-be
 
 ## 2️⃣ Authentication API here
 
+
 Okta API for Authentication:
+
 
 The Okta Identity Cloud gives you one trusted platform to secure every identity in your organization and connect with all your customers.
 
-# 3️⃣ Environment Variables
+## 3️⃣ Environment Variables
+
 
 ```md
 REACT_APP_CLIENT_ID=0oalwt....
@@ -86,7 +94,7 @@ REACT_APP_API_URI=http://localhost:8000
 REACT_APP_MAPBOX_TOKEN='pk.eyJ1Ij......'
 ```
 
-# 5️⃣ Content Licenses
+## 5️⃣ Content Licenses
 
 🚫For all content - images, icons, etc, use this table to document permission of use. Remove the two placeholders and add you content to this table
 
@@ -95,9 +103,10 @@ REACT_APP_MAPBOX_TOKEN='pk.eyJ1Ij......'
 | green bridge icon | Icons8           | [Icons8](https://icons8.com/license)             |
 | rings.svg         | Sam Herbert      | [MIT](https://github.com/SamHerbert/SVG-Loaders) |
 
+
 All the other images provided from Bridges to Prosperity
 
-# 4️⃣ Testing
+## 4️⃣ Testing
 
 We used JEST to have basic testing for the front end.
 
