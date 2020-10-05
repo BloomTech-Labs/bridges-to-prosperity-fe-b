@@ -131,27 +131,45 @@ const RenderMap = () => {
 
     if (features.length > 0) {
       var coordinates = features[0].geometry.coordinates.slice();
-      coordinates[0] = parseFloat(coordinates[0].toFixed(2));
-      coordinates[1] = parseFloat(coordinates[1].toFixed(2));
+      coordinates[0] = parseFloat(coordinates[0]);
+      coordinates[1] = parseFloat(coordinates[1]);
     }
 
     let bridge;
+    let minD = Number.MAX_VALUE;
 
     if (clickedFeature) {
-      bridge = bridgeData.find(f => {
-        if (f.lat & f.long) {
-          if (
-            (parseFloat(f.long.toFixed(2)) === coordinates[0]) &
-            (parseFloat(f.lat.toFixed(2)) === coordinates[1])
-          ) {
-            return f;
-          }
+      bridgeData.map(f => {
+        let distance = calculateDistance(
+          f.lat,
+          f.long,
+          coordinates[1],
+          coordinates[0]
+        );
+        if (distance <= minD) {
+          bridge = f;
+          minD = distance;
         }
       });
     }
-
     setDetailsData(bridge);
   };
+
+  function calculateDistance(lat1, lon1, lat2, lon2) {
+    var R = 6371000; // metres
+    var φ1 = (lat1 * Math.PI) / 180;
+    var φ2 = (lat2 * Math.PI) / 180;
+    var Δφ = ((lat2 - lat1) * Math.PI) / 180;
+    var Δλ = ((lon2 - lon1) * Math.PI) / 180;
+
+    var a =
+      Math.sin(Δφ / 2) * Math.sin(Δφ / 2) +
+      Math.cos(φ1) * Math.cos(φ2) * Math.sin(Δλ / 2) * Math.sin(Δλ / 2);
+    var c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
+
+    var d = R * c;
+    return d;
+  }
   let screenHeight = '90vh';
   let screenWidth = '90%';
   let disappear = '';
