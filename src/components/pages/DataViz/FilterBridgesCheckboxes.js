@@ -6,6 +6,14 @@ const FilterBridgesCheckboxes = props => {
     <div className="check-box-section">
       <div className="restricted">
         <Checkbox
+          checked={props.allChecked}
+          onChange={() => props.setAllChecked(!props.allChecked)}
+          style={{ margin: '0 5px' }}
+        />
+        All
+      </div>
+      <div className="restricted">
+        <Checkbox
           checked={props.rejectedChecked}
           onChange={() => props.setRejectedChecked(!props.rejectedChecked)}
           style={{ margin: '0 5px' }}
