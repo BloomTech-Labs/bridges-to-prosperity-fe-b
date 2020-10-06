@@ -204,8 +204,8 @@ const RenderMap = () => {
           f.layer.id === 'rejected' ||
           f.layer.id === 'identified' ||
           f.layer.id === 'prospecting' ||
-          f.layer.id === 'underConsstruction' ||
-          f.lay.id === 'confirmed'
+          f.layer.id === 'underConstruction' ||
+          f.layer.id === 'confirmed'
       );
 
     if (features.length > 0) {
