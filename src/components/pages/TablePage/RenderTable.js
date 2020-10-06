@@ -16,7 +16,7 @@ function UserTable() {
     BridgesContext
   );
   if (!bridgeData) {
-    getDSData('http://localhost:8000/bridges').then(data => {
+    getDSData(`${process.env.REACT_APP_API_URI}/bridges`).then(data => {
       setBridgeData(data);
       setCurrentData(data);
     });

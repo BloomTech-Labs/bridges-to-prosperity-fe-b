@@ -33,7 +33,7 @@ const BridgeImage = ({
           setShowPopup(true);
           setSelected({ index });
         }}
-        src={require('../../../styles/imgs/bridgeIconGreen.png')}
+        src={require('../../../styles/imgs/bridgeIconGray.png')}
       />
     </>
   );
