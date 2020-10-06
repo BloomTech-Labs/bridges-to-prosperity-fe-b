@@ -3,6 +3,12 @@ import 'react-map-gl-geocoder/dist/mapbox-gl-geocoder.css';
 import { MenuOutlined } from '@ant-design/icons';
 import useKeypress from '../../common/UseKeypress';
 import bridgeIconGreen from '../../../styles/imgs/bridgeIconGreen.png';
+import bridgeIconRed from '../../../styles/imgs/bridgeIconRed.png';
+import bridgeIconPurple from '../../../styles/imgs/bridgeIconPurple.png';
+import bridgeIconBlue from '../../../styles/imgs/bridgeIconBlue.png';
+import bridgeIconGray from '../../../styles/imgs/bridgeIconGray.png';
+import bridgeIconOrange from '../../../styles/imgs/bridgeIconOrange.png';
+
 import React, { useState, useRef, useContext } from 'react';
 import ReactMapGL, {
   FullscreenControl,
@@ -49,23 +55,89 @@ const RenderMap = () => {
     setDetailsData(null);
   });
 
-  let geojson = {
+  let geojsonComplete = {
     type: 'FeatureCollection',
     features: [],
   };
-  let featureCollection = [];
+  let geojsonRejected = {
+    type: 'FeatureCollection',
+    features: [],
+  };
+  let geojsonConfirmed = {
+    type: 'FeatureCollection',
+    features: [],
+  };
+  let geojsonIdentified = {
+    type: 'FeatureCollection',
+    features: [],
+  };
+  let geojsonProspecting = {
+    type: 'FeatureCollection',
+    features: [],
+  };
+  let geojsonUnderConstruction = {
+    type: 'FeatureCollection',
+    features: [],
+  };
 
   //this will run function after brindges will be filtered
   function certainBridgeShows(bridges) {
-    bridges.forEach(bridge =>
-      featureCollection.push({
-        type: 'Feature',
-        geometry: {
-          type: 'Point',
-          coordinates: [bridge.long, bridge.lat],
-        },
-      })
-    );
+    bridges.forEach(bridge => {
+      if (bridge.project_stage === 'Complete') {
+        geojsonComplete.features.push({
+          type: 'Feature',
+          geometry: {
+            type: 'Point',
+            coordinates: [bridge.long, bridge.lat],
+          },
+        });
+      }
+      if (bridge.project_stage === 'Rejected') {
+        geojsonRejected.features.push({
+          type: 'Feature',
+          geometry: {
+            type: 'Point',
+            coordinates: [bridge.long, bridge.lat],
+          },
+        });
+      }
+      if (bridge.project_stage === 'Confirmed') {
+        geojsonConfirmed.features.push({
+          type: 'Feature',
+          geometry: {
+            type: 'Point',
+            coordinates: [bridge.long, bridge.lat],
+          },
+        });
+      }
+      if (bridge.project_stage === 'Identified') {
+        geojsonIdentified.features.push({
+          type: 'Feature',
+          geometry: {
+            type: 'Point',
+            coordinates: [bridge.long, bridge.lat],
+          },
+        });
+      }
+      if (bridge.project_stage === 'Prospecting') {
+        geojsonProspecting.features.push({
+          type: 'Feature',
+          geometry: {
+            type: 'Point',
+            coordinates: [bridge.long, bridge.lat],
+          },
+        });
+      }
+      if (bridge.project_stage === 'Under Construction') {
+        geojsonUnderConstruction.features.push({
+          type: 'Feature',
+          geometry: {
+            type: 'Point',
+            coordinates: [bridge.long, bridge.lat],
+          },
+        });
+      }
+    });
   }
 
   // bridges are now being filtered by the bidge stages
@@ -108,8 +180,6 @@ const RenderMap = () => {
     }
   }
 
-  geojson.features = featureCollection;
-
   const handleViewportChange = viewport => {
     if (viewport.longitude < maxBounds.minLongitude) {
       viewport.longitude = maxBounds.minLongitude;
@@ -127,7 +197,16 @@ const RenderMap = () => {
     const { features } = event;
 
     const clickedFeature =
-      features && features.find(f => f.layer.id === 'data');
+      features &&
+      features.find(
+        f =>
+          f.layer.id === 'complete' ||
+          f.layer.id === 'rejected' ||
+          f.layer.id === 'identified' ||
+          f.layer.id === 'prospecting' ||
+          f.layer.id === 'underConstruction' ||
+          f.layer.id === 'confirmed'
+      );
 
     if (features.length > 0) {
       var coordinates = features[0].geometry.coordinates.slice();
@@ -206,7 +285,14 @@ const RenderMap = () => {
         mapStyle="mapbox://styles/jgertig/ckeughi4a1plr19qqsarcddky"
         onViewportChange={handleViewportChange}
         mapboxApiAccessToken={process.env.REACT_APP_MAPBOX_TOKEN}
-        interactiveLayerIds={['data']}
+        interactiveLayerIds={[
+          'complete',
+          'rejected',
+          'identified',
+          'confirmed',
+          'prospecting',
+          'underConstruction',
+        ]}
         onClick={handleClick}
         maxZoom={16}
         minZoom={6.5}
@@ -215,17 +301,89 @@ const RenderMap = () => {
           const map = mapRef.current.getMap();
           map.loadImage(bridgeIconGreen, (error, image) => {
             if (error) return;
-            map.addImage('myPin', image);
+            map.addImage('greenPin', image);
+          });
+          map.loadImage(bridgeIconRed, (error, image) => {
+            if (error) return;
+            map.addImage('redPin', image);
+          });
+          map.loadImage(bridgeIconPurple, (error, image) => {
+            if (error) return;
+            map.addImage('purplePin', image);
+          });
+          map.loadImage(bridgeIconOrange, (error, image) => {
+            if (error) return;
+            map.addImage('orangePin', image);
+          });
+          map.loadImage(bridgeIconGray, (error, image) => {
+            if (error) return;
+            map.addImage('grayPin', image);
+          });
+          map.loadImage(bridgeIconBlue, (error, image) => {
+            if (error) return;
+            map.addImage('bluePin', image);
           });
         }}
       >
-        <Source id="my-data" type="geojson" data={geojson}>
-          <Layer
-            id="data"
-            type="symbol"
-            layout={{ 'icon-image': 'myPin', 'icon-size': 0.35 }}
-          />
-        </Source>
+        {geojsonComplete.features && (
+          <Source id="completeData" type="geojson" data={geojsonComplete}>
+            <Layer
+              id="complete"
+              type="symbol"
+              layout={{ 'icon-image': 'greenPin', 'icon-size': 0.35 }}
+            />
+          </Source>
+        )}
+        {geojsonRejected.features && (
+          <Source id="rejectedData" type="geojson" data={geojsonRejected}>
+            <Layer
+              id="rejected"
+              type="symbol"
+              layout={{ 'icon-image': 'redPin', 'icon-size': 0.35 }}
+            />
+          </Source>
+        )}
+        {geojsonConfirmed.features && (
+          <Source id="confirmedData" type="geojson" data={geojsonConfirmed}>
+            <Layer
+              id="confirmed"
+              type="symbol"
+              layout={{ 'icon-image': 'purplePin', 'icon-size': 0.35 }}
+            />
+          </Source>
+        )}
+        {geojsonIdentified.features && (
+          <Source id="identifiedData" type="geojson" data={geojsonIdentified}>
+            <Layer
+              id="identified"
+              type="symbol"
+              layout={{ 'icon-image': 'orangePin', 'icon-size': 0.35 }}
+            />
+          </Source>
+        )}
+        {geojsonProspecting.features && (
+          <Source id="prospectingData" type="geojson" data={geojsonProspecting}>
+            <Layer
+              id="prospecting"
+              type="symbol"
+              layout={{ 'icon-image': 'bluePin', 'icon-size': 0.35 }}
+            />
+          </Source>
+        )}
+        {geojsonUnderConstruction.features && (
+          <Source
+            id="underConstructionData"
+            type="geojson"
+            data={geojsonUnderConstruction}
+          >
+            <Layer
+              id="underConstruction"
+              type="symbol"
+              layout={{ 'icon-image': 'grayPin', 'icon-size': 0.35 }}
+            />
+          </Source>
+        )}
+
         <div className="toggle">
           <MenuOutlined
             onClick={() => {
@@ -240,7 +398,6 @@ const RenderMap = () => {
         >
           <FullscreenControl />
         </div>
-
         <div className="navigationControl">
           <NavigationControl />
         </div>
