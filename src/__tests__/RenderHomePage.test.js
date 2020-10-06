@@ -1,4 +1,4 @@
-import RenderHomePage from '../components/pages/Home/RenderHomePage';
+import HomePageReact from '../components/pages/HomePage/HomePageContent';
 import React from 'react';
 import { BrowserRouter as Router } from 'react-router-dom';
 import { render } from '@testing-library/react';
@@ -11,7 +11,7 @@ describe('<RenderHomePage /> test suite', () => {
     };
     const { getByText } = render(
       <Router>
-        <RenderHomePage userInfo={{ name: 'Sara' }} authService={authService} />
+        <HomePageReact userInfo={{ name: 'Sara' }} authService={authService} />
       </Router>
     );
     const button = getByText(/logout/i);

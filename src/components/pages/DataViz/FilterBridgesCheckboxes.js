@@ -4,7 +4,7 @@ import { Checkbox } from 'antd';
 const FilterBridgesCheckboxes = props => {
   return (
     <div className="check-box-section">
-      <div className="restricted">
+      <div className="restricted" style={{ color: 'red' }}>
         <Checkbox
           checked={props.allChecked}
           onChange={() => props.setAllChecked(!props.allChecked)}
@@ -20,7 +20,7 @@ const FilterBridgesCheckboxes = props => {
         />
         Rejected
       </div>
-      <div className="restricted">
+      <div className="restricted" style={{ color: 'orange' }}>
         <Checkbox
           checked={props.identifiedChecked}
           onChange={() => props.setIdentifiedChecked(!props.identifiedChecked)}
@@ -28,7 +28,7 @@ const FilterBridgesCheckboxes = props => {
         />{' '}
         Identified
       </div>
-      <div className="restricted">
+      <div className="restricted" style={{ color: 'green' }}>
         <Checkbox
           checked={props.completedChecked}
           onChange={() => props.setCompletedChecked(!props.completedChecked)}
@@ -36,7 +36,7 @@ const FilterBridgesCheckboxes = props => {
         />
         Completed
       </div>
-      <div className="restricted">
+      <div className="restricted" style={{ color: 'purple' }}>
         <Checkbox
           checked={props.confirmedChecked}
           onChange={() => props.setConfirmedChecked(!props.confirmedChecked)}
@@ -44,7 +44,7 @@ const FilterBridgesCheckboxes = props => {
         />{' '}
         Confirmed
       </div>
-      <div className="restricted">
+      <div className="restricted" style={{ color: 'blue' }}>
         {' '}
         <Checkbox
           checked={props.prospectingChecked}
@@ -55,7 +55,7 @@ const FilterBridgesCheckboxes = props => {
         />{' '}
         Prospecting
       </div>
-      <div className="restricted">
+      <div className="restricted" style={{ color: 'dark gray' }}>
         <Checkbox
           checked={props.constructionChecked}
           onChange={() =>

@@ -23,7 +23,7 @@ const FormikForm = () => {
             setSubmitting(true);
             axios
               .put(
-                `https://bridges-b-api.herokuapp.com/bridges/update/${data.id}`,
+                `${process.env.REACT_APP_API_URI}/bridges/update/${data.id}`,
                 data
               )
               .then(res => {
