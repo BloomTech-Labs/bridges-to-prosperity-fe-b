@@ -10,7 +10,7 @@ const sleep = time =>
 
 const getExampleData = () => {
   return axios
-    .get(`https://jsonplaceholder.typicode.com/photos?albumId=1`)
+    .get(process.env.REACT_APP_API_URI)
     .then(response => response.data);
 };
 
@@ -50,3 +50,5 @@ const getProfileData = authState => {
 };
 
 export { sleep, getExampleData, getProfileData, getDSData };
+
+// https://jsonplaceholder.typicode.com/photos?albumId=1
