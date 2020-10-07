@@ -4,7 +4,7 @@ import { Checkbox } from 'antd';
 const FilterBridgesCheckboxes = props => {
   return (
     <div className="check-box-section">
-      <div className="restricted" style={{ color: 'red' }}>
+      <div className="restricted" style={{ color: 'black' }}>
         <Checkbox
           checked={props.allChecked}
           onChange={() => props.setAllChecked(!props.allChecked)}
@@ -12,7 +12,7 @@ const FilterBridgesCheckboxes = props => {
         />
         All
       </div>
-      <div className="restricted">
+      <div className="restricted" style={{ color: 'red' }}>
         <Checkbox
           checked={props.rejectedChecked}
           onChange={() => props.setRejectedChecked(!props.rejectedChecked)}
