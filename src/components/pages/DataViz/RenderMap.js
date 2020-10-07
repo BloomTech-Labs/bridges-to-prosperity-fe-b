@@ -282,7 +282,7 @@ const RenderMap = () => {
         {...viewport}
         width={screenWidth}
         height={screenHeight}
-        mapStyle="mapbox://styles/jgertig/ckeughi4a1plr19qqsarcddky"
+        mapStyle="mapbox://styles/bridgestoprosperity/ckfyi6iaz0a9q19nu3dyoq0md"
         onViewportChange={handleViewportChange}
         mapboxApiAccessToken={process.env.REACT_APP_MAPBOX_TOKEN}
         interactiveLayerIds={[
