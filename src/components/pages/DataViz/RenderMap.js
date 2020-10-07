@@ -43,6 +43,7 @@ const RenderMap = () => {
   });
   const geocoderContainerRef = useRef();
   const mapRef = useRef();
+  const [allChecked, setAllChecked] = useState(false);
   const [rejectedChecked, setRejectedChecked] = useState(false);
   const [identifiedChecked, setIdentifiedChecked] = useState(false);
   const [completedChecked, setCompletedChecked] = useState(true);
@@ -140,38 +141,48 @@ const RenderMap = () => {
     });
   }
 
-  // bridges are now being filtered by the bidge stages
+  // bridges are now being filtered by the bridge stages
   if (bridgeData) {
+    // All
+    if (allChecked) {
+      certainBridgeShows(bridgeData);
+    }
+    // Rejected
     let rejected = bridgeData.filter(
       bridge => bridge.project_stage === 'Rejected'
     );
     if (rejectedChecked) {
       certainBridgeShows(rejected);
     }
+    // Identified
     let Identified = bridgeData.filter(
       bridge => bridge.project_stage === 'Identified'
     );
     if (identifiedChecked) {
       certainBridgeShows(Identified);
     }
+    // Complete
     let Complete = bridgeData.filter(
       bridge => bridge.project_stage === 'Complete'
     );
     if (completedChecked) {
       certainBridgeShows(Complete);
     }
+    // Confirmed
     let Confirmed = bridgeData.filter(
       bridge => bridge.project_stage === 'Confirmed'
     );
     if (confirmedChecked) {
       certainBridgeShows(Confirmed);
     }
+    // Prospecting
     let Prospecting = bridgeData.filter(
       bridge => bridge.project_stage === 'Prospecting'
     );
     if (prospectingChecked) {
       certainBridgeShows(Prospecting);
     }
+    // Under Construction
     let Under_Construction = bridgeData.filter(
       bridge => bridge.project_stage === 'Under Construction'
     );
@@ -418,6 +429,8 @@ const RenderMap = () => {
           <div className="check-box">
             <FilterBridgesCheckboxes
               certainBridgeShows={certainBridgeShows}
+              allChecked={allChecked}
+              setAllChecked={setAllChecked}
               completedChecked={completedChecked}
               setCompletedChecked={setCompletedChecked}
               rejectedChecked={rejectedChecked}
