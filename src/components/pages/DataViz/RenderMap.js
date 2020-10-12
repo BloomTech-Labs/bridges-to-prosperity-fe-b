@@ -1,8 +1,15 @@
 import 'mapbox-gl/dist/mapbox-gl.css';
 import 'react-map-gl-geocoder/dist/mapbox-gl-geocoder.css';
 import { MenuOutlined } from '@ant-design/icons';
+import { Switch } from 'antd';
 import useKeypress from '../../common/UseKeypress';
 import bridgeIconGreen from '../../../styles/imgs/bridgeIconGreen.png';
+import bridgeIconRed from '../../../styles/imgs/bridgeIconRed.png';
+import bridgeIconPurple from '../../../styles/imgs/bridgeIconPurple.png';
+import bridgeIconBlue from '../../../styles/imgs/bridgeIconBlue.png';
+import bridgeIconGray from '../../../styles/imgs/bridgeIconGray.png';
+import bridgeIconOrange from '../../../styles/imgs/bridgeIconOrange.png';
+
 import React, { useState, useRef, useContext } from 'react';
 import ReactMapGL, {
   FullscreenControl,
@@ -22,11 +29,24 @@ let maxBounds = {
   maxLongitude: 31.220318,
 };
 
+const pins = [
+  { pin: bridgeIconBlue, id: 'bluePin' },
+  { pin: bridgeIconRed, id: 'redPin' },
+  { pin: bridgeIconGray, id: 'grayPin' },
+  { pin: bridgeIconGreen, id: 'greenPin' },
+  { pin: bridgeIconOrange, id: 'orangePin' },
+  { pin: bridgeIconPurple, id: 'purplePin' },
+];
+
 const RenderMap = () => {
   const { bridgeData, detailsData, setDetailsData } = useContext(
     BridgesContext
   );
   const [fullscreen, setFullscreen] = useState(false);
+
+  const [mapView, setMapView] = useState(
+    'mapbox://styles/bridgestoprosperity/ckfyi6iaz0a9q19nu3dyoq0md'
+  );
 
   const [viewport, setViewport] = useState({
     latitude: -1.9444,
@@ -49,23 +69,89 @@ const RenderMap = () => {
     setDetailsData(null);
   });
 
-  let geojson = {
+  let geojsonComplete = {
     type: 'FeatureCollection',
     features: [],
   };
-  let featureCollection = [];
+  let geojsonRejected = {
+    type: 'FeatureCollection',
+    features: [],
+  };
+  let geojsonConfirmed = {
+    type: 'FeatureCollection',
+    features: [],
+  };
+  let geojsonIdentified = {
+    type: 'FeatureCollection',
+    features: [],
+  };
+  let geojsonProspecting = {
+    type: 'FeatureCollection',
+    features: [],
+  };
+  let geojsonUnderConstruction = {
+    type: 'FeatureCollection',
+    features: [],
+  };
 
   //this will run function after brindges will be filtered
   function certainBridgeShows(bridges) {
-    bridges.forEach(bridge =>
-      featureCollection.push({
-        type: 'Feature',
-        geometry: {
-          type: 'Point',
-          coordinates: [bridge.long, bridge.lat],
-        },
-      })
-    );
+    bridges.forEach(bridge => {
+      if (bridge.project_stage === 'Complete') {
+        geojsonComplete.features.push({
+          type: 'Feature',
+          geometry: {
+            type: 'Point',
+            coordinates: [bridge.long, bridge.lat],
+          },
+        });
+      }
+      if (bridge.project_stage === 'Rejected') {
+        geojsonRejected.features.push({
+          type: 'Feature',
+          geometry: {
+            type: 'Point',
+            coordinates: [bridge.long, bridge.lat],
+          },
+        });
+      }
+      if (bridge.project_stage === 'Confirmed') {
+        geojsonConfirmed.features.push({
+          type: 'Feature',
+          geometry: {
+            type: 'Point',
+            coordinates: [bridge.long, bridge.lat],
+          },
+        });
+      }
+      if (bridge.project_stage === 'Identified') {
+        geojsonIdentified.features.push({
+          type: 'Feature',
+          geometry: {
+            type: 'Point',
+            coordinates: [bridge.long, bridge.lat],
+          },
+        });
+      }
+      if (bridge.project_stage === 'Prospecting') {
+        geojsonProspecting.features.push({
+          type: 'Feature',
+          geometry: {
+            type: 'Point',
+            coordinates: [bridge.long, bridge.lat],
+          },
+        });
+      }
+      if (bridge.project_stage === 'Under Construction') {
+        geojsonUnderConstruction.features.push({
+          type: 'Feature',
+          geometry: {
+            type: 'Point',
+            coordinates: [bridge.long, bridge.lat],
+          },
+        });
+      }
+    });
   }
 
   // bridges are now being filtered by the bidge stages
@@ -108,8 +194,6 @@ const RenderMap = () => {
     }
   }
 
-  geojson.features = featureCollection;
-
   const handleViewportChange = viewport => {
     if (viewport.longitude < maxBounds.minLongitude) {
       viewport.longitude = maxBounds.minLongitude;
@@ -123,35 +207,87 @@ const RenderMap = () => {
     setViewport(viewport);
   };
 
+  const addImage = () => {
+    if (!mapRef) return;
+    const map = mapRef.current.getMap();
+    pins.forEach(pinInfo => {
+      map.loadImage(pinInfo.pin, (error, image) => {
+        if (error) return;
+        map.addImage(pinInfo.id, image);
+      });
+    });
+  };
+
+  const handleMapView = checked => {
+    if (checked === true) {
+      addImage();
+      setMapView(
+        'mapbox://styles/bridgestoprosperity/ckf5rf05204ln19o7o0sdv860'
+      );
+    } else {
+      addImage();
+      setMapView(
+        'mapbox://styles/bridgestoprosperity/ckfyi6iaz0a9q19nu3dyoq0md'
+      );
+    }
+  };
+
   const handleClick = event => {
     const { features } = event;
 
     const clickedFeature =
-      features && features.find(f => f.layer.id === 'data');
+      features &&
+      features.find(
+        f =>
+          f.layer.id === 'complete' ||
+          f.layer.id === 'rejected' ||
+          f.layer.id === 'identified' ||
+          f.layer.id === 'prospecting' ||
+          f.layer.id === 'underConstruction' ||
+          f.layer.id === 'confirmed'
+      );
 
     if (features.length > 0) {
       var coordinates = features[0].geometry.coordinates.slice();
-      coordinates[0] = parseFloat(coordinates[0].toFixed(2));
-      coordinates[1] = parseFloat(coordinates[1].toFixed(2));
+      coordinates[0] = parseFloat(coordinates[0]);
+      coordinates[1] = parseFloat(coordinates[1]);
     }
 
     let bridge;
+    let minD = Number.MAX_VALUE;
 
     if (clickedFeature) {
-      bridge = bridgeData.find(f => {
-        if (f.lat & f.long) {
-          if (
-            (parseFloat(f.long.toFixed(2)) === coordinates[0]) &
-            (parseFloat(f.lat.toFixed(2)) === coordinates[1])
-          ) {
-            return f;
-          }
+      bridgeData.map(f => {
+        let distance = calculateDistance(
+          f.lat,
+          f.long,
+          coordinates[1],
+          coordinates[0]
+        );
+        if (distance <= minD) {
+          bridge = f;
+          minD = distance;
         }
       });
     }
-
     setDetailsData(bridge);
   };
+
+  function calculateDistance(lat1, lon1, lat2, lon2) {
+    var R = 6371000; // metres
+    var φ1 = (lat1 * Math.PI) / 180;
+    var φ2 = (lat2 * Math.PI) / 180;
+    var Δφ = ((lat2 - lat1) * Math.PI) / 180;
+    var Δλ = ((lon2 - lon1) * Math.PI) / 180;
+
+    var a =
+      Math.sin(Δφ / 2) * Math.sin(Δφ / 2) +
+      Math.cos(φ1) * Math.cos(φ2) * Math.sin(Δλ / 2) * Math.sin(Δλ / 2);
+    var c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
+
+    var d = R * c;
+    return d;
+  }
   let screenHeight = '90vh';
   let screenWidth = '90%';
   let disappear = '';
@@ -185,29 +321,81 @@ const RenderMap = () => {
         {...viewport}
         width={screenWidth}
         height={screenHeight}
-        mapStyle="mapbox://styles/jgertig/ckeughi4a1plr19qqsarcddky"
+        mapStyle={mapView}
         onViewportChange={handleViewportChange}
         mapboxApiAccessToken={process.env.REACT_APP_MAPBOX_TOKEN}
-        interactiveLayerIds={['data']}
+        interactiveLayerIds={[
+          'complete',
+          'rejected',
+          'identified',
+          'confirmed',
+          'prospecting',
+          'underConstruction',
+        ]}
         onClick={handleClick}
         maxZoom={16}
         minZoom={6.5}
-        onLoad={() => {
-          if (!mapRef) return;
-          const map = mapRef.current.getMap();
-          map.loadImage(bridgeIconGreen, (error, image) => {
-            if (error) return;
-            map.addImage('myPin', image);
-          });
-        }}
+        onLoad={addImage}
       >
-        <Source id="my-data" type="geojson" data={geojson}>
-          <Layer
-            id="data"
-            type="symbol"
-            layout={{ 'icon-image': 'myPin', 'icon-size': 0.35 }}
-          />
-        </Source>
+        {geojsonComplete.features && (
+          <Source id="completeData" type="geojson" data={geojsonComplete}>
+            <Layer
+              id="complete"
+              type="symbol"
+              layout={{ 'icon-image': 'greenPin', 'icon-size': 0.35 }}
+            />
+          </Source>
+        )}
+        {geojsonRejected.features && (
+          <Source id="rejectedData" type="geojson" data={geojsonRejected}>
+            <Layer
+              id="rejected"
+              type="symbol"
+              layout={{ 'icon-image': 'redPin', 'icon-size': 0.35 }}
+            />
+          </Source>
+        )}
+        {geojsonConfirmed.features && (
+          <Source id="confirmedData" type="geojson" data={geojsonConfirmed}>
+            <Layer
+              id="confirmed"
+              type="symbol"
+              layout={{ 'icon-image': 'purplePin', 'icon-size': 0.35 }}
+            />
+          </Source>
+        )}
+        {geojsonIdentified.features && (
+          <Source id="identifiedData" type="geojson" data={geojsonIdentified}>
+            <Layer
+              id="identified"
+              type="symbol"
+              layout={{ 'icon-image': 'orangePin', 'icon-size': 0.35 }}
+            />
+          </Source>
+        )}
+        {geojsonProspecting.features && (
+          <Source id="prospectingData" type="geojson" data={geojsonProspecting}>
+            <Layer
+              id="prospecting"
+              type="symbol"
+              layout={{ 'icon-image': 'bluePin', 'icon-size': 0.35 }}
+            />
+          </Source>
+        )}
+        {geojsonUnderConstruction.features && (
+          <Source
+            id="underConstructionData"
+            type="geojson"
+            data={geojsonUnderConstruction}
+          >
+            <Layer
+              id="underConstruction"
+              type="symbol"
+              layout={{ 'icon-image': 'grayPin', 'icon-size': 0.35 }}
+            />
+          </Source>
+        )}
+
         <div className="toggle">
           <MenuOutlined
             onClick={() => {
@@ -222,7 +410,6 @@ const RenderMap = () => {
         >
           <FullscreenControl />
         </div>
-
         <div className="navigationControl">
           <NavigationControl />
         </div>
@@ -256,6 +443,10 @@ const RenderMap = () => {
               constructionChecked={constructionChecked}
               setConstructionChecked={setConstructionChecked}
             />
+          </div>
+          <div className="satellite">
+            <label id="satellite-label">Satellite</label>
+            <Switch onChange={handleMapView} />
           </div>
         </div>
         {fullscreen && detailsData && <DetailsInfo />}

@@ -22,7 +22,11 @@ const FormikForm = () => {
           onSubmit={(data, { setSubmitting }) => {
             setSubmitting(true);
             axios
-              .put(process.env.REACT_APP_API_URI, data)
+              .put(
+                `${process.env.REACT_APP_API_URI}/bridges/update/${data.id}`,
+                data
+              )
+
               .then(res => {
                 setDetailsData(data);
                 bridgeData[data.id - 1] = data;

@@ -66,6 +66,15 @@
     }
   }
   .desktop {
+    #satellite-label {
+      margin-right: 10px;
+    }
+    .satellite {
+      margin-left: 1380px;
+      margin-top: 10px;
+      position: absolute;
+      left: 50;
+    }
     .search-bar {
       position: absolute;
       left: 10;

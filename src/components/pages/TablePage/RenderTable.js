@@ -16,7 +16,7 @@ function UserTable() {
     BridgesContext
   );
   if (!bridgeData) {
-    getDSData('https://bridges-b-api.herokuapp.com/bridges').then(data => {
+    getDSData(`${process.env.REACT_APP_API_URI}/bridges`).then(data => {
       setBridgeData(data);
       setCurrentData(data);
     });
