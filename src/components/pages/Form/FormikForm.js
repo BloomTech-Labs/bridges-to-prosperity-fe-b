@@ -26,6 +26,7 @@ const FormikForm = () => {
                 `${process.env.REACT_APP_API_URI}/bridges/update/${data.id}`,
                 data
               )
+
               .then(res => {
                 setDetailsData(data);
                 bridgeData[data.id - 1] = data;
@@ -218,3 +219,5 @@ const FormikForm = () => {
 };
 
 export default FormikForm;
+
+// https://bridges-b-api.herokuapp.com/bridges/update/${data.id}

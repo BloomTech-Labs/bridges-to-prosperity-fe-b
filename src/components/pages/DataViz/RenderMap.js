@@ -1,6 +1,7 @@
 import 'mapbox-gl/dist/mapbox-gl.css';
 import 'react-map-gl-geocoder/dist/mapbox-gl-geocoder.css';
 import { MenuOutlined } from '@ant-design/icons';
+import { Switch } from 'antd';
 import useKeypress from '../../common/UseKeypress';
 import bridgeIconGreen from '../../../styles/imgs/bridgeIconGreen.png';
 import bridgeIconRed from '../../../styles/imgs/bridgeIconRed.png';
@@ -28,11 +29,24 @@ let maxBounds = {
   maxLongitude: 31.220318,
 };
 
+const pins = [
+  { pin: bridgeIconBlue, id: 'bluePin' },
+  { pin: bridgeIconRed, id: 'redPin' },
+  { pin: bridgeIconGray, id: 'grayPin' },
+  { pin: bridgeIconGreen, id: 'greenPin' },
+  { pin: bridgeIconOrange, id: 'orangePin' },
+  { pin: bridgeIconPurple, id: 'purplePin' },
+];
+
 const RenderMap = () => {
   const { bridgeData, detailsData, setDetailsData } = useContext(
     BridgesContext
   );
   const [fullscreen, setFullscreen] = useState(false);
+
+  const [mapView, setMapView] = useState(
+    'mapbox://styles/bridgestoprosperity/ckfyi6iaz0a9q19nu3dyoq0md'
+  );
 
   const [viewport, setViewport] = useState({
     latitude: -1.9444,
@@ -204,6 +218,31 @@ const RenderMap = () => {
     setViewport(viewport);
   };
 
+  const addImage = () => {
+    if (!mapRef) return;
+    const map = mapRef.current.getMap();
+    pins.forEach(pinInfo => {
+      map.loadImage(pinInfo.pin, (error, image) => {
+        if (error) return;
+        map.addImage(pinInfo.id, image);
+      });
+    });
+  };
+
+  const handleMapView = checked => {
+    if (checked === true) {
+      addImage();
+      setMapView(
+        'mapbox://styles/bridgestoprosperity/ckf5rf05204ln19o7o0sdv860'
+      );
+    } else {
+      addImage();
+      setMapView(
+        'mapbox://styles/bridgestoprosperity/ckfyi6iaz0a9q19nu3dyoq0md'
+      );
+    }
+  };
+
   const handleClick = event => {
     const { features } = event;
 
@@ -293,7 +332,7 @@ const RenderMap = () => {
         {...viewport}
         width={screenWidth}
         height={screenHeight}
-        mapStyle="mapbox://styles/jgertig/ckeughi4a1plr19qqsarcddky"
+        mapStyle={mapView}
         onViewportChange={handleViewportChange}
         mapboxApiAccessToken={process.env.REACT_APP_MAPBOX_TOKEN}
         interactiveLayerIds={[
@@ -307,6 +346,7 @@ const RenderMap = () => {
         onClick={handleClick}
         maxZoom={16}
         minZoom={6.5}
+        // onLoad={addImage}
         onLoad={() => {
           if (!mapRef) return;
           const map = mapRef.current.getMap();
@@ -444,6 +484,10 @@ const RenderMap = () => {
               constructionChecked={constructionChecked}
               setConstructionChecked={setConstructionChecked}
             />
+          </div>
+          <div className="satellite">
+            <label id="satellite-label">Satellite</label>
+            <Switch onChange={handleMapView} />
           </div>
         </div>
         {fullscreen && detailsData && <DetailsInfo />}
