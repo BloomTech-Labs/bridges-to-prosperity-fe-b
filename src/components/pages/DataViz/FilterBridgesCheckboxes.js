@@ -4,6 +4,14 @@ import { Checkbox } from 'antd';
 const FilterBridgesCheckboxes = props => {
   return (
     <div className="check-box-section">
+      <div className="restricted" style={{ color: 'black' }}>
+        <Checkbox
+          checked={props.allChecked}
+          onChange={() => props.setAllChecked(!props.allChecked)}
+          style={{ margin: '0 5px' }}
+        />
+        All
+      </div>
       <div className="restricted" style={{ color: 'red' }}>
         <Checkbox
           checked={props.rejectedChecked}

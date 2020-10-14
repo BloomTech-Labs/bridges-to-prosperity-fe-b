@@ -33,7 +33,9 @@
     "lint": "eslint 'src/**/*.{js,jsx}' --fix",
     "format": "prettier --write 'src/**/*.{js,jsx,css,scss}'",
     "storybook": "start-storybook",
-    "deploy-storybook": "storybook-to-ghpages"
+    "deploy-storybook": "storybook-to-ghpages",
+    "pre-branch": "git checkout main && git pull && npm i",
+    "pull-main": "git pull origin main && npm i"
   },
   "eslintConfig": {
     "extends": "react-app"
