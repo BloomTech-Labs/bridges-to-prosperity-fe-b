@@ -346,35 +346,7 @@ const RenderMap = () => {
         onClick={handleClick}
         maxZoom={16}
         minZoom={6.5}
-        // onLoad={addImage}
-        onLoad={() => {
-          if (!mapRef) return;
-          const map = mapRef.current.getMap();
-          map.loadImage(bridgeIconGreen, (error, image) => {
-            if (error) return;
-            map.addImage('greenPin', image);
-          });
-          map.loadImage(bridgeIconRed, (error, image) => {
-            if (error) return;
-            map.addImage('redPin', image);
-          });
-          map.loadImage(bridgeIconPurple, (error, image) => {
-            if (error) return;
-            map.addImage('purplePin', image);
-          });
-          map.loadImage(bridgeIconOrange, (error, image) => {
-            if (error) return;
-            map.addImage('orangePin', image);
-          });
-          map.loadImage(bridgeIconGray, (error, image) => {
-            if (error) return;
-            map.addImage('grayPin', image);
-          });
-          map.loadImage(bridgeIconBlue, (error, image) => {
-            if (error) return;
-            map.addImage('bluePin', image);
-          });
-        }}
+        onLoad={addImage}
       >
         {geojsonComplete.features && (
           <Source id="completeData" type="geojson" data={geojsonComplete}>
