@@ -1,8 +1,8 @@
 import React, { useState, useContext } from 'react';
 import { BridgesContext } from '../../../state/bridgesContext';
-import { Bar } from 'react-chartjs-2';
+import { Bar, Pie } from 'react-chartjs-2';
 
-const BarChart = () => {
+const BridgeStatusChart = () => {
   const { bridgeData } = useContext(BridgesContext);
 
   let complete = 0;
@@ -79,11 +79,61 @@ const BarChart = () => {
       }}
       options={{
         legend: { display: false },
-        title: { display: true, text: 'Whole' },
+        title: { display: true, text: 'All Bridges' },
       }}
+      width="30%"
+      height="30%"
     />
   ) : null;
-  return <>{barChar}</>;
+  const pieChar = bridgeData ? (
+    <Pie
+      data={{
+        labels: [
+          'Complete',
+          'Rejected',
+          'Comfirmed',
+          'Identified',
+          'Prospecting',
+          'Under Construction',
+        ],
+        datasets: [
+          {
+            label: 'Bridge',
+            backgroundColor: [
+              'green',
+              'red',
+              'purple',
+              'orange',
+              'blue',
+              'gray',
+            ],
+            data: [
+              complete,
+              rejected,
+              confirmed,
+              identified,
+              prospecting,
+              underConstruction,
+            ],
+          },
+        ],
+      }}
+      options={{
+        title: { display: true, text: 'All Bridges' },
+      }}
+      width="30%"
+      height="30%"
+    />
+  ) : null;
+  return (
+    <div className="main">
+      <h2>Data Visiualization</h2>
+      <div className="chartContainer">
+        <div className="barChart">{barChar}</div>
+        <div className="pieChart">{pieChar}</div>
+      </div>
+    </div>
+  );
 };
 
-export default BarChart;
+export default BridgeStatusChart;
