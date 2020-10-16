@@ -1,6 +1,6 @@
 import React, { useState, useContext } from 'react';
 import { BridgesContext } from '../../../state/bridgesContext';
-import { Bar, Pie } from 'react-chartjs-2';
+import { Bar, Pie, Doughnut } from 'react-chartjs-2';
 
 const BridgeStatusChart = () => {
   const { bridgeData } = useContext(BridgesContext);
@@ -85,8 +85,8 @@ const BridgeStatusChart = () => {
       height="30%"
     />
   ) : null;
-  const pieChar = bridgeData ? (
-    <Pie
+  const doughnutChar = bridgeData ? (
+    <Doughnut
       data={{
         labels: [
           'Complete',
@@ -120,6 +120,7 @@ const BridgeStatusChart = () => {
       }}
       options={{
         title: { display: true, text: 'All Bridges' },
+        cutoutPercentage: 80,
       }}
       width="30%"
       height="30%"
@@ -130,7 +131,7 @@ const BridgeStatusChart = () => {
       <h2>Data Visiualization</h2>
       <div className="chartContainer">
         <div className="barChart">{barChar}</div>
-        <div className="pieChart">{pieChar}</div>
+        <div className="doughnutChart">{doughnutChar}</div>
       </div>
     </div>
   );
