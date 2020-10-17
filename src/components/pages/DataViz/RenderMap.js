@@ -20,6 +20,7 @@ import ReactMapGL, {
 import Geocoder from 'react-map-gl-geocoder';
 import { BridgesContext } from '../../../state/bridgesContext';
 import DetailsInfo from './DetailsInfo';
+import DataCard from './DataCard';
 import FilterBridgesCheckboxes from './FilterBridgesCheckboxes';
 
 let maxBounds = {
@@ -42,6 +43,9 @@ const RenderMap = () => {
   const { bridgeData, detailsData, setDetailsData } = useContext(
     BridgesContext
   );
+
+  const [gdpData, setGdpData] = useState(null);
+
   const [fullscreen, setFullscreen] = useState(false);
 
   const [mapView, setMapView] = useState(
@@ -462,9 +466,11 @@ const RenderMap = () => {
             <Switch onChange={handleMapView} />
           </div>
         </div>
-        {fullscreen && detailsData && <DetailsInfo />}
+        {fullscreen && detailsData && <DetailsInfo setGdpData={setGdpData} />}
+        {fullscreen && gdpData && <DataCard gdpData={gdpData} />}
       </ReactMapGL>
-      {!fullscreen && detailsData && <DetailsInfo />}
+      {!fullscreen && detailsData && <DetailsInfo setGdpData={setGdpData} />}
+      {!fullscreen && gdpData && <DataCard gdpData={gdpData} />}
     </div>
   );
 };

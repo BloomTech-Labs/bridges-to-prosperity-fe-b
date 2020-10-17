@@ -1,9 +1,23 @@
 import React, { useContext } from 'react';
 import { BridgesContext } from '../../../state/bridgesContext';
 import Draggable from 'react-draggable';
+import axios from 'axios';
 
-const DetailsInfo = () => {
+const DetailsInfo = props => {
   const { detailsData, setDetailsData } = useContext(BridgesContext);
+
+  const openData = event => {
+    axios
+      .get(`${process.env.REACT_APP_API_URI}/bridges/gdp/${detailsData.id}`)
+      .then(response => {
+        props.setGdpData(response.data[0]);
+        console.log(response.data[0]);
+      })
+      .catch(error => {
+        console.log(error);
+      });
+  };
+
   return (
     <Draggable>
       <div className="detailsContainer">
@@ -44,6 +58,9 @@ const DetailsInfo = () => {
             <p>District: {detailsData.district}</p>
             <p>Bridge Type: {detailsData.bridge_type}</p>
             <p>Project Sub Stage: {detailsData.sub_stage}</p>
+            <span role="img" onClick={event => openData(event)}>
+              📊
+            </span>
           </div>
         </div>
       </div>
