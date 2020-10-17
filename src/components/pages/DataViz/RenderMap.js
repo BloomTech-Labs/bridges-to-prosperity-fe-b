@@ -44,8 +44,6 @@ const RenderMap = () => {
     BridgesContext
   );
 
-  const [gdpData, setGdpData] = useState(null);
-
   const [fullscreen, setFullscreen] = useState(false);
 
   const [mapView, setMapView] = useState(
@@ -466,11 +464,11 @@ const RenderMap = () => {
             <Switch onChange={handleMapView} />
           </div>
         </div>
-        {fullscreen && detailsData && <DetailsInfo setGdpData={setGdpData} />}
-        {fullscreen && gdpData && <DataCard gdpData={gdpData} />}
+        {fullscreen && detailsData && <DetailsInfo />}
+        {fullscreen && detailsData && 'gdpData' in detailsData && <DataCard />}
       </ReactMapGL>
-      {!fullscreen && detailsData && <DetailsInfo setGdpData={setGdpData} />}
-      {!fullscreen && gdpData && <DataCard gdpData={gdpData} />}
+      {!fullscreen && detailsData && <DetailsInfo />}
+      {!fullscreen && detailsData && 'gdpData' in detailsData && <DataCard />}
     </div>
   );
 };

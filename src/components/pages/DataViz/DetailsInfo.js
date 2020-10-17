@@ -10,8 +10,7 @@ const DetailsInfo = props => {
     axios
       .get(`${process.env.REACT_APP_API_URI}/bridges/gdp/${detailsData.id}`)
       .then(response => {
-        props.setGdpData(response.data[0]);
-        console.log(response.data[0]);
+        setDetailsData({ ...detailsData, gdpData: response.data[0] });
       })
       .catch(error => {
         console.log(error);
@@ -26,7 +25,9 @@ const DetailsInfo = props => {
           onKeyDown={e => {
             console.log(e);
           }}
-          onClick={() => setDetailsData(null)}
+          onClick={() => {
+            setDetailsData(null);
+          }}
         >
           <i className="fas fa-times"></i>
         </div>
