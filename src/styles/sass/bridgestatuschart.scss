@@ -1,5 +1,25 @@
 .main {
   //border: 2px solid red;
+  margin: 3rem 2rem;
+  text-align: center;
+  .header {
+    font-size: 3rem;
+    margin-bottom: 2.5rem;
+  }
+  .dropDown {
+    display: inline-block;
+    padding: 0.5rem;
+    //border: 2px solid red;
+    background-color: green;
+    color: white;
+    font-size: 1.5rem;
+    border-radius: 1rem;
+    margin-bottom: 2rem;
+    .label {
+      margin-right: 1rem;
+    }
+  }
+
   .chartContainer {
     display: flex;
     justify-content: space-around;
@@ -10,6 +30,19 @@
     .doughnutChart {
       //border: 2px solid blue;
       width: 30%;
+    }
+  }
+  .grid {
+    //border: 2px solid red;
+    font-size: 1.2rem;
+    margin: 2rem;
+    margin-left: 15rem;
+    margin-bottom: 6rem;
+    .gutter-row {
+      padding: 8px 0;
+      background: rgb(230, 228, 228);
+      border: 1px solid rgb(36, 105, 36);
+      border-radius: 0.2rem;
     }
   }
 }

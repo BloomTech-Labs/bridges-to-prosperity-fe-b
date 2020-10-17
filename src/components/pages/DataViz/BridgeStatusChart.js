@@ -1,18 +1,19 @@
 import React, { useState, useContext, useEffect } from 'react';
 import { BridgesContext } from '../../../state/bridgesContext';
 import { Bar, Doughnut } from 'react-chartjs-2';
-import { Dropdown, Menu } from 'antd';
+import { Dropdown, Menu, Row, Col } from 'antd';
 import { DownOutlined } from '@ant-design/icons';
+import ReactEcharts from 'echarts-for-react';
 
 const BridgeStatusChart = () => {
-  const { bridgeData, setBridgeData } = useContext(BridgesContext);
+  const { bridgeData } = useContext(BridgesContext);
   const [selectedProvince, setSelectedProvince] = useState('All');
   const [currentData, setCurrentData] = useState([]);
 
   if (!currentData && bridgeData) {
     setCurrentData(bridgeData);
   }
-  let provinces = ['All'];
+  let provinces = [];
   useEffect(() => {
     if (selectedProvince === 'All') {
       setCurrentData(bridgeData);
@@ -64,6 +65,110 @@ const BridgeStatusChart = () => {
       }
     });
 
+  const grid = (
+    <>
+      <Row className="row" gutter={[8, 8]}>
+        <Col
+          className="gutter-row"
+          style={{ color: 'gray' }}
+          span={3}
+          order={7}
+        >
+          Under Construction
+        </Col>
+        <Col
+          className="gutter-row"
+          style={{ color: 'blue' }}
+          span={3}
+          order={6}
+        >
+          Prospecting
+        </Col>
+        <Col
+          className="gutter-row"
+          style={{ color: 'orange' }}
+          span={3}
+          order={5}
+        >
+          Identified
+        </Col>
+        <Col
+          className="gutter-row"
+          style={{ color: 'purple' }}
+          span={3}
+          order={4}
+        >
+          Confirmed
+        </Col>
+        <Col className="gutter-row" style={{ color: 'red' }} span={3} order={3}>
+          Rejected
+        </Col>
+        <Col
+          className="gutter-row"
+          style={{ color: 'green' }}
+          span={3}
+          order={2}
+        >
+          Complete
+        </Col>
+        <Col className="gutter-row" span={3} order={1}></Col>
+      </Row>
+      <Row className="row" gutter={[8, 8]}>
+        <Col
+          className="gutter-row"
+          style={{ color: 'gray' }}
+          span={3}
+          order={7}
+        >
+          {underConstruction}
+        </Col>
+        <Col
+          className="gutter-row"
+          style={{ color: 'blue' }}
+          span={3}
+          order={6}
+        >
+          {prospecting}
+        </Col>
+        <Col
+          className="gutter-row"
+          style={{ color: 'orange' }}
+          span={3}
+          order={5}
+        >
+          {identified}
+        </Col>
+        <Col
+          className="gutter-row"
+          style={{ color: 'purple' }}
+          span={3}
+          order={4}
+        >
+          {confirmed}
+        </Col>
+        <Col className="gutter-row" style={{ color: 'red' }} span={3} order={3}>
+          {rejected}
+        </Col>
+        <Col
+          className="gutter-row"
+          style={{ color: 'greem' }}
+          span={3}
+          order={2}
+        >
+          {complete}
+        </Col>
+        <Col
+          className="gutter-row"
+          style={{ color: 'black' }}
+          span={3}
+          order={1}
+        >
+          {selectedProvince}
+        </Col>
+      </Row>
+    </>
+  );
+
   // console.log(`copmplete: ${complete}`);
   // console.log(`rejected: ${rejected}`);
   // console.log(`conformed: ${confirmed}`);
@@ -74,9 +179,19 @@ const BridgeStatusChart = () => {
 
   const provinceMenu = (
     <Menu>
+      <Menu.Item className="menuItem">
+        <span
+          onClick={() => {
+            setSelectedProvince('All');
+          }}
+        >
+          All
+        </span>
+      </Menu.Item>
+
       {provinces.map(province => {
         return (
-          <Menu.Item>
+          <Menu.Item className="menuItem">
             <span
               onClick={() => {
                 setSelectedProvince(province);
@@ -89,6 +204,7 @@ const BridgeStatusChart = () => {
       })}
     </Menu>
   );
+
   const barChar = bridgeData ? (
     <Bar
       data={{
@@ -130,6 +246,7 @@ const BridgeStatusChart = () => {
       height="30%"
     />
   ) : null;
+
   const doughnutChar = bridgeData ? (
     <Doughnut
       data={{
@@ -173,12 +290,15 @@ const BridgeStatusChart = () => {
   ) : null;
   return (
     <div className="main">
-      <h2>Data visualization</h2>
-      <Dropdown overlay={provinceMenu}>
+      <h2 className="header">Data Visualization</h2>
+
+      <Dropdown className="dropDown" overlay={provinceMenu}>
         <a className="detailsInfo" onClick={e => e.preventDefault()}>
-          Pick a province: {selectedProvince} <DownOutlined />
+          <span className="label"> Pick A Province: </span>
+          {selectedProvince} <DownOutlined />
         </a>
       </Dropdown>
+      <div className="grid">{grid}</div>
       <div className="chartContainer">
         <div className="barChart">{barChar}</div>
         <div className="doughnutChart">{doughnutChar}</div>
