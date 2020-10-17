@@ -1,13 +1,13 @@
 import React, { useState, useContext, useEffect } from 'react';
 import { BridgesContext } from '../../../state/bridgesContext';
-import { Bar, Doughnut } from 'react-chartjs-2';
+import { Bar } from 'react-chartjs-2';
 import { Dropdown, Menu, Row, Col } from 'antd';
 import { DownOutlined } from '@ant-design/icons';
 import ReactEcharts from 'echarts-for-react';
 
 const BridgeStatusChart = () => {
   const { bridgeData } = useContext(BridgesContext);
-  const [selectedProvince, setSelectedProvince] = useState('All');
+  const [selectedProvince, setSelectedProvince] = useState('All Bridges');
   const [currentData, setCurrentData] = useState([]);
 
   if (!currentData && bridgeData) {
@@ -15,7 +15,7 @@ const BridgeStatusChart = () => {
   }
   let provinces = [];
   useEffect(() => {
-    if (selectedProvince === 'All') {
+    if (selectedProvince === 'All Bridges') {
       setCurrentData(bridgeData);
     } else {
       let data = bridgeData.filter(bridge => {
@@ -182,7 +182,7 @@ const BridgeStatusChart = () => {
       <Menu.Item className="menuItem">
         <span
           onClick={() => {
-            setSelectedProvince('All');
+            setSelectedProvince('All Bridges');
           }}
         >
           All
@@ -211,7 +211,7 @@ const BridgeStatusChart = () => {
         labels: [
           'Complete',
           'Rejected',
-          'Comfirmed',
+          'Confirmed',
           'Identified',
           'Prospecting',
           'Under Construction',
@@ -240,54 +240,88 @@ const BridgeStatusChart = () => {
       }}
       options={{
         legend: { display: false },
-        title: { display: true, text: 'All Bridges' },
+        title: { display: true, text: selectedProvince },
       }}
       width="30%"
       height="30%"
     />
   ) : null;
 
-  const doughnutChar = bridgeData ? (
-    <Doughnut
-      data={{
-        labels: [
-          'Complete',
-          'Rejected',
-          'Comfirmed',
-          'Identified',
-          'Prospecting',
-          'Under Construction',
-        ],
-        datasets: [
+  const option = bridgeData
+    ? {
+        tooltip: {
+          trigger: 'item',
+          formatter: '{a} <br/>{b}: {c} ({d}%)',
+        },
+        legend: {
+          orient: 'vertical',
+          left: 10,
+          data: [
+            'Complete',
+            'Rejected',
+            'Confirmed',
+            'Identified',
+            'Prospecting',
+            'Under Construction',
+          ],
+        },
+        series: [
           {
-            label: 'Bridge',
-            backgroundColor: [
-              'green',
-              'red',
-              'purple',
-              'orange',
-              'blue',
-              'gray',
-            ],
+            name: selectedProvince,
+            type: 'pie',
+            radius: ['100%', '60%'],
+            avoidLabelOverlap: false,
+            label: {
+              show: false,
+              position: 'center',
+            },
+            emphasis: {
+              label: {
+                show: true,
+                fontSize: '30',
+                fontWeight: 'bold',
+              },
+            },
+            labelLine: {
+              show: false,
+            },
             data: [
-              complete,
-              rejected,
-              confirmed,
-              identified,
-              prospecting,
-              underConstruction,
+              {
+                value: complete,
+                name: 'Complete',
+                itemStyle: { color: 'green' },
+              },
+              {
+                value: rejected,
+                name: 'Rejected',
+                itemStyle: { color: 'red' },
+              },
+              {
+                value: confirmed,
+                name: 'Confirmed',
+                itemStyle: { color: 'purple' },
+              },
+              {
+                value: identified,
+                name: 'Identified',
+                itemStyle: { color: 'orange' },
+              },
+              {
+                value: prospecting,
+                name: 'Prospecting',
+                itemStyle: { color: 'blue' },
+              },
+              {
+                value: underConstruction,
+                name: 'Under Construction',
+                itemStyle: { color: 'gray' },
+              },
             ],
           },
         ],
-      }}
-      options={{
-        title: { display: true, text: 'All Bridges' },
-        cutoutPercentage: 80,
-      }}
-      width="30%"
-      height="30%"
-    />
-  ) : null;
+      }
+    : {};
+
   return (
     <div className="main">
       <h2 className="header">Data Visualization</h2>
@@ -301,8 +335,11 @@ const BridgeStatusChart = () => {
       <div className="grid">{grid}</div>
       <div className="chartContainer">
         <div className="barChart">{barChar}</div>
-        <div className="doughnutChart">{doughnutChar}</div>
+        <div className="doughnutChart">
+          <ReactEcharts option={option} />
+        </div>
       </div>
+      <div></div>
     </div>
   );
 };
