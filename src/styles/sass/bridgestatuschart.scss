@@ -1,0 +1,15 @@
+.main {
+  //border: 2px solid red;
+  .chartContainer {
+    display: flex;
+    justify-content: space-around;
+    .barChart {
+      //border: 2px solid green;
+      width: 30%;
+    }
+    .doughnutChart {
+      //border: 2px solid blue;
+      width: 30%;
+    }
+  }
+}

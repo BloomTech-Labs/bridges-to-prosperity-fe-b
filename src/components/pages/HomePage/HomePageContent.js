@@ -4,6 +4,7 @@ import { RenderMap } from '../DataViz/index';
 import Navigation from '../../common/Navigation';
 import Footer from '../../common/Footer';
 import { getDSData } from '../../../api/index';
+import BridgesStatusChart from '../DataViz/BridgeStatusChart';
 
 const HomePageReact = () => {
   const { setBridgeData } = useContext(BridgesContext);
@@ -18,6 +19,7 @@ const HomePageReact = () => {
     <div className="container">
       <Navigation />
       <RenderMap />
+      <BridgesStatusChart />
       <Footer />
     </div>
   );
