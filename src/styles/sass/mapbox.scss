@@ -65,6 +65,70 @@
       font-size: 1.2rem;
     }
   }
+
+  .dataContainer {
+    position: absolute;
+    z-index: 10;
+
+    margin: 8% 6% 0 0;
+    right: 0;
+    top: 0;
+    cursor: move;
+    width: 50vw;
+    background-color: white;
+    box-shadow: 2px 1px 5px 0px rgba(148, 142, 148, 1);
+
+    div {
+      background-color: white;
+      border: none;
+      font-size: 1rem;
+      margin-left: 3%;
+      margin-top: 1%;
+      width: auto;
+    }
+
+    .closeButton:hover {
+      cursor: pointer;
+    }
+
+    .detailsInfo {
+      font-weight: 600;
+      display: flex;
+      align-items: center;
+      flex-direction: column;
+
+      div { //DataCard echart
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 500px;
+        height: 300px;
+
+        div {
+          width: auto;
+          height: auto;
+        }
+
+      }
+
+      .bridge-image {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+        img {
+          width: 300px;
+        }
+        p {
+          font-size: 0.5rem;
+        }
+      }
+    }
+    .detailsInfo p {
+      font-size: 1.2rem;
+    }
+  }
+
   .desktop {
     #satellite-label {
       margin-right: 0.5rem;

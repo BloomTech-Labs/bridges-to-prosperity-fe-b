@@ -10,7 +10,23 @@ const DetailsInfo = props => {
     axios
       .get(`${process.env.REACT_APP_API_URI}/bridges/gdp/${detailsData.id}`)
       .then(response => {
-        setDetailsData({ ...detailsData, gdpData: response.data[0] });
+        //Shaping data for echarts
+
+        let shapedData = {
+          x: [],
+          y: [],
+        };
+
+        let keys = Object.keys(response.data[0]);
+
+        keys.sort();
+
+        for (let i = 0; i < keys.length; i++) {
+          shapedData.x[i] = parseInt(keys[i]);
+          shapedData.y[i] = response.data[0][keys[i]];
+        }
+
+        setDetailsData({ ...detailsData, gdpData: shapedData });
       })
       .catch(error => {
         console.log(error);
