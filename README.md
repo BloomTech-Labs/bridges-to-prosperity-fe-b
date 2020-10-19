@@ -70,7 +70,7 @@ List the rest of the front end features and libraries in the same format as the 
 
 #### Front end deployed to `AWS`
 
-https://b.bridgestoprosperity.dev/
+https://a.bridgestoprosperity.dev/
 
 #### [Back end] built using:
 
