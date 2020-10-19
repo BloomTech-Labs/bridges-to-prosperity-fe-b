@@ -25,7 +25,7 @@ const DataCard = props => {
 
         <div className="detailsInfo">
           <h2>
-            <strong>{detailsData.bridge_site_name} Data</strong>
+            <strong>{detailsData.bridge_site_name} </strong>
             <p>{detailsData.province}</p>
           </h2>
           <ReactEcharts
@@ -38,17 +38,9 @@ const DataCard = props => {
               },
               title: {
                 left: 'center',
-                text: 'Province GDP over time',
+                text: 'GPD Per Capita Over Time',
               },
-              toolbox: {
-                feature: {
-                  dataZoom: {
-                    yAxisIndex: 'none',
-                  },
-                  restore: {},
-                  saveAsImage: {},
-                },
-              },
+
               xAxis: {
                 type: 'category',
                 boundaryGap: false,
