@@ -31,6 +31,7 @@ const BridgeStatusChart = () => {
   let identified = 0;
   let prospecting = 0;
   let underConstruction = 0;
+
   bridgeData &&
     bridgeData.forEach(bridge => {
       // eslint-disable-next-line default-case

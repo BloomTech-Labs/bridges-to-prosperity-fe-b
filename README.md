@@ -1,12 +1,10 @@
 # Bridges To Prosperity
 
-You can find the deployed project at https://b.bridgestoprosperity.dev/
+You can find the deployed project at https://a.bridgestoprosperity.dev/
 
-You can find the demo video for this project at https://youtu.be/UkJIj0PbvIk
+You can find the demo video for this project at
 
-
-## 4️⃣ Contributors
-
+## 8️⃣Contributors
 
 |                                           [Devin Moore](https://github.com/devjaymoe)                                           |                                       [Joo Woon Kang](https://github.com/joowoonk)                                        |                                                     [Robert Misch](https://github.com/RobertMisch)                                                     |                                          [Jessica Cooper](https://github.com/JessicaGCooper)                                           |
 | :-----------------------------------------------------------------------------------------------------------------------------: | :-----------------------------------------------------------------------------------------------------------------------: | :----------------------------------------------------------------------------------------------------------------------------------------------------: | :------------------------------------------------------------------------------------------------------------------------------------: |
@@ -14,24 +12,32 @@ You can find the demo video for this project at https://youtu.be/UkJIj0PbvIk
 |                     [<img src="https://github.com/favicon.ico" width="15"> ](https://github.com/devjaymoe)                      |                   [<img src="https://github.com/favicon.ico" width="15"> ](https://github.com/joowoonk)                   |                                [<img src="https://github.com/favicon.ico" width="15"> ](https://github.com/RobertMisch)                                |                      [<img src="https://github.com/favicon.ico" width="15"> ](https://github.com/JessicaGCooper)                       |
 | [ <img src="https://static.licdn.com/sc/h/al2o9zrvru7aqj8e1x2rzsrca" width="15"> ](https://www.linkedin.com/in/devin-jay-moore) | [ <img src="https://static.licdn.com/sc/h/al2o9zrvru7aqj8e1x2rzsrca" width="15"> ](https://www.linkedin.com/in/joowoonk/) |                     [ <img src="https://static.licdn.com/sc/h/al2o9zrvru7aqj8e1x2rzsrca" width="15"> ](https://www.linkedin.com/)                      | [ <img src="https://static.licdn.com/sc/h/al2o9zrvru7aqj8e1x2rzsrca" width="15"> ](https://www.linkedin.com/in/jessica-gertig-cooper/) |
 
+|                                                             [Wei Peluso](https://github.com/weipeluso)                                                             |                                                           [Daniel Johnson](https://github.com/daniel-j-dev)                                                           |                                                              [Liam Cox](https://github.com/liamcox)                                                               |                                                           [Cameron Kirby](https://github.com/cameron-kirby)                                                            |
+| :----------------------------------------------------------------------------------------------------------------------------------------------------------------: | :-------------------------------------------------------------------------------------------------------------------------------------------------------------------: | :---------------------------------------------------------------------------------------------------------------------------------------------------------------: | :--------------------------------------------------------------------------------------------------------------------------------------------------------------------: |
+| [<img src="https://avatars0.githubusercontent.com/u/32182201?s=460&u=c0a02c97dff5eaf6464424060d95767cf1e2240d&v=4" width = "200" />](https://github.com/weipeluso) | [<img src="https://avatars2.githubusercontent.com/u/17541130?s=460&u=d2f9f59deb0537b6532307d731a8c0499ead9bf0&v=4" width = "200" />](https://github.com/daniel-j-dev) | [<img src="https://avatars3.githubusercontent.com/u/60672289?s=460&u=085cc08ebb5bcc95faec6bd63459f40d24829035&v=4" width = "200" />](https://github.com//liamcox) | [<img src="https://avatars0.githubusercontent.com/u/61846488?s=460&u=4cd03c2e6ff73224029dbcaf6c21b6311ac018cd&v=4" width = "200" />](https://github.com/cameron-kirby) | [<img src="./" width = "200" />](https://github.com/) |
+|                                       [<img src="https://github.com/favicon.ico" width="15"> ](https://github.com/devjaymoe)                                       |                                         [<img src="https://github.com/favicon.ico" width="15"> ](https://github.com/joowoonk)                                         |                                     [<img src="https://github.com/favicon.ico" width="15"> ](https://github.com/RobertMisch)                                      |                                      [<img src="https://github.com/favicon.ico" width="15"> ](https://github.com/JessicaGCooper)                                       |
+|                     [ <img src="https://static.licdn.com/sc/h/al2o9zrvru7aqj8e1x2rzsrca" width="15"> ](https://www.linkedin.com/in/weipeluso/)                     |                 [ <img src="https://static.licdn.com/sc/h/al2o9zrvru7aqj8e1x2rzsrca" width="15"> ](https://www.linkedin.com/in/daniel-software-dev/)                  |                   [ <img src="https://static.licdn.com/sc/h/al2o9zrvru7aqj8e1x2rzsrca" width="15"> ](https://www.linkedin.com/in/liam-cox1010/)                   |                     [ <img src="https://static.licdn.com/sc/h/al2o9zrvru7aqj8e1x2rzsrca" width="15"> ](https://www.linkedin.com/in/kameroncirby/)                      |
+
 <br>
 
 ## Project Overview
 
-1️⃣ [Trello Board](https://trello.com/b/x1iIzJdj/labs25bridgesjessica)
+1️⃣ [Trello Board](https://trello.com/b/xgSGOPbp/labs-27-bridges-to-prosperity-team-b)
 
-1️⃣ [Product Canvas](https://whimsical.com/CenFtxG9x65uEptPgBSEQw)
+1️⃣ [Product Canvas]()
 
-[<img src="./src/styles/imgs/btp.png" width = "600" />](https://b.bridgestoprosperity.dev/)
+[<img src="./src/styles/imgs/btp.png" width = "600" />](https://a.bridgestoprosperity.dev/)
 
 <h2>Description</h2>
 
-Our website receives and displays from data from our backend API. Displays data on mapbox interface, using React Map Gl, and also on ant design table. Users are unable to interact with the data on the mapbox interface and the table to view additional information and edit data points.
+Our website receives and displays data from our backend API. Displays data on mapbox interface, using React Map Gl, and also on ant design table. Users are unable to interact with the data on the mapbox interface and the table to view additional information and edit data points.
 
-## 4️⃣ Key Features
+## 5️⃣ Key Features
 
 - Mapbox Interface (React Map Gl)
 - Ant Design Table
+- echarts for react
+- react chartjs-2
 - Yup Validations Formik Form
 
 ## 1️⃣ Tech Stack
@@ -47,7 +53,8 @@ Our website receives and displays from data from our backend API. Displays data 
 - React-router-dom
 - Formik & Yup
 - Node-Sass
-
+- react-chartjs-2
+- echarts-for-react
 
 #### _Front end framework goes here_
 
@@ -65,7 +72,7 @@ https://b.bridgestoprosperity.dev/
 
 #### [Back end] built using:
 
-https://github.com/Lambda-School-Labs/Labs25-Bridges_to_Prosperity-TeamB-be
+https://github.com/Lambda-School-Labs/Labs27-B-Bridges-BE
 
 #### back end framework goes here
 
@@ -78,14 +85,11 @@ https://github.com/Lambda-School-Labs/Labs25-Bridges_to_Prosperity-TeamB-be
 
 ## 2️⃣ Authentication API here
 
-
 Okta API for Authentication:
-
 
 The Okta Identity Cloud gives you one trusted platform to secure every identity in your organization and connect with all your customers.
 
 ## 3️⃣ Environment Variables
-
 
 ```md
 REACT_APP_CLIENT_ID=0oalwt....
@@ -102,7 +106,6 @@ REACT_APP_MAPBOX_TOKEN='pk.eyJ1Ij......'
 | ----------------- | ---------------- | ------------------------------------------------ |
 | green bridge icon | Icons8           | [Icons8](https://icons8.com/license)             |
 | rings.svg         | Sam Herbert      | [MIT](https://github.com/SamHerbert/SVG-Loaders) |
-
 
 All the other images provided from Bridges to Prosperity
 
