@@ -2,8 +2,6 @@
 
 You can find the deployed project at https://a.bridgestoprosperity.dev/
 
-You can find the demo video for this project at
-
 ## 8️⃣Contributors
 
 |                                           [Devin Moore](https://github.com/devjaymoe)                                           |                                       [Joo Woon Kang](https://github.com/joowoonk)                                        |                                                     [Robert Misch](https://github.com/RobertMisch)                                                     |                                          [Jessica Cooper](https://github.com/JessicaGCooper)                                           |
@@ -26,11 +24,15 @@ You can find the demo video for this project at
 
 1️⃣ [Product Canvas]()
 
-[<img src="./src/styles/imgs/btp.png" width = "600" />](https://a.bridgestoprosperity.dev/)
+[<img src="./src/styles/imgs/main.png" width = "600" />](https://a.bridgestoprosperity.dev/)
+
+[<img src="./src/styles/imgs/satellite.png" width = "600" />](https://a.bridgestoprosperity.dev/)
+
+[<img src="./src/styles/imgs/charts.png" width = "600" />](https://a.bridgestoprosperity.dev/)
 
 <h2>Description</h2>
 
-Our website receives and displays data from our backend API. Displays data on mapbox interface, using React Map Gl, and also on ant design table. Users are unable to interact with the data on the mapbox interface and the table to view additional information and edit data points.
+Our website receives and displays data from our backend API. Displays data on mapbox interface, using React Map Gl, and also on ant design table. Users are unable to interact with the data on the mapbox interface and the table to view additional information and edit data points. Users can zoom in and the boundaries of all the communities will show, also users can switch to the satellite style We used react-chartjs-2 and echarts for data visualization.
 
 ## 5️⃣ Key Features
 
