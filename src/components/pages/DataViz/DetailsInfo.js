@@ -70,14 +70,25 @@ const DetailsInfo = props => {
 
           {/* <p>Bridge Site Name: {detailsData.bridge_site_name}</p> */}
           <div>
-            <p>Project Stage: {detailsData.project_stage}</p>
+            <p>
+              <span>Project Stage:</span>
+              {detailsData.project_stage}
+            </p>
             <p>Province: {detailsData.province}</p>
             <p>District: {detailsData.district}</p>
             <p>Bridge Type: {detailsData.bridge_type}</p>
             <p>Project Sub Stage: {detailsData.sub_stage}</p>
-            <span role="img" onClick={event => openData(event)}>
-              📊
-            </span>
+            <p>
+              GDP per Capita:
+              <a
+                className="dataIcon"
+                role="img"
+                style={{ fontSize: '1rem' }}
+                onClick={event => openData(event)}
+              >
+                📊
+              </a>
+            </p>
           </div>
         </div>
       </div>
