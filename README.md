@@ -28,6 +28,10 @@ You can find the deployed project at https://a.bridgestoprosperity.dev/
 
 [<img src="./src/styles/imgs/satellite.png" width = "600" />](https://a.bridgestoprosperity.dev/)
 
+[<img src="./src/styles/imgs/bridgeInfo.png" width = "600" />](https://a.bridgestoprosperity.dev/)
+
+[<img src="./src/styles/imgs/gdp.png" width = "600" />](https://a.bridgestoprosperity.dev/)
+
 [<img src="./src/styles/imgs/charts.png" width = "600" />](https://a.bridgestoprosperity.dev/)
 
 <h2>Description</h2>
