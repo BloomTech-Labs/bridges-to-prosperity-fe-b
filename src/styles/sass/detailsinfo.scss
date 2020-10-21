@@ -1,10 +1,19 @@
 .detailsContainer {
-  width: 100%;
-  display: flex;
-  justify-content: center;
-  .bridgeDetailsInfo {
-    width: 100%;
-    border: 2px solid red;
-    display: flex;
+  .detailsInfo {
+    .bridge_info {
+      margin-top: 1rem;
+      margin-bottom: 1rem;
+      .info {
+        font-size: 1rem;
+        //border: 2px solid red;
+        .infoLabel {
+          display: inline-block;
+          // border: 2px solid red;
+          margin-right: 0.5rem;
+
+          color: gray;
+        }
+      }
+    }
   }
 }

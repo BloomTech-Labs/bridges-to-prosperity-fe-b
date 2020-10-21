@@ -69,21 +69,33 @@ const DetailsInfo = props => {
           </div>
 
           {/* <p>Bridge Site Name: {detailsData.bridge_site_name}</p> */}
-          <div>
-            <p>
-              <span>Project Stage:</span>
+          <div className="bridge_info">
+            <p className="info">
+              <span className="infoLabel">Project Stage:</span>
               {detailsData.project_stage}
             </p>
-            <p>Province: {detailsData.province}</p>
-            <p>District: {detailsData.district}</p>
-            <p>Bridge Type: {detailsData.bridge_type}</p>
-            <p>Project Sub Stage: {detailsData.sub_stage}</p>
-            <p>
-              GDP per Capita:
+            <p className="info">
+              <span className="infoLabel">Province:</span>
+              {detailsData.province}
+            </p>
+            <p className="info">
+              <span className="infoLabel">District:</span>
+              {detailsData.district}
+            </p>
+            <p className="info">
+              <span className="infoLabel">Bridge Type:</span>{' '}
+              {detailsData.bridge_type}
+            </p>
+            <p className="info">
+              <span className="infoLabel">Project Sub Stage:</span>{' '}
+              {detailsData.sub_stage}
+            </p>
+            <p className="info">
+              <span className="infoLabel"> GDP per Capita:</span>
               <a
                 className="dataIcon"
                 role="img"
-                style={{ fontSize: '1rem' }}
+                style={{ fontSize: '1.2rem' }}
                 onClick={event => openData(event)}
               >
                 📊
