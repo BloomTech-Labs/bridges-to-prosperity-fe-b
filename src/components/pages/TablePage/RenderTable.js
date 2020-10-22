@@ -1,10 +1,9 @@
 import React, { useContext, useState, useEffect, useRef } from 'react';
 import Navigation from '../../common/Navigation';
 import { BridgesContext } from '../../../state/bridgesContext';
-
+import { useHistory, Link } from 'react-router-dom';
 import { Table, Menu, Dropdown } from 'antd';
 import { DownOutlined } from '@ant-design/icons';
-import { useHistory } from 'react-router-dom';
 import { getDSData } from '../../../api/index';
 
 function UserTable() {
@@ -250,21 +249,28 @@ function UserTable() {
   return (
     <div className="table-container">
       <Navigation />
-      <div className="filter-search">
-        <form onSubmit={searchSubmit}>
-          <input
-            type="text"
-            id="Project_Code"
-            name="Project_Code"
-            value={search.Project_Code}
-            onChange={inputChange}
-          />
-        </form>
-        <Dropdown overlay={searchMenu}>
-          <a className="detailsInfo" onClick={e => e.preventDefault()}>
-            Search by: {searchParam} <DownOutlined />
-          </a>
-        </Dropdown>
+      <div className="header">
+        <div className="links">
+          <Link id="add" to="/addabridge">
+            Add a Bridge
+          </Link>
+        </div>
+        <div className="filter-search">
+          <form onSubmit={searchSubmit}>
+            <input
+              type="text"
+              id="Project_Code"
+              name="Project_Code"
+              value={search.Project_Code}
+              onChange={inputChange}
+            />
+          </form>
+          <Dropdown overlay={searchMenu}>
+            <a className="detailsInfo" onClick={e => e.preventDefault()}>
+              Search by: {searchParam} <DownOutlined />
+            </a>
+          </Dropdown>
+        </div>
       </div>
       <Table
         dataSource={currentData}

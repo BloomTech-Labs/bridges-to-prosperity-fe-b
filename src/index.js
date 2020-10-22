@@ -19,6 +19,7 @@ import { UserTable } from './components/pages/TablePage';
 import { DetailsCard } from './components/pages/DetailsPage';
 import HomePageReact from './components/pages/HomePage/HomePageContent';
 import { FormikForm } from './components/pages/Form';
+import addABridge from './components/pages/Form/AddABridge';
 
 ReactDOM.render(
   <Router>
@@ -56,6 +57,7 @@ function App() {
           <SecureRoute path="/table" component={UserTable} />
           <SecureRoute path="/details/:cardId" component={DetailsCard} />
           <SecureRoute path="/form" component={FormikForm} />
+          <SecureRoute path="/addabridge" component={addABridge} />
           <Route component={NotFoundPage} />
         </Switch>
       </Security>
