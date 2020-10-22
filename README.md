@@ -1,6 +1,7 @@
 # Bridges To Prosperity
 
 You can find the deployed project at https://a.bridgestoprosperity.dev/
+
 Here is the Demo for the project: https://youtu.be/Q3rNoQhRpxk
 
 ## 8️⃣Contributors
