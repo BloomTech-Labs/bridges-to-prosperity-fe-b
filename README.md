@@ -1,6 +1,7 @@
 # Bridges To Prosperity
 
 You can find the deployed project at https://a.bridgestoprosperity.dev/
+Here is the Demo for the project: https://youtu.be/Q3rNoQhRpxk
 
 ## 8️⃣Contributors
 
@@ -74,7 +75,7 @@ List the rest of the front end features and libraries in the same format as the 
 
 #### Front end deployed to `AWS`
 
-https://b.bridgestoprosperity.dev/
+https://a.bridgestoprosperity.dev/
 
 #### [Back end] built using:
 
