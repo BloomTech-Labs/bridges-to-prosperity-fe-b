@@ -59,11 +59,11 @@ const DetailsInfo = props => {
               </div>
             ) : (
               <div className="bridge-image">
-                <img
+                {/* <img
                   alt="bridge_image_needed"
                   src={require('../../../styles/imgs/bridgeIconGreenBig.png')}
-                />
-                Bridge image is unavailiable
+                /> */}
+                No Bridge Image
               </div>
             )}
           </div>
