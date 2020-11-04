@@ -356,7 +356,8 @@ const BridgeStatusChart = () => {
         </a>
       </Dropdown> */}
 
-      <div className="provinceSelect">
+      {/* Was a dropdown */}
+      <div className="radioButtons">
         <ProvinceMenu />
       </div>
 
