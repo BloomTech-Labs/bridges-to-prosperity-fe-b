@@ -1,5 +1,4 @@
 .main {
-  //border: 2px solid red;
   margin: 3rem 2rem;
   text-align: center;
   .header {
@@ -9,7 +8,6 @@
   .dropDown {
     display: inline-block;
     padding: 0.5rem;
-    //border: 2px solid red;
     background-color: green;
     color: white;
     font-size: 1.5rem;
@@ -24,18 +22,15 @@
     display: flex;
     justify-content: space-around;
     .barChart {
-      //border: 2px solid green;
       width: 40%;
     }
     .doughnutChart {
-      //border: 2px solid blue;
       margin-top: 10rem;
 
       width: 40%;
     }
   }
   .grid {
-    //border: 2px solid red;
     font-size: 1.2rem;
     margin: 2rem;
     margin-left: 15rem;
