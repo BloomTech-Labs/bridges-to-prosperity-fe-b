@@ -185,33 +185,8 @@ const BridgeStatusChart = () => {
   // console.log(`Under Construction: ${underConstruction}`);
   // console.log(`totla ${bridgeData && bridgeData.length}`);
 
-  const ProvinceMenu = () => {
+  const ProvinceSelect = () => {
     return (
-      // <Menu>
-      //   <Menu.Item className="menuItem">
-      //     <span
-      //       onClick={() => {
-      //         setSelectedProvince('All Bridges');
-      //       }}
-      //     >
-      //       All
-      //     </span>
-      //   </Menu.Item>
-
-      //   {provinces.map(province => {
-      //     return (
-      //       <Menu.Item className="menuItem">
-      //         <span
-      //           onClick={() => {
-      //             setSelectedProvince(province);
-      //           }}
-      //         >
-      //           {province}
-      //         </span>
-      //       </Menu.Item>
-      //     );
-      //   })}
-      // </Menu>
       <div>
         <FormLabel>Select a province:</FormLabel>
         <RadioGroup
@@ -361,16 +336,9 @@ const BridgeStatusChart = () => {
     <div className="main">
       <h2 className="header">Data Visualization</h2>
 
-      {/* <Dropdown className="dropDown" overlay={provinceMenu}>
-        <a className="detailsInfo" onClick={e => e.preventDefault()}>
-          <span className="label"> Pick A Province: </span>
-          {selectedProvince} <DownOutlined />
-        </a>
-      </Dropdown> */}
-
-      {/* Was a dropdown */}
+      {/* Radio buttons to select a province */}
       <div className="radioButtons">
-        <ProvinceMenu />
+        <ProvinceSelect />
       </div>
 
       <div className="grid">
