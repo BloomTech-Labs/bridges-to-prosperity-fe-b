@@ -191,14 +191,14 @@ const BridgeStatusChart = () => {
           <FormControlLabel
             key="All Bridges"
             value="All Bridges"
-            control={<Radio />}
+            control={<Radio color="primary" />}
             label="All Bridges"
           />
           {provinces.map(value => (
             <FormControlLabel
               key={value}
               value={value}
-              control={<Radio />}
+              control={<Radio color="primary" />}
               label={value}
             />
           ))}
