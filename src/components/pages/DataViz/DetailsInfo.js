@@ -86,10 +86,10 @@ const DetailsInfo = props => {
               <span className="infoLabel">Bridge Type:</span>{' '}
               {detailsData.bridge_type}
             </p>
-            <p className="info">
+            {/* <p className="info">
               <span className="infoLabel">Project Sub Stage:</span>{' '}
               {detailsData.sub_stage}
-            </p>
+            </p> */}
             <p className="info">
               <span className="infoLabel"> GDP per Capita:</span>
               <a
