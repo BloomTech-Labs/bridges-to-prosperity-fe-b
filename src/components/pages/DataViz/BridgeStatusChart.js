@@ -214,7 +214,13 @@ const BridgeStatusChart = () => {
       // </Menu>
       <div>
         <FormLabel>Select a province:</FormLabel>
-        <RadioGroup name="provinceSelect" aria-label="provinceSelect" row>
+        <RadioGroup
+          name="provinceSelect"
+          aria-label="provinceSelect"
+          value={selectedProvince}
+          row
+          onChange={e => setSelectedProvince(e.target.value)}
+        >
           <FormControlLabel
             key="All Bridges"
             value="All Bridges"
