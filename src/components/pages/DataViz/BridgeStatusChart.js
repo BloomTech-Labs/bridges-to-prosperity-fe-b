@@ -215,6 +215,12 @@ const BridgeStatusChart = () => {
       <div>
         <FormLabel>Select a province:</FormLabel>
         <RadioGroup name="provinceSelect" aria-label="provinceSelect" row>
+          <FormControlLabel
+            key="All Bridges"
+            value="All Bridges"
+            control={<Radio />}
+            label="All Bridges"
+          />
           {provinces.map(value => (
             <FormControlLabel
               key={value}
