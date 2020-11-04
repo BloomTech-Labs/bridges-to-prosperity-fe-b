@@ -4,6 +4,7 @@ import { Bar } from 'react-chartjs-2';
 import { Dropdown, Menu, Row, Col } from 'antd';
 import { DownOutlined } from '@ant-design/icons';
 import ReactEcharts from 'echarts-for-react';
+import GridChart from './GridChart';
 
 const BridgeStatusChart = () => {
   const { bridgeData } = useContext(BridgesContext);
@@ -333,7 +334,17 @@ const BridgeStatusChart = () => {
           {selectedProvince} <DownOutlined />
         </a>
       </Dropdown>
-      <div className="grid">{grid}</div>
+      <div className="grid">
+        /*{grid}*/
+        <GridChart
+          complete={complete}
+          rejected={rejected}
+          confirmed={confirmed}
+          identified={identified}
+          prospecting={prospecting}
+          underConstruction={underConstruction}
+        />
+      </div>
       <div className="chartContainer">
         <div className="barChart">{barChar}</div>
         <div className="doughnutChart">
