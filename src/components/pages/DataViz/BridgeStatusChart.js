@@ -177,14 +177,6 @@ const BridgeStatusChart = () => {
     </>
   );
 
-  // console.log(`copmplete: ${complete}`);
-  // console.log(`rejected: ${rejected}`);
-  // console.log(`conformed: ${confirmed}`);
-  // console.log(`identified: ${identified}`);
-  // console.log(`prospecting: ${prospecting}`);
-  // console.log(`Under Construction: ${underConstruction}`);
-  // console.log(`totla ${bridgeData && bridgeData.length}`);
-
   const ProvinceSelect = () => {
     return (
       <div>
