@@ -90,7 +90,20 @@ const DetailsInfo = props => {
               <span className="infoLabel">Project Sub Stage:</span>{' '}
               {detailsData.sub_stage}
             </p> */}
-            <p className="info">
+            {detailsData.project_stage === 'Prospecting' ? (
+              <p className="info">
+                <span className="infoLabel"> GDP per Capita:</span>
+                <a
+                  className="dataIcon"
+                  role="img"
+                  style={{ fontSize: '1.2rem' }}
+                  onClick={event => openData(event)}
+                >
+                  📊
+                </a>
+              </p>
+            ) : null}
+            {/* <p className="info">
               <span className="infoLabel"> GDP per Capita:</span>
               <a
                 className="dataIcon"
@@ -100,7 +113,7 @@ const DetailsInfo = props => {
               >
                 📊
               </a>
-            </p>
+            </p> */}
           </div>
         </div>
       </div>
