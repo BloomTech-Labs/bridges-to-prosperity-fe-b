@@ -93,14 +93,16 @@ const DetailsInfo = props => {
             {detailsData.project_stage === 'Prospecting' ? (
               <p className="info">
                 <span className="infoLabel"> GDP per Capita:</span>
-                <a
+                <button
                   className="dataIcon"
                   role="img"
                   style={{ fontSize: '1.2rem' }}
                   onClick={event => openData(event)}
                 >
-                  📊
-                </a>
+                  <span role="img" aria-label="graph">
+                    📊
+                  </span>
+                </button>
               </p>
             ) : null}
             {/* <p className="info">
