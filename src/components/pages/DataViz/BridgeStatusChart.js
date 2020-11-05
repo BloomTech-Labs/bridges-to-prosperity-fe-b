@@ -16,8 +16,8 @@ import { makeStyles } from '@material-ui/core/styles';
 
 const useStyles = makeStyles({
   root: {
-    padding: '0 50px',
-    marginBottom: '100px',
+    marginBottom: '50px',
+    marginTop: '50px',
   },
   logo: {
     width: '35px',
@@ -100,14 +100,7 @@ const BridgeStatusChart = () => {
 
   const ProvinceSelect = () => {
     return (
-      <Grid
-        item
-        spacing={1}
-        container
-        direction="column"
-        justify="space-between"
-        spacing={3}
-      >
+      <Grid item spacing={1} container direction="column">
         <Grid item>
           <Typography variant="h6">Select a province:</Typography>
         </Grid>
@@ -256,52 +249,61 @@ const BridgeStatusChart = () => {
     : {};
 
   return (
-    <Grid
-      className={classes.root}
-      container
-      direction="column"
-      spacing={2}
-      xs={12}
-    >
-      <Grid item>
-        {/* <Typography variant="h4" align="center">
+    <Grid container>
+      <Grid item xs={1} lg={2}></Grid>
+      <Grid item xs={10} lg={8}>
+        <Grid
+          className={classes.root}
+          container
+          direction="column"
+          spacing={2}
+          xs={12}
+        >
+          <Grid item>
+            {/* <Typography variant="h4" align="center">
           Data Visualization
         </Typography> */}
-      </Grid>
-      <Grid item container spacing={2}>
-        {/* Radio buttons to select a province */}
-        <Grid item className="radioButtons" md={4}>
-          <ProvinceSelect />
-        </Grid>
-        <Grid item md={8} className={classes.data}>
-          <GridChart
-            complete={complete}
-            rejected={rejected}
-            confirmed={confirmed}
-            identified={identified}
-            prospecting={prospecting}
-            underConstruction={underConstruction}
-          />
-        </Grid>
-      </Grid>
+          </Grid>
+          <Grid item container spacing={2} alignItems="center">
+            {/* Radio buttons to select a province */}
+            <Grid item className="radioButtons" md={4}>
+              <ProvinceSelect />
+            </Grid>
+            <Grid item md={8} className={classes.data}>
+              <GridChart
+                complete={complete}
+                rejected={rejected}
+                confirmed={confirmed}
+                identified={identified}
+                prospecting={prospecting}
+                underConstruction={underConstruction}
+              />
+            </Grid>
+          </Grid>
 
-      {/* <div className="grid">{grid}</div> */}
-      <Grid
-        item
-        container
-        className="chartContainer"
-        alignItems="center"
-        spacing={2}
-      >
-        <Grid item md={6} xs={12}>
-          <Paper className={classes.bar}>{barChar}</Paper>
-        </Grid>
-        <Grid item md={6} xs={12}>
-          <Paper className={classes.pie}>
-            <ReactEcharts option={option} />
-          </Paper>
+          {/* <div className="grid">{grid}</div> */}
+          <Grid
+            item
+            container
+            className="chartContainer"
+            alignItems="center"
+            spacing={2}
+            md={12}
+          >
+            <Grid item md={6} sm={12}>
+              <Paper elevation={0} className={classes.bar}>
+                {barChar}
+              </Paper>
+            </Grid>
+            <Grid item md={6} sm={12}>
+              <Paper elevation={0} className={classes.pie}>
+                <ReactEcharts option={option} />
+              </Paper>
+            </Grid>
+          </Grid>
         </Grid>
       </Grid>
+      <Grid item xs={1} lg={2}></Grid>
     </Grid>
   );
 };
