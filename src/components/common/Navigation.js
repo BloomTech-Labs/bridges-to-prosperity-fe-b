@@ -6,11 +6,11 @@ import { makeStyles } from '@material-ui/core/styles';
 
 const useStyles = makeStyles({
   root: {
-    height: '100px',
-    padding: '0 20px',
+    height: '80px',
+    padding: '0 50px',
   },
   logo: {
-    width: '50px',
+    width: '35px',
   },
 });
 

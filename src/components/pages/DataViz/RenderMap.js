@@ -23,6 +23,8 @@ import DetailsInfo from './DetailsInfo';
 import DataCard from './DataCard';
 import FilterBridgesCheckboxes from './FilterBridgesCheckboxes';
 
+import { Grid, Paper } from '@material-ui/core';
+
 let maxBounds = {
   minLatitude: -3.688855,
   minLongitude: 28.451506,
@@ -326,7 +328,7 @@ const RenderMap = () => {
   }
 
   return (
-    <div className="mapbox-react">
+    <Grid container className="mapbox-react">
       <ReactMapGL
         id="map"
         className="map"
@@ -469,7 +471,7 @@ const RenderMap = () => {
       </ReactMapGL>
       {!fullscreen && detailsData && <DetailsInfo />}
       {!fullscreen && detailsData && 'gdpData' in detailsData && <DataCard />}
-    </div>
+    </Grid>
   );
 };
 
