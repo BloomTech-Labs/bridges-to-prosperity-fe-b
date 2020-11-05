@@ -1,18 +1,43 @@
 import React, { useState, useContext, useEffect } from 'react';
 import { BridgesContext } from '../../../state/bridgesContext';
 import { Bar } from 'react-chartjs-2';
-import { Dropdown, Menu, Row, Col } from 'antd';
-import { DownOutlined } from '@ant-design/icons';
 import {
   Radio,
   RadioGroup,
   FormLabel,
   FormControlLabel,
+  Grid,
+  Typography,
+  Paper,
 } from '@material-ui/core/';
 import ReactEcharts from 'echarts-for-react';
 import GridChart from './GridChart';
+import { makeStyles } from '@material-ui/core/styles';
+
+const useStyles = makeStyles({
+  root: {
+    marginBottom: '50px',
+    marginTop: '50px',
+  },
+  logo: {
+    width: '35px',
+  },
+  bar: {
+    width: '450px',
+    height: '450px',
+    padding: '10px',
+  },
+  pie: {
+    padding: '10px',
+    width: '450px',
+    height: '450px',
+    paddingTop: '75px',
+  },
+});
 
 const BridgeStatusChart = () => {
+  const classes = useStyles();
+
   const { bridgeData } = useContext(BridgesContext);
   const [selectedProvince, setSelectedProvince] = useState('All Bridges');
   const [currentData, setCurrentData] = useState([]);
@@ -73,137 +98,36 @@ const BridgeStatusChart = () => {
       }
     });
 
-  const grid = (
-    <>
-      <Row className="row" gutter={[8, 8]}>
-        <Col
-          className="gutter-row"
-          style={{ color: 'gray' }}
-          span={3}
-          order={7}
-        >
-          Under Construction
-        </Col>
-        <Col
-          className="gutter-row"
-          style={{ color: 'blue' }}
-          span={3}
-          order={6}
-        >
-          Prospecting
-        </Col>
-        <Col
-          className="gutter-row"
-          style={{ color: 'orange' }}
-          span={3}
-          order={5}
-        >
-          Identified
-        </Col>
-        <Col
-          className="gutter-row"
-          style={{ color: 'purple' }}
-          span={3}
-          order={4}
-        >
-          Confirmed
-        </Col>
-        <Col className="gutter-row" style={{ color: 'red' }} span={3} order={3}>
-          Rejected
-        </Col>
-        <Col
-          className="gutter-row"
-          style={{ color: 'green' }}
-          span={3}
-          order={2}
-        >
-          Complete
-        </Col>
-        <Col className="gutter-row" span={3} order={1}></Col>
-      </Row>
-      <Row className="row" gutter={[8, 8]}>
-        <Col
-          className="gutter-row"
-          style={{ color: 'gray' }}
-          span={3}
-          order={7}
-        >
-          {underConstruction}
-        </Col>
-        <Col
-          className="gutter-row"
-          style={{ color: 'blue' }}
-          span={3}
-          order={6}
-        >
-          {prospecting}
-        </Col>
-        <Col
-          className="gutter-row"
-          style={{ color: 'orange' }}
-          span={3}
-          order={5}
-        >
-          {identified}
-        </Col>
-        <Col
-          className="gutter-row"
-          style={{ color: 'purple' }}
-          span={3}
-          order={4}
-        >
-          {confirmed}
-        </Col>
-        <Col className="gutter-row" style={{ color: 'red' }} span={3} order={3}>
-          {rejected}
-        </Col>
-        <Col
-          className="gutter-row"
-          style={{ color: 'greem' }}
-          span={3}
-          order={2}
-        >
-          {complete}
-        </Col>
-        <Col
-          className="gutter-row"
-          style={{ color: 'black' }}
-          span={3}
-          order={1}
-        >
-          {selectedProvince}
-        </Col>
-      </Row>
-    </>
-  );
-
   const ProvinceSelect = () => {
     return (
-      <div>
-        <FormLabel>Select a province:</FormLabel>
-        <RadioGroup
-          name="provinceSelect"
-          aria-label="provinceSelect"
-          value={selectedProvince}
-          row
-          onChange={e => setSelectedProvince(e.target.value)}
-        >
-          <FormControlLabel
-            key="All Bridges"
-            value="All Bridges"
-            control={<Radio color="primary" />}
-            label="All Bridges"
-          />
-          {provinces.map(value => (
+      <Grid item spacing={1} container direction="column">
+        <Grid item>
+          <Typography variant="h6">Select a province:</Typography>
+        </Grid>
+        <Grid item>
+          <RadioGroup
+            name="provinceSelect"
+            aria-label="provinceSelect"
+            value={selectedProvince}
+            onChange={e => setSelectedProvince(e.target.value)}
+          >
             <FormControlLabel
-              key={value}
-              value={value}
+              key="All Bridges"
+              value="All Bridges"
               control={<Radio color="primary" />}
-              label={value}
+              label="All Bridges"
             />
-          ))}
-        </RadioGroup>
-      </div>
+            {provinces.map(value => (
+              <FormControlLabel
+                key={value}
+                value={value}
+                control={<Radio color="primary" />}
+                label={value}
+              />
+            ))}
+          </RadioGroup>
+        </Grid>
+      </Grid>
     );
   };
 
@@ -325,33 +249,62 @@ const BridgeStatusChart = () => {
     : {};
 
   return (
-    <div className="main">
-      <h2 className="header">Data Visualization</h2>
+    <Grid container>
+      <Grid item xs={1} lg={2}></Grid>
+      <Grid item xs={10} lg={8}>
+        <Grid
+          className={classes.root}
+          container
+          direction="column"
+          spacing={2}
+          xs={12}
+        >
+          <Grid item>
+            {/* <Typography variant="h4" align="center">
+          Data Visualization
+        </Typography> */}
+          </Grid>
+          <Grid item container spacing={2} alignItems="center">
+            {/* Radio buttons to select a province */}
+            <Grid item className="radioButtons" md={4}>
+              <ProvinceSelect />
+            </Grid>
+            <Grid item md={8} className={classes.data}>
+              <GridChart
+                complete={complete}
+                rejected={rejected}
+                confirmed={confirmed}
+                identified={identified}
+                prospecting={prospecting}
+                underConstruction={underConstruction}
+              />
+            </Grid>
+          </Grid>
 
-      {/* Radio buttons to select a province */}
-      <div className="radioButtons">
-        <ProvinceSelect />
-      </div>
-
-      <div className="grid">
-        /*{grid}*/
-        <GridChart
-          complete={complete}
-          rejected={rejected}
-          confirmed={confirmed}
-          identified={identified}
-          prospecting={prospecting}
-          underConstruction={underConstruction}
-        />
-      </div>
-      <div className="chartContainer">
-        <div className="barChart">{barChar}</div>
-        <div className="doughnutChart">
-          <ReactEcharts option={option} />
-        </div>
-      </div>
-      <div></div>
-    </div>
+          {/* <div className="grid">{grid}</div> */}
+          <Grid
+            item
+            container
+            className="chartContainer"
+            alignItems="center"
+            spacing={2}
+            md={12}
+          >
+            <Grid item md={6} sm={12}>
+              <Paper elevation={0} className={classes.bar}>
+                {barChar}
+              </Paper>
+            </Grid>
+            <Grid item md={6} sm={12}>
+              <Paper elevation={0} className={classes.pie}>
+                <ReactEcharts option={option} />
+              </Paper>
+            </Grid>
+          </Grid>
+        </Grid>
+      </Grid>
+      <Grid item xs={1} lg={2}></Grid>
+    </Grid>
   );
 };
 

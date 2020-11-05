@@ -23,6 +23,8 @@ import DetailsInfo from './DetailsInfo';
 import DataCard from './DataCard';
 import FilterBridgesCheckboxes from './FilterBridgesCheckboxes';
 
+import { Grid } from '@material-ui/core';
+
 let maxBounds = {
   minLatitude: -3.688855,
   minLongitude: 28.451506,
@@ -326,150 +328,160 @@ const RenderMap = () => {
   }
 
   return (
-    <div className="mapbox-react">
-      <ReactMapGL
-        id="map"
-        className="map"
-        ref={mapRef}
-        {...viewport}
-        width={screenWidth}
-        height={screenHeight}
-        mapStyle={mapView}
-        onViewportChange={handleViewportChange}
-        mapboxApiAccessToken={process.env.REACT_APP_MAPBOX_TOKEN}
-        interactiveLayerIds={[
-          'complete',
-          'rejected',
-          'identified',
-          'confirmed',
-          'prospecting',
-          'underConstruction',
-        ]}
-        onClick={handleClick}
-        maxZoom={16}
-        minZoom={6.5}
-        onLoad={addImage}
-      >
-        {geojsonComplete.features && (
-          <Source id="completeData" type="geojson" data={geojsonComplete}>
-            <Layer
-              id="complete"
-              type="symbol"
-              layout={{ 'icon-image': 'greenPin', 'icon-size': 0.35 }}
-            />
-          </Source>
-        )}
-        {geojsonRejected.features && (
-          <Source id="rejectedData" type="geojson" data={geojsonRejected}>
-            <Layer
-              id="rejected"
-              type="symbol"
-              layout={{ 'icon-image': 'redPin', 'icon-size': 0.35 }}
-            />
-          </Source>
-        )}
-        {geojsonConfirmed.features && (
-          <Source id="confirmedData" type="geojson" data={geojsonConfirmed}>
-            <Layer
-              id="confirmed"
-              type="symbol"
-              layout={{ 'icon-image': 'purplePin', 'icon-size': 0.35 }}
-            />
-          </Source>
-        )}
-        {geojsonIdentified.features && (
-          <Source id="identifiedData" type="geojson" data={geojsonIdentified}>
-            <Layer
-              id="identified"
-              type="symbol"
-              layout={{ 'icon-image': 'orangePin', 'icon-size': 0.35 }}
-            />
-          </Source>
-        )}
-        {geojsonProspecting.features && (
-          <Source id="prospectingData" type="geojson" data={geojsonProspecting}>
-            <Layer
-              id="prospecting"
-              type="symbol"
-              layout={{ 'icon-image': 'bluePin', 'icon-size': 0.35 }}
-            />
-          </Source>
-        )}
-        {geojsonUnderConstruction.features && (
-          <Source
-            id="underConstructionData"
-            type="geojson"
-            data={geojsonUnderConstruction}
-          >
-            <Layer
-              id="underConstruction"
-              type="symbol"
-              layout={{ 'icon-image': 'grayPin', 'icon-size': 0.35 }}
-            />
-          </Source>
-        )}
-
-        <div className="toggle">
-          <MenuOutlined
-            onClick={() => {
-              myFunction();
-            }}
-            style={{ fontSize: '20px' }}
-          />
-        </div>
-        <div
-          className="fullScreenControl"
-          onClick={() => setFullscreen(!fullscreen)}
+    <Grid container>
+      <Grid item md={0}></Grid>
+      <Grid item md={12} container className="mapbox-react">
+        <ReactMapGL
+          id="map"
+          className="map"
+          ref={mapRef}
+          {...viewport}
+          width={screenWidth}
+          height={screenHeight}
+          mapStyle={mapView}
+          onViewportChange={handleViewportChange}
+          mapboxApiAccessToken={process.env.REACT_APP_MAPBOX_TOKEN}
+          interactiveLayerIds={[
+            'complete',
+            'rejected',
+            'identified',
+            'confirmed',
+            'prospecting',
+            'underConstruction',
+          ]}
+          onClick={handleClick}
+          maxZoom={16}
+          minZoom={6.5}
+          onLoad={addImage}
         >
-          <FullscreenControl />
-        </div>
-        <div className="navigationControl">
-          <NavigationControl />
-        </div>
-        <div className={`desktop ${disappear}`} id="show">
-          <div ref={geocoderContainerRef} className="search-bar">
-            <Geocoder
-              mapRef={mapRef}
-              countries="rw"
-              marker={false}
-              onViewportChange={handleViewportChange}
-              // width="10%"
-              containerRef={geocoderContainerRef}
-              mapboxApiAccessToken={process.env.REACT_APP_MAPBOX_TOKEN}
-              position="top-left"
-            />
-          </div>
+          {geojsonComplete.features && (
+            <Source id="completeData" type="geojson" data={geojsonComplete}>
+              <Layer
+                id="complete"
+                type="symbol"
+                layout={{ 'icon-image': 'greenPin', 'icon-size': 0.35 }}
+              />
+            </Source>
+          )}
+          {geojsonRejected.features && (
+            <Source id="rejectedData" type="geojson" data={geojsonRejected}>
+              <Layer
+                id="rejected"
+                type="symbol"
+                layout={{ 'icon-image': 'redPin', 'icon-size': 0.35 }}
+              />
+            </Source>
+          )}
+          {geojsonConfirmed.features && (
+            <Source id="confirmedData" type="geojson" data={geojsonConfirmed}>
+              <Layer
+                id="confirmed"
+                type="symbol"
+                layout={{ 'icon-image': 'purplePin', 'icon-size': 0.35 }}
+              />
+            </Source>
+          )}
+          {geojsonIdentified.features && (
+            <Source id="identifiedData" type="geojson" data={geojsonIdentified}>
+              <Layer
+                id="identified"
+                type="symbol"
+                layout={{ 'icon-image': 'orangePin', 'icon-size': 0.35 }}
+              />
+            </Source>
+          )}
+          {geojsonProspecting.features && (
+            <Source
+              id="prospectingData"
+              type="geojson"
+              data={geojsonProspecting}
+            >
+              <Layer
+                id="prospecting"
+                type="symbol"
+                layout={{ 'icon-image': 'bluePin', 'icon-size': 0.35 }}
+              />
+            </Source>
+          )}
+          {geojsonUnderConstruction.features && (
+            <Source
+              id="underConstructionData"
+              type="geojson"
+              data={geojsonUnderConstruction}
+            >
+              <Layer
+                id="underConstruction"
+                type="symbol"
+                layout={{ 'icon-image': 'grayPin', 'icon-size': 0.35 }}
+              />
+            </Source>
+          )}
 
-          <div className="check-box">
-            <FilterBridgesCheckboxes
-              certainBridgeShows={certainBridgeShows}
-              allChecked={allChecked}
-              setAllChecked={setAllChecked}
-              completedChecked={completedChecked}
-              setCompletedChecked={setCompletedChecked}
-              rejectedChecked={rejectedChecked}
-              setRejectedChecked={setRejectedChecked}
-              identifiedChecked={identifiedChecked}
-              setIdentifiedChecked={setIdentifiedChecked}
-              confirmedChecked={confirmedChecked}
-              setConfirmedChecked={setConfirmedChecked}
-              prospectingChecked={prospectingChecked}
-              setProspectingChecked={setProspectingChecked}
-              constructionChecked={constructionChecked}
-              setConstructionChecked={setConstructionChecked}
+          <div className="toggle">
+            <MenuOutlined
+              onClick={() => {
+                myFunction();
+              }}
+              style={{ fontSize: '20px' }}
             />
           </div>
-          <div className="satellite">
-            <label id="satellite-label">Satellite</label>
-            <Switch onChange={handleMapView} />
+          <div
+            className="fullScreenControl"
+            onClick={() => setFullscreen(!fullscreen)}
+          >
+            <FullscreenControl />
           </div>
-        </div>
-        {fullscreen && detailsData && <DetailsInfo />}
-        {fullscreen && detailsData && 'gdpData' in detailsData && <DataCard />}
-      </ReactMapGL>
-      {!fullscreen && detailsData && <DetailsInfo />}
-      {!fullscreen && detailsData && 'gdpData' in detailsData && <DataCard />}
-    </div>
+          <div className="navigationControl">
+            <NavigationControl />
+          </div>
+          <div className={`desktop ${disappear}`} id="show">
+            <div ref={geocoderContainerRef} className="search-bar">
+              <Geocoder
+                mapRef={mapRef}
+                countries="rw"
+                marker={false}
+                onViewportChange={handleViewportChange}
+                // width="10%"
+                containerRef={geocoderContainerRef}
+                mapboxApiAccessToken={process.env.REACT_APP_MAPBOX_TOKEN}
+                position="top-left"
+              />
+            </div>
+
+            <div className="check-box">
+              <FilterBridgesCheckboxes
+                certainBridgeShows={certainBridgeShows}
+                allChecked={allChecked}
+                setAllChecked={setAllChecked}
+                completedChecked={completedChecked}
+                setCompletedChecked={setCompletedChecked}
+                rejectedChecked={rejectedChecked}
+                setRejectedChecked={setRejectedChecked}
+                identifiedChecked={identifiedChecked}
+                setIdentifiedChecked={setIdentifiedChecked}
+                confirmedChecked={confirmedChecked}
+                setConfirmedChecked={setConfirmedChecked}
+                prospectingChecked={prospectingChecked}
+                setProspectingChecked={setProspectingChecked}
+                constructionChecked={constructionChecked}
+                setConstructionChecked={setConstructionChecked}
+              />
+            </div>
+            <div className="satellite">
+              <label id="satellite-label">Satellite</label>
+              <Switch onChange={handleMapView} />
+            </div>
+          </div>
+          {fullscreen && detailsData && <DetailsInfo />}
+          {fullscreen && detailsData && 'gdpData' in detailsData && (
+            <DataCard />
+          )}
+        </ReactMapGL>
+        {!fullscreen && detailsData && <DetailsInfo />}
+        {!fullscreen && detailsData && 'gdpData' in detailsData && <DataCard />}
+      </Grid>
+      <Grid item md={0}></Grid>
+    </Grid>
   );
 };
 

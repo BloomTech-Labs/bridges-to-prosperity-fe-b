@@ -21,7 +21,6 @@ import HomePageReact from './components/pages/HomePage/HomePageContent';
 import { FormikForm } from './components/pages/Form';
 import addABridge from './components/pages/Form/AddABridge';
 import { createMuiTheme, ThemeProvider } from '@material-ui/core/styles';
-import { green } from '@material-ui/core/colors';
 
 ReactDOM.render(
   <Router>
