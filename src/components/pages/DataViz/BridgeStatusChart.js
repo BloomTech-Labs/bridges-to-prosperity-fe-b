@@ -1,8 +1,6 @@
 import React, { useState, useContext, useEffect } from 'react';
 import { BridgesContext } from '../../../state/bridgesContext';
 import { Bar } from 'react-chartjs-2';
-import { Dropdown, Menu, Row, Col } from 'antd';
-import { DownOutlined } from '@ant-design/icons';
 import {
   Radio,
   RadioGroup,
@@ -10,7 +8,6 @@ import {
   FormControlLabel,
   Grid,
   Typography,
-  Button,
   Paper,
 } from '@material-ui/core/';
 import ReactEcharts from 'echarts-for-react';
