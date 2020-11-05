@@ -34,7 +34,7 @@ const Navigation = props => {
         container
         alignItems="center"
         spacing={1}
-        xs={6}
+        xs={8}
         onClick={() => {
           push('/');
         }}
@@ -53,7 +53,7 @@ const Navigation = props => {
       <Grid
         item
         container
-        xs={6}
+        xs={4}
         justify="flex-end"
         spacing={2}
         alignItems="center"

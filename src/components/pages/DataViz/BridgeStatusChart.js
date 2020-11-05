@@ -259,7 +259,13 @@ const BridgeStatusChart = () => {
     : {};
 
   return (
-    <Grid className={classes.root} container direction="column" spacing={2}>
+    <Grid
+      className={classes.root}
+      container
+      direction="column"
+      spacing={2}
+      xs={12}
+    >
       <Grid item>
         {/* <Typography variant="h4" align="center">
           Data Visualization
@@ -283,11 +289,17 @@ const BridgeStatusChart = () => {
       </Grid>
 
       {/* <div className="grid">{grid}</div> */}
-      <Grid item container className="chartContainer" md={12} spacing={2}>
-        <Grid item md={6}>
+      <Grid
+        item
+        container
+        className="chartContainer"
+        alignItems="center"
+        spacing={2}
+      >
+        <Grid item md={6} xs={12}>
           <Paper className={classes.bar}>{barChar}</Paper>
         </Grid>
-        <Grid item md={6}>
+        <Grid item md={6} xs={12}>
           <Paper className={classes.pie}>
             <ReactEcharts option={option} />
           </Paper>
