@@ -23,7 +23,7 @@ import DetailsInfo from './DetailsInfo';
 import DataCard from './DataCard';
 import FilterBridgesCheckboxes from './FilterBridgesCheckboxes';
 
-import { Grid, Paper } from '@material-ui/core';
+import { Grid } from '@material-ui/core';
 
 let maxBounds = {
   minLatitude: -3.688855,
