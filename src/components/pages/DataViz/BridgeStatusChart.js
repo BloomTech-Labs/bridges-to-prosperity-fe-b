@@ -3,6 +3,12 @@ import { BridgesContext } from '../../../state/bridgesContext';
 import { Bar } from 'react-chartjs-2';
 import { Dropdown, Menu, Row, Col } from 'antd';
 import { DownOutlined } from '@ant-design/icons';
+import {
+  Radio,
+  RadioGroup,
+  FormLabel,
+  FormControlLabel,
+} from '@material-ui/core/';
 import ReactEcharts from 'echarts-for-react';
 import GridChart from './GridChart';
 
@@ -171,41 +177,35 @@ const BridgeStatusChart = () => {
     </>
   );
 
-  // console.log(`copmplete: ${complete}`);
-  // console.log(`rejected: ${rejected}`);
-  // console.log(`conformed: ${confirmed}`);
-  // console.log(`identified: ${identified}`);
-  // console.log(`prospecting: ${prospecting}`);
-  // console.log(`Under Construction: ${underConstruction}`);
-  // console.log(`totla ${bridgeData && bridgeData.length}`);
-
-  const provinceMenu = (
-    <Menu>
-      <Menu.Item className="menuItem">
-        <span
-          onClick={() => {
-            setSelectedProvince('All Bridges');
-          }}
+  const ProvinceSelect = () => {
+    return (
+      <div>
+        <FormLabel>Select a province:</FormLabel>
+        <RadioGroup
+          name="provinceSelect"
+          aria-label="provinceSelect"
+          value={selectedProvince}
+          row
+          onChange={e => setSelectedProvince(e.target.value)}
         >
-          All
-        </span>
-      </Menu.Item>
-
-      {provinces.map(province => {
-        return (
-          <Menu.Item className="menuItem">
-            <span
-              onClick={() => {
-                setSelectedProvince(province);
-              }}
-            >
-              {province}
-            </span>
-          </Menu.Item>
-        );
-      })}
-    </Menu>
-  );
+          <FormControlLabel
+            key="All Bridges"
+            value="All Bridges"
+            control={<Radio color="primary" />}
+            label="All Bridges"
+          />
+          {provinces.map(value => (
+            <FormControlLabel
+              key={value}
+              value={value}
+              control={<Radio color="primary" />}
+              label={value}
+            />
+          ))}
+        </RadioGroup>
+      </div>
+    );
+  };
 
   const barChar = bridgeData ? (
     <Bar
@@ -328,12 +328,11 @@ const BridgeStatusChart = () => {
     <div className="main">
       <h2 className="header">Data Visualization</h2>
 
-      <Dropdown className="dropDown" overlay={provinceMenu}>
-        <a className="detailsInfo" onClick={e => e.preventDefault()}>
-          <span className="label"> Pick A Province: </span>
-          {selectedProvince} <DownOutlined />
-        </a>
-      </Dropdown>
+      {/* Radio buttons to select a province */}
+      <div className="radioButtons">
+        <ProvinceSelect />
+      </div>
+
       <div className="grid">
         /*{grid}*/
         <GridChart

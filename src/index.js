@@ -20,6 +20,8 @@ import { DetailsCard } from './components/pages/DetailsPage';
 import HomePageReact from './components/pages/HomePage/HomePageContent';
 import { FormikForm } from './components/pages/Form';
 import addABridge from './components/pages/Form/AddABridge';
+import { createMuiTheme, ThemeProvider } from '@material-ui/core/styles';
+import { green } from '@material-ui/core/colors';
 
 ReactDOM.render(
   <Router>
@@ -44,22 +46,34 @@ function App() {
     history.push('/login');
   };
 
+  const theme = createMuiTheme({
+    palette: {
+      primary: {
+        main: '#009149',
+        light: '#4ec275',
+        dark: '#00621e',
+      },
+    },
+  });
+
   return (
     <BridgesContext.Provider
       value={{ bridgeData, setBridgeData, detailsData, setDetailsData }}
     >
       <Security {...config} onAuthRequired={authHandler}>
-        <Switch>
-          <Route path="/login" component={LoginPage} />
-          <Route path="/implicit/callback" component={LoginCallback} />
-          {/* any of the routes you need secured should be registered as SecureRoutes */}
-          <Route exact path="/" component={HomePageReact} />
-          <SecureRoute path="/table" component={UserTable} />
-          <SecureRoute path="/details/:cardId" component={DetailsCard} />
-          <SecureRoute path="/form" component={FormikForm} />
-          <SecureRoute path="/addabridge" component={addABridge} />
-          <Route component={NotFoundPage} />
-        </Switch>
+        <ThemeProvider theme={theme}>
+          <Switch>
+            <Route path="/login" component={LoginPage} />
+            <Route path="/implicit/callback" component={LoginCallback} />
+            {/* any of the routes you need secured should be registered as SecureRoutes */}
+            <Route exact path="/" component={HomePageReact} />
+            <SecureRoute path="/table" component={UserTable} />
+            <SecureRoute path="/details/:cardId" component={DetailsCard} />
+            <SecureRoute path="/form" component={FormikForm} />
+            <SecureRoute path="/addabridge" component={addABridge} />
+            <Route component={NotFoundPage} />
+          </Switch>
+        </ThemeProvider>
       </Security>
     </BridgesContext.Provider>
   );
