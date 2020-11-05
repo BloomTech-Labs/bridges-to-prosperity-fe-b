@@ -31,7 +31,7 @@
     box-shadow: 2px 1px 5px 0px rgba(148, 142, 148, 1);
     
     width: 20vw;
-    height: 50vh;
+    padding: 1%;
 
     .closeButton:hover {
       cursor: pointer;
@@ -42,6 +42,10 @@
       flex-direction: column;
       align-items: center;
       justify-content: center;
+
+      h2 {
+        margin: 0 auto;
+      }
     }
 
     img{

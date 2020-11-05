@@ -75,7 +75,7 @@ const DetailsInfo = props => {
           {/* Conditional Render of GDP Button */}
           {detailsData.project_stage === 'Prospecting' ? (
             <p className="info">
-              <span className="infoLabel"> GDP per Capita:</span>
+              <span className="infoLabel"> GDP per Capita: </span>
               <button
                 className="dataIcon"
                 role="img"
