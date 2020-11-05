@@ -1,4 +1,4 @@
-import React, { useContext, useState, useEffect, useRef } from 'react';
+import React, { useContext, useState, useEffect } from 'react';
 import Navigation from '../../common/Navigation';
 import { BridgesContext } from '../../../state/bridgesContext';
 import { useHistory, Link } from 'react-router-dom';
