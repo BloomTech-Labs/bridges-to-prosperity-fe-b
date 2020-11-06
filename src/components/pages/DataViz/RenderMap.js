@@ -49,7 +49,7 @@ const RenderMap = () => {
   const [fullscreen, setFullscreen] = useState(false);
 
   const [mapView, setMapView] = useState(
-    'mapbox://styles/bridgestoprosperity/ckfyi6iaz0a9q19nu3dyoq0md'
+    'mapbox://styles/loganmetzger/ckh5f3tdp08z619phf7nq2rln'
   );
 
   const [viewport, setViewport] = useState({
@@ -241,9 +241,7 @@ const RenderMap = () => {
       );
     } else {
       addImage();
-      setMapView(
-        'mapbox://styles/bridgestoprosperity/ckfyi6iaz0a9q19nu3dyoq0md'
-      );
+      setMapView('mapbox://styles/loganmetzger/ckh5f3tdp08z619phf7nq2rln');
     }
   };
 
