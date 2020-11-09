@@ -34,7 +34,7 @@ const defaultState = {
 };
 
 const AddABridge = () => {
-  const [newBridge, setNewBridge] = useState(defaultState);
+  const [newBridge, setNewBrdge] = useState(defaultState);
   const { push } = useHistory();
   return (
     <>

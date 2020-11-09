@@ -1,13 +1,10 @@
 import React from 'react';
-import { Grid, Typography, Button } from '@material-ui/core';
+import { Grid, Typography, Button, Box } from '@material-ui/core';
 import { Link, useHistory } from 'react-router-dom';
 import { useOktaAuth } from '@okta/okta-react';
 import { makeStyles } from '@material-ui/core/styles';
 
 const useStyles = makeStyles({
-  root: {
-    height: '80px',
-  },
   logo: {
     width: '35px',
   },
@@ -20,7 +17,7 @@ const Navigation = props => {
   const { push } = useHistory();
 
   return (
-    <Grid container className={classes.root}>
+    <Box display="flex" minHeight="80px" py="5px">
       <Grid item xs={1}></Grid>
       <Grid item xs={10} container>
         <Grid
@@ -28,7 +25,8 @@ const Navigation = props => {
           container
           alignItems="center"
           spacing={1}
-          xs={8}
+          xs={10}
+          sm={8}
           onClick={() => {
             push('/');
           }}
@@ -47,7 +45,8 @@ const Navigation = props => {
         <Grid
           item
           container
-          xs={4}
+          xs={2}
+          sm={4}
           justify="flex-end"
           spacing={2}
           alignItems="center"
@@ -88,7 +87,7 @@ const Navigation = props => {
         </Grid>
       </Grid>
       <Grid item xs={1}></Grid>
-    </Grid>
+    </Box>
   );
 };
 

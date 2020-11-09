@@ -4,17 +4,27 @@ import { Bar } from 'react-chartjs-2';
 import {
   Radio,
   RadioGroup,
-  FormLabel,
   FormControlLabel,
   Grid,
   Typography,
   Paper,
+  Box,
+  AppBar,
+  Tabs,
+  Tab,
 } from '@material-ui/core/';
 import ReactEcharts from 'echarts-for-react';
 import GridChart from './GridChart';
 import { makeStyles } from '@material-ui/core/styles';
+import PropTypes from 'prop-types';
+import AssessmentOutlinedIcon from '@material-ui/icons/AssessmentOutlined';
+import PieChartOutlinedIcon from '@material-ui/icons/PieChartOutlined';
 
-const useStyles = makeStyles({
+const useStyles = makeStyles(theme => ({
+  tabs: {
+    flexGrow: 1,
+    backgroundColor: theme.palette.background.paper,
+  },
   root: {
     marginBottom: '50px',
     marginTop: '50px',
@@ -23,17 +33,17 @@ const useStyles = makeStyles({
     width: '35px',
   },
   bar: {
-    width: '450px',
-    height: '450px',
+    width: '400px',
+    height: '400px',
     padding: '10px',
   },
   pie: {
     padding: '10px',
-    width: '450px',
-    height: '450px',
-    paddingTop: '75px',
+    width: '400px',
+    height: '400px',
+    paddingTop: '0px',
   },
-});
+}));
 
 const BridgeStatusChart = () => {
   const classes = useStyles();
@@ -41,6 +51,7 @@ const BridgeStatusChart = () => {
   const { bridgeData } = useContext(BridgesContext);
   const [selectedProvince, setSelectedProvince] = useState('All Bridges');
   const [currentData, setCurrentData] = useState([]);
+  const [value, setValue] = React.useState(0);
 
   if (!currentData && bridgeData) {
     setCurrentData(bridgeData);
@@ -55,7 +66,7 @@ const BridgeStatusChart = () => {
       });
       setCurrentData(data);
     }
-  }, [selectedProvince]);
+  }, [selectedProvince, bridgeData]);
 
   let complete = 0;
   let rejected = 0;
@@ -248,63 +259,86 @@ const BridgeStatusChart = () => {
       }
     : {};
 
-  return (
-    <Grid container>
-      <Grid item xs={1} lg={2}></Grid>
-      <Grid item xs={10} lg={8}>
-        <Grid
-          className={classes.root}
-          container
-          direction="column"
-          spacing={2}
-          xs={12}
-        >
-          <Grid item>
-            {/* <Typography variant="h4" align="center">
-          Data Visualization
-        </Typography> */}
-          </Grid>
-          <Grid item container spacing={2} alignItems="center">
-            {/* Radio buttons to select a province */}
-            <Grid item className="radioButtons" md={4}>
-              <ProvinceSelect />
-            </Grid>
-            <Grid item md={8} className={classes.data}>
-              <GridChart
-                complete={complete}
-                rejected={rejected}
-                confirmed={confirmed}
-                identified={identified}
-                prospecting={prospecting}
-                underConstruction={underConstruction}
-              />
-            </Grid>
-          </Grid>
+  const TabPanel = props => {
+    const { children, value, index, ...other } = props;
 
-          {/* <div className="grid">{grid}</div> */}
-          <Grid
-            item
-            container
-            className="chartContainer"
-            alignItems="center"
-            spacing={2}
-            md={12}
-          >
-            <Grid item md={6} sm={12}>
+    return (
+      <div
+        role="tabpanel"
+        hidden={value !== index}
+        id={`simple-tabpanel-${index}`}
+        aria-labelledby={`simple-tab-${index}`}
+        {...other}
+      >
+        {value === index && <Box p={3}>{children}</Box>}
+      </div>
+    );
+  };
+
+  TabPanel.propTypes = {
+    children: PropTypes.node,
+    index: PropTypes.any.isRequired,
+    value: PropTypes.any.isRequired,
+  };
+
+  function a11yProps(index) {
+    return {
+      id: `simple-tab-${index}`,
+      'aria-controls': `simple-tabpanel-${index}`,
+    };
+  }
+
+  const handleChange = (event, newValue) => {
+    setValue(newValue);
+  };
+
+  return (
+    <Box display="flex" my={4}>
+      <Grid item xs={0} sm={1}></Grid>
+      <Grid item container xs={12} sm={10} justify="space-even" spacing={1}>
+        {/* Radio buttons to select a province */}
+        <Grid item container md={6} justify="center" spacing={1}>
+          <Grid item className="radioButtons">
+            <ProvinceSelect />
+          </Grid>
+          <Grid item>
+            <GridChart
+              complete={complete}
+              rejected={rejected}
+              confirmed={confirmed}
+              identified={identified}
+              prospecting={prospecting}
+              underConstruction={underConstruction}
+            />
+          </Grid>
+        </Grid>
+        <Grid item container justify="center" md={6}>
+          <Paper position="static" color="transparent">
+            <Tabs
+              value={value}
+              onChange={handleChange}
+              aria-label="DataViz"
+              centered
+            >
+              <Tab icon={<AssessmentOutlinedIcon />} {...a11yProps(0)} />
+              <Tab icon={<PieChartOutlinedIcon />} {...a11yProps(1)} />
+            </Tabs>
+
+            <TabPanel value={value} index={0}>
               <Paper elevation={0} className={classes.bar}>
                 {barChar}
               </Paper>
-            </Grid>
-            <Grid item md={6} sm={12}>
+            </TabPanel>
+            <TabPanel value={value} index={1}>
               <Paper elevation={0} className={classes.pie}>
                 <ReactEcharts option={option} />
               </Paper>
-            </Grid>
-          </Grid>
+            </TabPanel>
+          </Paper>
         </Grid>
       </Grid>
-      <Grid item xs={1} lg={2}></Grid>
-    </Grid>
+      <Grid item xs={0} sm={1}></Grid>
+    </Box>
   );
 };
 
