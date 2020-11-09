@@ -3,8 +3,20 @@ import { Checkbox } from 'antd';
 
 const FilterBridgesCheckboxes = props => {
   return (
-    <div className="check-box-section">
-      <div className="restricted" style={{ color: 'black' }}>
+    <div className="check-box-section" style={{ cursor: 'pointer' }}>
+      <div
+        className="restricted"
+        style={{
+          backgroundColor: 'black',
+          color: 'white',
+          textShadow: '0 0 5px black',
+          padding: '.2rem',
+          paddingRight: '.3rem',
+          borderRadius: '5px',
+          margin: '.2rem',
+        }}
+        onClick={() => props.setAllChecked(!props.allChecked)}
+      >
         <Checkbox
           checked={props.allChecked}
           onChange={() => props.setAllChecked(!props.allChecked)}
@@ -12,7 +24,19 @@ const FilterBridgesCheckboxes = props => {
         />
         All
       </div>
-      <div className="restricted" style={{ color: 'red' }}>
+      <div
+        className="restricted"
+        style={{
+          backgroundColor: 'red',
+          color: 'white',
+          textShadow: '0 0 5px black',
+          padding: '.2rem',
+          paddingRight: '.3rem',
+          borderRadius: '5px',
+          margin: '.2rem',
+        }}
+        onClick={() => props.setRejectedChecked(!props.rejectedChecked)}
+      >
         <Checkbox
           checked={props.rejectedChecked}
           onChange={() => props.setRejectedChecked(!props.rejectedChecked)}
@@ -20,7 +44,19 @@ const FilterBridgesCheckboxes = props => {
         />
         Rejected
       </div>
-      <div className="restricted" style={{ color: 'orange' }}>
+      <div
+        className="restricted"
+        style={{
+          backgroundColor: 'orange',
+          color: 'white',
+          textShadow: '0 0 5px black',
+          padding: '.2rem',
+          paddingRight: '.3rem',
+          borderRadius: '5px',
+          margin: '.2rem',
+        }}
+        onClick={() => props.setIdentifiedChecked(!props.identifiedChecked)}
+      >
         <Checkbox
           checked={props.identifiedChecked}
           onChange={() => props.setIdentifiedChecked(!props.identifiedChecked)}
@@ -28,7 +64,19 @@ const FilterBridgesCheckboxes = props => {
         />{' '}
         Identified
       </div>
-      <div className="restricted" style={{ color: 'green' }}>
+      <div
+        className="restricted"
+        style={{
+          backgroundColor: 'green',
+          color: 'white',
+          textShadow: '0 0 5px black',
+          padding: '.2rem',
+          paddingRight: '.3rem',
+          borderRadius: '5px',
+          margin: '.2rem',
+        }}
+        onClick={() => props.setCompletedChecked(!props.completedChecked)}
+      >
         <Checkbox
           checked={props.completedChecked}
           onChange={() => props.setCompletedChecked(!props.completedChecked)}
@@ -36,7 +84,19 @@ const FilterBridgesCheckboxes = props => {
         />
         Completed
       </div>
-      <div className="restricted" style={{ color: 'purple' }}>
+      <div
+        className="restricted"
+        style={{
+          backgroundColor: 'purple',
+          color: 'white',
+          textShadow: '0 0 5px black',
+          padding: '.2rem',
+          paddingRight: '.3rem',
+          borderRadius: '5px',
+          margin: '.2rem',
+        }}
+        onClick={() => props.setConfirmedChecked(!props.confirmedChecked)}
+      >
         <Checkbox
           checked={props.confirmedChecked}
           onChange={() => props.setConfirmedChecked(!props.confirmedChecked)}
@@ -44,7 +104,19 @@ const FilterBridgesCheckboxes = props => {
         />{' '}
         Confirmed
       </div>
-      <div className="restricted" style={{ color: 'blue' }}>
+      <div
+        className="restricted"
+        style={{
+          backgroundColor: 'blue',
+          color: 'white',
+          textShadow: '0 0 5px black',
+          padding: '.2rem',
+          paddingRight: '.3rem',
+          borderRadius: '5px',
+          margin: '.2rem',
+        }}
+        onClick={() => props.setProspectingChecked(!props.prospectingChecked)}
+      >
         {' '}
         <Checkbox
           checked={props.prospectingChecked}
@@ -55,7 +127,19 @@ const FilterBridgesCheckboxes = props => {
         />{' '}
         Prospecting
       </div>
-      <div className="restricted" style={{ color: 'dark gray' }}>
+      <div
+        className="restricted"
+        style={{
+          backgroundColor: 'darkgray',
+          color: 'white',
+          textShadow: '0 0 5px black',
+          padding: '.2rem',
+          paddingRight: '.3rem',
+          borderRadius: '5px',
+          margin: '.2rem',
+        }}
+        onClick={() => props.setConstructionChecked(!props.constructionChecked)}
+      >
         <Checkbox
           checked={props.constructionChecked}
           onChange={() =>

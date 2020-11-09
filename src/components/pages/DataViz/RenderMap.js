@@ -446,6 +446,11 @@ const RenderMap = () => {
               />
             </div>
 
+            <div className="satellite">
+              <label id="satellite-label">Satellite</label>
+              <Switch onChange={handleMapView} />
+            </div>
+
             <div className="check-box">
               <FilterBridgesCheckboxes
                 certainBridgeShows={certainBridgeShows}
@@ -464,10 +469,6 @@ const RenderMap = () => {
                 constructionChecked={constructionChecked}
                 setConstructionChecked={setConstructionChecked}
               />
-            </div>
-            <div className="satellite">
-              <label id="satellite-label">Satellite</label>
-              <Switch onChange={handleMapView} />
             </div>
           </div>
           {fullscreen && detailsData && <DetailsInfo />}
