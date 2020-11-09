@@ -4,7 +4,17 @@ import { Checkbox } from 'antd';
 const FilterBridgesCheckboxes = props => {
   return (
     <div className="check-box-section">
-      <div className="restricted" style={{ color: 'black' }}>
+      <div
+        className="restricted"
+        style={{
+          backgroundColor: 'black',
+          color: 'white',
+          padding: '.2rem',
+          paddingRight: '.3rem',
+          borderRadius: '5px',
+          margin: '.2rem',
+        }}
+      >
         <Checkbox
           checked={props.allChecked}
           onChange={() => props.setAllChecked(!props.allChecked)}
@@ -12,7 +22,17 @@ const FilterBridgesCheckboxes = props => {
         />
         All
       </div>
-      <div className="restricted" style={{ color: 'red' }}>
+      <div
+        className="restricted"
+        style={{
+          backgroundColor: 'red',
+          color: 'white',
+          padding: '.2rem',
+          paddingRight: '.3rem',
+          borderRadius: '5px',
+          margin: '.2rem',
+        }}
+      >
         <Checkbox
           checked={props.rejectedChecked}
           onChange={() => props.setRejectedChecked(!props.rejectedChecked)}
@@ -20,7 +40,17 @@ const FilterBridgesCheckboxes = props => {
         />
         Rejected
       </div>
-      <div className="restricted" style={{ color: 'orange' }}>
+      <div
+        className="restricted"
+        style={{
+          backgroundColor: 'orange',
+          color: 'white',
+          padding: '.2rem',
+          paddingRight: '.3rem',
+          borderRadius: '5px',
+          margin: '.2rem',
+        }}
+      >
         <Checkbox
           checked={props.identifiedChecked}
           onChange={() => props.setIdentifiedChecked(!props.identifiedChecked)}
@@ -28,7 +58,17 @@ const FilterBridgesCheckboxes = props => {
         />{' '}
         Identified
       </div>
-      <div className="restricted" style={{ color: 'green' }}>
+      <div
+        className="restricted"
+        style={{
+          backgroundColor: 'green',
+          color: 'white',
+          padding: '.2rem',
+          paddingRight: '.3rem',
+          borderRadius: '5px',
+          margin: '.2rem',
+        }}
+      >
         <Checkbox
           checked={props.completedChecked}
           onChange={() => props.setCompletedChecked(!props.completedChecked)}
@@ -36,7 +76,17 @@ const FilterBridgesCheckboxes = props => {
         />
         Completed
       </div>
-      <div className="restricted" style={{ color: 'purple' }}>
+      <div
+        className="restricted"
+        style={{
+          backgroundColor: 'purple',
+          color: 'white',
+          padding: '.2rem',
+          paddingRight: '.3rem',
+          borderRadius: '5px',
+          margin: '.2rem',
+        }}
+      >
         <Checkbox
           checked={props.confirmedChecked}
           onChange={() => props.setConfirmedChecked(!props.confirmedChecked)}
@@ -44,7 +94,17 @@ const FilterBridgesCheckboxes = props => {
         />{' '}
         Confirmed
       </div>
-      <div className="restricted" style={{ color: 'blue' }}>
+      <div
+        className="restricted"
+        style={{
+          backgroundColor: 'blue',
+          color: 'white',
+          padding: '.2rem',
+          paddingRight: '.3rem',
+          borderRadius: '5px',
+          margin: '.2rem',
+        }}
+      >
         {' '}
         <Checkbox
           checked={props.prospectingChecked}
@@ -55,7 +115,17 @@ const FilterBridgesCheckboxes = props => {
         />{' '}
         Prospecting
       </div>
-      <div className="restricted" style={{ color: 'dark gray' }}>
+      <div
+        className="restricted"
+        style={{
+          backgroundColor: 'darkgray',
+          color: 'white',
+          padding: '.2rem',
+          paddingRight: '.3rem',
+          borderRadius: '5px',
+          margin: '.2rem',
+        }}
+      >
         <Checkbox
           checked={props.constructionChecked}
           onChange={() =>
