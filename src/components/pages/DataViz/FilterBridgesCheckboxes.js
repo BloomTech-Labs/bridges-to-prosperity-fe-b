@@ -3,7 +3,7 @@ import { Checkbox } from 'antd';
 
 const FilterBridgesCheckboxes = props => {
   return (
-    <div className="check-box-section">
+    <div className="check-box-section" style={{ cursor: 'pointer' }}>
       <div
         className="restricted"
         style={{
@@ -15,6 +15,7 @@ const FilterBridgesCheckboxes = props => {
           borderRadius: '5px',
           margin: '.2rem',
         }}
+        onClick={() => props.setAllChecked(!props.allChecked)}
       >
         <Checkbox
           checked={props.allChecked}
@@ -34,6 +35,7 @@ const FilterBridgesCheckboxes = props => {
           borderRadius: '5px',
           margin: '.2rem',
         }}
+        onClick={() => props.setRejectedChecked(!props.rejectedChecked)}
       >
         <Checkbox
           checked={props.rejectedChecked}
@@ -53,6 +55,7 @@ const FilterBridgesCheckboxes = props => {
           borderRadius: '5px',
           margin: '.2rem',
         }}
+        onClick={() => props.setIdentifiedChecked(!props.identifiedChecked)}
       >
         <Checkbox
           checked={props.identifiedChecked}
@@ -72,6 +75,7 @@ const FilterBridgesCheckboxes = props => {
           borderRadius: '5px',
           margin: '.2rem',
         }}
+        onClick={() => props.setCompletedChecked(!props.completedChecked)}
       >
         <Checkbox
           checked={props.completedChecked}
@@ -91,6 +95,7 @@ const FilterBridgesCheckboxes = props => {
           borderRadius: '5px',
           margin: '.2rem',
         }}
+        onClick={() => props.setConfirmedChecked(!props.confirmedChecked)}
       >
         <Checkbox
           checked={props.confirmedChecked}
@@ -110,6 +115,7 @@ const FilterBridgesCheckboxes = props => {
           borderRadius: '5px',
           margin: '.2rem',
         }}
+        onClick={() => props.setProspectingChecked(!props.prospectingChecked)}
       >
         {' '}
         <Checkbox
@@ -132,6 +138,7 @@ const FilterBridgesCheckboxes = props => {
           borderRadius: '5px',
           margin: '.2rem',
         }}
+        onClick={() => props.setConstructionChecked(!props.constructionChecked)}
       >
         <Checkbox
           checked={props.constructionChecked}
