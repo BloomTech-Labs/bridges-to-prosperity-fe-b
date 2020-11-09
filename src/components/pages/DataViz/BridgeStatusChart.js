@@ -33,15 +33,15 @@ const useStyles = makeStyles(theme => ({
     width: '35px',
   },
   bar: {
-    width: '450px',
-    height: '450px',
+    width: '400px',
+    height: '400px',
     padding: '10px',
   },
   pie: {
     padding: '10px',
-    width: '450px',
-    height: '450px',
-    paddingTop: '75px',
+    width: '400px',
+    height: '400px',
+    paddingTop: '0px',
   },
 }));
 
@@ -293,76 +293,52 @@ const BridgeStatusChart = () => {
   };
 
   return (
-    <Grid container>
-      <Grid item xs={1} lg={2}></Grid>
-      <Grid item xs={10} lg={8}>
-        <Grid
-          className={classes.root}
-          container
-          direction="column"
-          spacing={2}
-          xs={12}
-        >
+    <Box display="flex" my={4}>
+      <Grid item xs={0} sm={1}></Grid>
+      <Grid item container xs={12} sm={10} justify="space-even" spacing={1}>
+        {/* Radio buttons to select a province */}
+        <Grid item container md={6} justify="center" spacing={1}>
+          <Grid item className="radioButtons">
+            <ProvinceSelect />
+          </Grid>
           <Grid item>
-            {/* <Typography variant="h4" align="center">
-          Data Visualization
-        </Typography> */}
-          </Grid>
-          <Grid item container spacing={2} alignItems="center">
-            {/* Radio buttons to select a province */}
-            <Grid item className="radioButtons" md={4}>
-              <ProvinceSelect />
-            </Grid>
-            <Grid item md={8} className={classes.data}>
-              <GridChart
-                complete={complete}
-                rejected={rejected}
-                confirmed={confirmed}
-                identified={identified}
-                prospecting={prospecting}
-                underConstruction={underConstruction}
-              />
-            </Grid>
-          </Grid>
-
-          {/* <div className="grid">{grid}</div> */}
-          <Grid
-            item
-            container
-            className="chartContainer"
-            alignItems="center"
-            spacing={2}
-            md={12}
-          >
-            <Grid item container justify="center">
-              <Paper position="static" color="transparent">
-                <Tabs
-                  value={value}
-                  onChange={handleChange}
-                  aria-label="DataViz"
-                  centered
-                >
-                  <Tab icon={<AssessmentOutlinedIcon />} {...a11yProps(0)} />
-                  <Tab icon={<PieChartOutlinedIcon />} {...a11yProps(1)} />
-                </Tabs>
-
-                <TabPanel value={value} index={0}>
-                  <Paper elevation={0} className={classes.bar}>
-                    {barChar}
-                  </Paper>
-                </TabPanel>
-                <TabPanel value={value} index={1}>
-                  <Paper elevation={0} className={classes.pie}>
-                    <ReactEcharts option={option} />
-                  </Paper>
-                </TabPanel>
-              </Paper>
-            </Grid>
+            <GridChart
+              complete={complete}
+              rejected={rejected}
+              confirmed={confirmed}
+              identified={identified}
+              prospecting={prospecting}
+              underConstruction={underConstruction}
+            />
           </Grid>
         </Grid>
+        <Grid item container justify="center" md={6}>
+          <Paper position="static" color="transparent">
+            <Tabs
+              value={value}
+              onChange={handleChange}
+              aria-label="DataViz"
+              centered
+            >
+              <Tab icon={<AssessmentOutlinedIcon />} {...a11yProps(0)} />
+              <Tab icon={<PieChartOutlinedIcon />} {...a11yProps(1)} />
+            </Tabs>
+
+            <TabPanel value={value} index={0}>
+              <Paper elevation={0} className={classes.bar}>
+                {barChar}
+              </Paper>
+            </TabPanel>
+            <TabPanel value={value} index={1}>
+              <Paper elevation={0} className={classes.pie}>
+                <ReactEcharts option={option} />
+              </Paper>
+            </TabPanel>
+          </Paper>
+        </Grid>
       </Grid>
-      <Grid item xs={1} lg={2}></Grid>
-    </Grid>
+      <Grid item xs={0} sm={1}></Grid>
+    </Box>
   );
 };
 
