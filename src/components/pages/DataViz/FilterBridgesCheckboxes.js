@@ -9,6 +9,7 @@ const FilterBridgesCheckboxes = props => {
         style={{
           backgroundColor: 'black',
           color: 'white',
+          textShadow: '0 0 5px black',
           padding: '.2rem',
           paddingRight: '.3rem',
           borderRadius: '5px',
@@ -27,6 +28,7 @@ const FilterBridgesCheckboxes = props => {
         style={{
           backgroundColor: 'red',
           color: 'white',
+          textShadow: '0 0 5px black',
           padding: '.2rem',
           paddingRight: '.3rem',
           borderRadius: '5px',
@@ -45,6 +47,7 @@ const FilterBridgesCheckboxes = props => {
         style={{
           backgroundColor: 'orange',
           color: 'white',
+          textShadow: '0 0 5px black',
           padding: '.2rem',
           paddingRight: '.3rem',
           borderRadius: '5px',
@@ -63,6 +66,7 @@ const FilterBridgesCheckboxes = props => {
         style={{
           backgroundColor: 'green',
           color: 'white',
+          textShadow: '0 0 5px black',
           padding: '.2rem',
           paddingRight: '.3rem',
           borderRadius: '5px',
@@ -81,6 +85,7 @@ const FilterBridgesCheckboxes = props => {
         style={{
           backgroundColor: 'purple',
           color: 'white',
+          textShadow: '0 0 5px black',
           padding: '.2rem',
           paddingRight: '.3rem',
           borderRadius: '5px',
@@ -99,6 +104,7 @@ const FilterBridgesCheckboxes = props => {
         style={{
           backgroundColor: 'blue',
           color: 'white',
+          textShadow: '0 0 5px black',
           padding: '.2rem',
           paddingRight: '.3rem',
           borderRadius: '5px',
@@ -120,6 +126,7 @@ const FilterBridgesCheckboxes = props => {
         style={{
           backgroundColor: 'darkgray',
           color: 'white',
+          textShadow: '0 0 5px black',
           padding: '.2rem',
           paddingRight: '.3rem',
           borderRadius: '5px',
