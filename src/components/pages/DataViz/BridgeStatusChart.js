@@ -4,17 +4,25 @@ import { Bar } from 'react-chartjs-2';
 import {
   Radio,
   RadioGroup,
-  FormLabel,
   FormControlLabel,
   Grid,
   Typography,
   Paper,
+  Box,
+  AppBar,
+  Tabs,
+  Tab,
 } from '@material-ui/core/';
 import ReactEcharts from 'echarts-for-react';
 import GridChart from './GridChart';
 import { makeStyles } from '@material-ui/core/styles';
+import PropTypes from 'prop-types';
 
-const useStyles = makeStyles({
+const useStyles = makeStyles(theme => ({
+  tabs: {
+    flexGrow: 1,
+    backgroundColor: theme.palette.background.paper,
+  },
   root: {
     marginBottom: '50px',
     marginTop: '50px',
@@ -33,7 +41,7 @@ const useStyles = makeStyles({
     height: '450px',
     paddingTop: '75px',
   },
-});
+}));
 
 const BridgeStatusChart = () => {
   const classes = useStyles();
@@ -41,6 +49,7 @@ const BridgeStatusChart = () => {
   const { bridgeData } = useContext(BridgesContext);
   const [selectedProvince, setSelectedProvince] = useState('All Bridges');
   const [currentData, setCurrentData] = useState([]);
+  const [value, setValue] = React.useState(0);
 
   if (!currentData && bridgeData) {
     setCurrentData(bridgeData);
@@ -55,7 +64,7 @@ const BridgeStatusChart = () => {
       });
       setCurrentData(data);
     }
-  }, [selectedProvince]);
+  }, [selectedProvince, bridgeData]);
 
   let complete = 0;
   let rejected = 0;
@@ -248,6 +257,39 @@ const BridgeStatusChart = () => {
       }
     : {};
 
+  const TabPanel = props => {
+    const { children, value, index, ...other } = props;
+
+    return (
+      <div
+        role="tabpanel"
+        hidden={value !== index}
+        id={`simple-tabpanel-${index}`}
+        aria-labelledby={`simple-tab-${index}`}
+        {...other}
+      >
+        {value === index && <Box p={3}>{children}</Box>}
+      </div>
+    );
+  };
+
+  TabPanel.propTypes = {
+    children: PropTypes.node,
+    index: PropTypes.any.isRequired,
+    value: PropTypes.any.isRequired,
+  };
+
+  function a11yProps(index) {
+    return {
+      id: `simple-tab-${index}`,
+      'aria-controls': `simple-tabpanel-${index}`,
+    };
+  }
+
+  const handleChange = (event, newValue) => {
+    setValue(newValue);
+  };
+
   return (
     <Grid container>
       <Grid item xs={1} lg={2}></Grid>
@@ -290,14 +332,28 @@ const BridgeStatusChart = () => {
             spacing={2}
             md={12}
           >
-            <Grid item md={6} sm={12}>
-              <Paper elevation={0} className={classes.bar}>
-                {barChar}
-              </Paper>
-            </Grid>
-            <Grid item md={6} sm={12}>
-              <Paper elevation={0} className={classes.pie}>
-                <ReactEcharts option={option} />
+            <Grid item container justify="center">
+              <Paper position="static" color="transparent">
+                <Tabs
+                  value={value}
+                  onChange={handleChange}
+                  aria-label="DataViz"
+                  centered
+                >
+                  <Tab label="Bar Chart" {...a11yProps(0)} />
+                  <Tab label="Pie Chart" {...a11yProps(1)} />
+                </Tabs>
+
+                <TabPanel value={value} index={0}>
+                  <Paper elevation={0} className={classes.bar}>
+                    {barChar}
+                  </Paper>
+                </TabPanel>
+                <TabPanel value={value} index={1}>
+                  <Paper elevation={0} className={classes.pie}>
+                    <ReactEcharts option={option} />
+                  </Paper>
+                </TabPanel>
               </Paper>
             </Grid>
           </Grid>
