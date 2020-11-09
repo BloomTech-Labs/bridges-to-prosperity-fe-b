@@ -17,6 +17,8 @@ import ReactEcharts from 'echarts-for-react';
 import GridChart from './GridChart';
 import { makeStyles } from '@material-ui/core/styles';
 import PropTypes from 'prop-types';
+import AssessmentOutlinedIcon from '@material-ui/icons/AssessmentOutlined';
+import PieChartOutlinedIcon from '@material-ui/icons/PieChartOutlined';
 
 const useStyles = makeStyles(theme => ({
   tabs: {
@@ -340,8 +342,8 @@ const BridgeStatusChart = () => {
                   aria-label="DataViz"
                   centered
                 >
-                  <Tab label="Bar Chart" {...a11yProps(0)} />
-                  <Tab label="Pie Chart" {...a11yProps(1)} />
+                  <Tab icon={<AssessmentOutlinedIcon />} {...a11yProps(0)} />
+                  <Tab icon={<PieChartOutlinedIcon />} {...a11yProps(1)} />
                 </Tabs>
 
                 <TabPanel value={value} index={0}>
