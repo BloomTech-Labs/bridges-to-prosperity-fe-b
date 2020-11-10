@@ -234,14 +234,14 @@ const RenderMap = () => {
   };
 
   const handleMapView = checked => {
-    if (checked === true) {
+    if (checked === false) {
+      addImage();
+      setMapView('mapbox://styles/loganmetzger/ckh5f3tdp08z619phf7nq2rln');
+    } else {
       addImage();
       setMapView(
         'mapbox://styles/bridgestoprosperity/ckf5rf05204ln19o7o0sdv860'
       );
-    } else {
-      addImage();
-      setMapView('mapbox://styles/loganmetzger/ckh5f3tdp08z619phf7nq2rln');
     }
   };
 
