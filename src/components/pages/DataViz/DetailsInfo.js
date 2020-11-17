@@ -2,6 +2,7 @@ import React, { useContext } from 'react';
 import { BridgesContext } from '../../../state/bridgesContext';
 import Draggable from 'react-draggable';
 import axios from 'axios';
+import { Card, CardActions, CardContent, CardMedia, Typography } from '@material-ui/core';
 
 const DetailsInfo = props => {
   const { detailsData, setDetailsData } = useContext(BridgesContext);
@@ -35,49 +36,72 @@ const DetailsInfo = props => {
 
   return (
     <Draggable>
-      <div className="detailsContainer">
-        <div
-          className="closeButton"
-          onKeyDown={e => {
-            console.log(e);
-          }}
-          onClick={() => {
-            setDetailsData(null);
-          }}
-        >
-          <i className="fas fa-times"></i>
-        </div>
-
-        <div className="detailsInfo">
-          <h2>{detailsData.bridge_site_name}</h2>
-
-          <p>
-            Location: {detailsData.province} - {detailsData.district}
-          </p>
-          <p>Status: {detailsData.project_stage}</p>
-          <p>Crossing injuries in last 3 years: {detailsData.river_crossing_injuries_in_last_3_years}</p>
-          <p>Crossing deaths in last 3 years: {detailsData.river_crossing_deaths_in_last_3_years}</p>
-          <p>Market access blocked by river: {detailsData.market_access_blocked_by_river}</p>
-          <p>Education access blocked by river: {detailsData.education_access_blocked_by_river}</p>
-          <p>Health access blocked by river: {detailsData.health_access_blocked_by_river}</p>
-         
-
-          {/* Conditional Render of Image if availible */}
-          <div className="bridge-image">
-            {detailsData.bridge_image ? (
-              <div className="bridge-image">
-                <img alt="bridge_image" src={`${detailsData.bridge_image}`} />
-              </div>
-            ) : null}
+      <Card className="detailsContainer">
+        <CardActions>
+          <div
+            className="closeButton"
+            onKeyDown={e => {
+              console.log(e);
+            }}
+            onClick={() => {
+              setDetailsData(null);
+            }}
+          >
+            <i className="fas fa-times"></i>
           </div>
-
-          <p>{detailsData.bridge_type}</p>
-
+        </CardActions>
+        <CardContent>
+          <Typography variant="h4" color="primary" paragraph>
+            {detailsData.bridge_site_name}
+          </Typography>
+          <Typography variant="subtitle2" color="primary">
+            Location:
+          </Typography>
+          <Typography>
+            {detailsData.province} - {detailsData.district}
+          </Typography>
+          <Typography variant="subtitle2" color="primary">
+            Status:
+          </Typography>
+          <Typography>{detailsData.project_stage}</Typography>
+          <Typography variant="subtitle2" color="primary">
+            Crossing injuries in last 3 years:
+          </Typography>
+          <Typography>
+            {detailsData.river_crossing_injuries_in_last_3_years}
+          </Typography>
+          <Typography variant="subtitle2" color="primary">
+            Crossing deaths in last 3 years:{' '}
+          </Typography>
+          <Typography>
+            {detailsData.river_crossing_deaths_in_last_3_years}
+          </Typography>
+          <Typography variant="subtitle2" color="primary">
+            Market access blocked by river:{' '}
+          </Typography>
+          <Typography>{detailsData.market_access_blocked_by_river}</Typography>
+          <Typography variant="subtitle2" color="primary">
+            Education access blocked by river:{' '}
+          </Typography>
+          <Typography>
+            {' '}
+            {detailsData.education_access_blocked_by_river}
+          </Typography>
+          <Typography variant="subtitle2" color="primary">
+            Health access blocked by river:{' '}
+          </Typography>
+          <Typography paragraph>
+            {detailsData.health_access_blocked_by_river}
+          </Typography>
+          {/* Conditional Render of Image if availible */}
+          {detailsData.bridge_image ? (
+            <CardMedia component="img" src={`${detailsData.bridge_image}`} />
+          ) : null}
+          <Typography variant="subtitle2">{detailsData.bridge_type}</Typography>
           {/* Conditional render of substage if known */}
           {detailsData.sub_stage !== '?' ? (
             <p>{detailsData.sub_stage}</p>
           ) : null}
-
           {/* Conditional Render of GDP Button */}
           {detailsData.project_stage === 'Prospecting' ? (
             <p className="info">
@@ -94,8 +118,8 @@ const DetailsInfo = props => {
               </button>
             </p>
           ) : null}
-        </div>
-      </div>
+        </CardContent>
+      </Card>
     </Draggable>
   );
 };
