@@ -102,6 +102,7 @@ const RenderMap = () => {
   //this will run function after brindges will be filtered
   function certainBridgeShows(bridges) {
     bridges.forEach(bridge => {
+
       if (bridge.project_stage === 'Complete') {
         geojsonComplete.features.push({
           type: 'Feature',

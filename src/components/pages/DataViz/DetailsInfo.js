@@ -52,9 +52,15 @@ const DetailsInfo = props => {
           <h2>{detailsData.bridge_site_name}</h2>
 
           <p>
-            {detailsData.province} - {detailsData.district}
+            Location: {detailsData.province} - {detailsData.district}
           </p>
-          <p>{detailsData.project_stage}</p>
+          <p>Status: {detailsData.project_stage}</p>
+          <p>Crossing injuries in last 3 years: {detailsData.river_crossing_injuries_in_last_3_years}</p>
+          <p>Crossing deaths in last 3 years: {detailsData.river_crossing_deaths_in_last_3_years}</p>
+          <p>Market access blocked by river: {detailsData.market_access_blocked_by_river}</p>
+          <p>Education access blocked by river: {detailsData.education_access_blocked_by_river}</p>
+          <p>Health access blocked by river: {detailsData.health_access_blocked_by_river}</p>
+         
 
           {/* Conditional Render of Image if availible */}
           <div className="bridge-image">
