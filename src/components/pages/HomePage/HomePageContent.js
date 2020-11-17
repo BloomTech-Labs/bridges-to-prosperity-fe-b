@@ -3,7 +3,7 @@ import { BridgesContext } from '../../../state/bridgesContext';
 import { RenderMap } from '../DataViz/index';
 import Navigation from '../../common/Navigation';
 import Footer from '../../common/Footer';
-import { getDSData } from '../../../api/index';
+//import { getDSData } from '../../../api/index';
 import BridgesStatusChart from '../DataViz/BridgeStatusChart';
 import Axios from 'axios';
 

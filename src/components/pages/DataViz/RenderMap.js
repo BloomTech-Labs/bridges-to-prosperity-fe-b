@@ -319,12 +319,12 @@ const RenderMap = () => {
       x.style.display = 'block';
     }
   }
-  function handleClose(e) {
-    console.log(e);
-    if (e.key === 'Escape') {
-      setFullscreen(false);
-    }
-  }
+  // function handleClose(e) {
+  //   console.log(e);
+  //   if (e.key === 'Escape') {
+  //     setFullscreen(false);
+  //   }
+  // }
 
   return (
     <Grid container>

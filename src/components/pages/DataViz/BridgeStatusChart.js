@@ -9,7 +9,6 @@ import {
   Typography,
   Paper,
   Box,
-  AppBar,
   Tabs,
   Tab,
 } from '@material-ui/core/';
