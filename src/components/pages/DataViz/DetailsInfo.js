@@ -103,7 +103,7 @@ const DetailsInfo = props => {
             <p>{detailsData.sub_stage}</p>
           ) : null}
           {/* Conditional Render of GDP Button */}
-          {detailsData.project_stage === 'Prospecting' ? (
+          {/* {detailsData.project_stage === 'Prospecting' ? (
             <p className="info">
               <span className="infoLabel"> GDP per Capita: </span>
               <button
@@ -117,7 +117,7 @@ const DetailsInfo = props => {
                 </span>
               </button>
             </p>
-          ) : null}
+          ) : null} */}
         </CardContent>
       </Card>
     </Draggable>
