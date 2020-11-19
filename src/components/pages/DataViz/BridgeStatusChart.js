@@ -9,7 +9,6 @@ import {
   Typography,
   Paper,
   Box,
-  AppBar,
   Tabs,
   Tab,
 } from '@material-ui/core/';
@@ -45,6 +44,8 @@ const useStyles = makeStyles(theme => ({
   },
 }));
 
+
+
 const BridgeStatusChart = () => {
   const classes = useStyles();
 
@@ -62,6 +63,7 @@ const BridgeStatusChart = () => {
       setCurrentData(bridgeData);
     } else {
       let data = bridgeData.filter(bridge => {
+
         return bridge.province === selectedProvince;
       });
       setCurrentData(data);
